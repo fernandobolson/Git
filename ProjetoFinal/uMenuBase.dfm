@@ -14,6 +14,12 @@
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
+  object Image1: TImage
+    Left = 216
+    Top = 200
+    Width = 345
+    Height = 153
+  end
   object Panel1: TPanel
     Left = 0
     Top = 39
@@ -59,8 +65,8 @@
     StyleName = 'Platform Default'
   end
   object ActionList1: TActionList
-    Left = 445
-    Top = 103
+    Left = 309
+    Top = 135
     object Action1: TAction
       Caption = 'Action1'
     end

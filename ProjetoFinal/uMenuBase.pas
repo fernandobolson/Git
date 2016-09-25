@@ -19,6 +19,7 @@ type
     Panel1: TPanel;
     ActionMainMenuBar1: TActionMainMenuBar;
     Action1: TAction;
+    Image1: TImage;
   private
     { Private declarations }
   public
