@@ -1,0 +1,109 @@
+unit uClientDataSetHelper;
+
+interface
+
+uses
+  DateUtils, System.SysUtils, Data.DB, Datasnap.DBClient;
+
+type
+  TClientDataSetHelper = class helper for TClientDataSet
+    private
+      { private declarations }
+    protected
+      { protected declarations }
+    public
+      { public declarations }
+      procedure AppendOrEdit;
+      procedure ClearFilter;
+      procedure EditAndPostField(AFieldName: String; AValue: Variant);
+      procedure SetFilter(AFilter: String);
+      function AsBoolean(const NomeCol: String): boolean;
+      function AsDate(const NomeCol: String): TDateTime;
+      function AsFloat(const NomeCol: String): Double;
+      function AsInt(const NomeCol: String): integer;
+      function AsStr(const NomeCol: String): string;
+
+    published
+      { published declarations }
+    end;
+
+
+implementation
+
+procedure TClientDataSetHelper.AppendOrEdit;
+begin
+  if (Self.IsEmpty) then
+    begin
+    Self.Append;
+  end
+  else
+    begin
+    Self.Edit;
+  end;
+end;
+
+procedure TClientDataSetHelper.ClearFilter;
+begin
+  Self.Filtered := False;
+  Self.Filter   := EmptyStr;
+end;
+
+procedure TClientDataSetHelper.EditAndPostField(AFieldName: String;
+  AValue: Variant);
+begin
+  Self.Edit;
+  Self.FieldByName(AFieldName).Value := AValue;
+  Self.Post;
+end;
+
+procedure TClientDataSetHelper.SetFilter(AFilter: String);
+begin
+  Self.ClearFilter;
+  Self.Filter := AFilter;
+  Self.Filtered := (Self.Filter <> EmptyStr);
+end;
+
+function TClientDataSetHelper.AsBoolean(const NomeCol: String): boolean;
+var
+  s : String;
+begin
+  s := Self.AsStr(NomeCol);
+  Result := (s[1] in ['S','s']);
+end;
+
+function TClientDataSetHelper.AsDate(const NomeCol: String): TDateTime;
+begin
+  Result := FieldByName(NomeCol).AsDateTime;
+end;
+
+function TClientDataSetHelper.AsFloat(const NomeCol: String): Double;
+begin
+  try
+    Result := FieldByName(NomeCol).AsFloat;
+  except
+    on e: EConvertError do
+      Result := 0.0
+    else
+      raise;
+  end;
+end;
+
+function TClientDataSetHelper.AsInt(const NomeCol: String): integer;
+begin
+  try
+    Result := FieldByName(NomeCol).AsInteger;
+  except
+    on e: EConvertError do
+      Result := 0
+    else
+      raise;
+  end;
+end;
+
+function TClientDataSetHelper.AsStr(const FieldName: String): string;
+begin
+  Result := FieldByName(FieldName).AsString;
+end;
+
+
+end.

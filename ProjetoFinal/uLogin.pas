@@ -1,0 +1,39 @@
+unit uLogin;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls,
+  cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit, Vcl.StdCtrls,
+  cxTextEdit, cxMaskEdit, cxDBEdit, cxGroupBox, Vcl.Menus, cxButtons,
+  System.Actions, Vcl.ActnList;
+
+type
+  TForm1 = class(TForm)
+    cxGroupBox1: TcxGroupBox;
+    dbLogin: TcxDBMaskEdit;
+    Label1: TLabel;
+    Senha: TLabel;
+    dbSenha: TcxDBMaskEdit;
+    cxButton1: TcxButton;
+    cxButton2: TcxButton;
+    acLogin: TActionList;
+    acLogar: TAction;
+    acSair: TAction;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+uses uClientDataSetHelper, uDmPrinc, uMenuBase, uUsuario;
+
+end.
