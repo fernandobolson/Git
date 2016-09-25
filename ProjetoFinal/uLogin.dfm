@@ -1,7 +1,7 @@
-object Form1: TForm1
+object FLogin: TFLogin
   Left = 0
   Top = 0
-  Caption = 'Sistema VetShop'
+  Caption = 'Login Sistema VetShop'
   ClientHeight = 318
   ClientWidth = 336
   Color = clBtnFace
@@ -67,6 +67,7 @@ object Form1: TForm1
       Height = 25
       Action = acLogar
       TabOrder = 2
+      OnClick = cxButton1Click
     end
     object cxButton2: TcxButton
       Left = 181

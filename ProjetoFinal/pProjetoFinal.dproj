@@ -105,16 +105,16 @@
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="uLogin.pas">
-            <Form>Form1</Form>
+            <Form>FLogin</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Bibliotecas\Cpf_cnpj.pas"/>
         <DCCReference Include="Bibliotecas\Extenso.pas"/>
         <DCCReference Include="Bibliotecas\opData.pas"/>
         <DCCReference Include="Bibliotecas\opMath.pas"/>
-        <DCCReference Include="Bibliotecas\opString.pas"/>
         <DCCReference Include="Bibliotecas\uClientDataSetHelper.pas"/>
         <DCCReference Include="uUsuario.pas"/>
+        <DCCReference Include="Bibliotecas\BibStr.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

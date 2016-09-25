@@ -10,7 +10,7 @@ uses
   System.Actions, Vcl.ActnList;
 
 type
-  TForm1 = class(TForm)
+  TFLogin = class(TForm)
     cxGroupBox1: TcxGroupBox;
     dbLogin: TcxDBMaskEdit;
     Label1: TLabel;
@@ -21,6 +21,7 @@ type
     acLogin: TActionList;
     acLogar: TAction;
     acSair: TAction;
+    procedure cxButton1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -28,12 +29,17 @@ type
   end;
 
 var
-  Form1: TForm1;
+  FLogin: TFLogin;
 
 implementation
 
 {$R *.dfm}
 
-uses uClientDataSetHelper, uDmPrinc, uMenuBase, uUsuario;
+uses uClientDataSetHelper, uDmPrinc, uMenuBase, uUsuario, BibStr;
+
+procedure TFLogin.cxButton1Click(Sender: TObject);
+begin
+  ShowMessage(Encript(dbSenha.Text));
+end;
 
 end.
