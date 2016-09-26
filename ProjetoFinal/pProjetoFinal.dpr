@@ -2,8 +2,8 @@ program pProjetoFinal;
 
 uses
   Vcl.Forms,
-  uMenuBase in 'uMenuBase.pas' {Form2},
-  uDmPrinc in 'uDmPrinc.pas' {DataModule1: TDataModule},
+  uMenuBase in 'uMenuBase.pas' {FMenuBase},
+  uDmPrinc in 'uDmPrinc.pas' {DmPrinc: TDataModule},
   uLogin in 'uLogin.pas' {FLogin},
   Cpf_cnpj in 'Bibliotecas\Cpf_cnpj.pas',
   Extenso in 'Bibliotecas\Extenso.pas',
@@ -11,13 +11,14 @@ uses
   opMath in 'Bibliotecas\opMath.pas',
   uClientDataSetHelper in 'Bibliotecas\uClientDataSetHelper.pas',
   uUsuario in 'uUsuario.pas',
-  BibStr in 'Bibliotecas\BibStr.pas';
+  BibStr in 'Bibliotecas\BibStr.pas',
+  BibGeral in 'Bibliotecas\BibGeral.pas';
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TFMenuBase, FMenuBase);
   Application.Run;
 end.

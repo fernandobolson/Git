@@ -1,7 +1,7 @@
 object FLogin: TFLogin
   Left = 0
   Top = 0
-  Caption = 'Login Sistema VetShop'
+  Caption = 'Acessar Sistema VetShop 1.0.0.1'
   ClientHeight = 318
   ClientWidth = 336
   Color = clBtnFace
@@ -12,6 +12,8 @@ object FLogin: TFLogin
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
+  OnClose = FormClose
+  OnKeyPress = FormKeyPress
   PixelsPerInch = 96
   TextHeight = 13
   object cxGroupBox1: TcxGroupBox
@@ -60,33 +62,29 @@ object FLogin: TFLogin
       TabOrder = 1
       Width = 203
     end
-    object cxButton1: TcxButton
+    object btEntrar: TcxButton
       Left = 79
       Top = 102
       Width = 75
       Height = 25
-      Action = acLogar
+      Hint = 'Pressione para tentar entrar no sistema'
+      Caption = 'Entrar'
       TabOrder = 2
-      OnClick = cxButton1Click
+      OnClick = btEntrarClick
     end
-    object cxButton2: TcxButton
+    object btSair: TcxButton
       Left = 181
       Top = 102
       Width = 75
       Height = 25
       Caption = 'Sair'
       TabOrder = 3
+      OnClick = btSairClick
     end
   end
-  object acLogin: TActionList
-    Left = 283
-    Top = 49
-    object acLogar: TAction
-      Caption = 'Entrar'
-      Hint = 'Pressione para tentar entrar no sistema'
-    end
-    object acSair: TAction
-      Caption = 'Sair'
-    end
+  object qryLogin: TSQLQuery
+    Params = <>
+    Left = 224
+    Top = 56
   end
 end
