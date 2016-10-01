@@ -11,14 +11,14 @@ uses
 
 type
   TFLogin = class(TForm)
+    qryLogin: TSQLQuery;
     cxGroupBox1: TcxGroupBox;
-    dbLogin: TcxDBMaskEdit;
     Label1: TLabel;
     Senha: TLabel;
+    dbLogin: TcxDBMaskEdit;
     dbSenha: TcxDBMaskEdit;
     btEntrar: TcxButton;
     btSair: TcxButton;
-    qryLogin: TSQLQuery;
     procedure btEntrarClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -37,7 +37,7 @@ implementation
 
 {$R *.dfm}
 
-uses uClientDataSetHelper, uDmPrinc, uMenuBase, uUsuario, BibStr;
+uses uClientDataSetHelper, uDmPrinc, uMenuBase, uUsuario, BibStr, BibGeral;
 
 procedure TFLogin.btEntrarClick(Sender: TObject);
 begin
@@ -49,7 +49,8 @@ begin
   //Verifica se está vazio a query
   if (qryLogin.IsEmpty) then
     begin
-    ShowMessage('Usuário não encontrado!');
+//    ShowMessage('Usuário não encontrado!');
+    RespOkCancel('Atenção', 'Usuário não encontrado');
     dbLogin.SetFocus;
   end
   else

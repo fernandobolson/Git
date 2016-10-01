@@ -8,8 +8,15 @@ uses
   Data.DB, Data.SqlExpr, Vcl.Imaging.jpeg;
 
 
+  procedure RespOkCancel(sTit, sMsg :String);
 
 implementation
+
+procedure RespOkCancel(sTit, sMsg : String);
+begin
+  Application.MessageBox(sMsg, sTit,
+      MB_OKCANCEL + MB_ICONINFORMATION);
+end;
 
 
 end.

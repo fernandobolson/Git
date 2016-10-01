@@ -84,7 +84,7 @@ begin
     on e: EConvertError do
       Result := 0.0
     else
-      raise;
+      Raise;
   end;
 end;
 

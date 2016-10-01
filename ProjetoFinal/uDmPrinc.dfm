@@ -1,89 +1,92 @@
 object DmPrinc: TDmPrinc
   OldCreateOrder = False
   OnDestroy = DataModuleDestroy
-  Height = 255
-  Width = 429
+  Height = 226
+  Width = 391
   object sqlCon: TSQLConnection
     ConnectionName = 'VETSHOP'
-    DriverName = 'Oracle'
+    DriverName = 'Interbase'
     LoginPrompt = False
     Params.Strings = (
-      'DriverName=Oracle'
-      'DriverUnit=Data.DBXOracle'
+      'DriverName=Interbase'
+      'DriverUnit=Data.DBXInterBase'
       
-        'DriverPackageLoader=TDBXDynalinkDriverLoader,DBXCommonDriver180.' +
+        'DriverPackageLoader=TDBXDynalinkDriverLoader,DbxCommonDriver230.' +
         'bpl'
       
         'DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borla' +
-        'nd.Data.DbxCommonDriver,Version=18.0.0.0,Culture=neutral,PublicK' +
+        'nd.Data.DbxCommonDriver,Version=23.0.0.0,Culture=neutral,PublicK' +
         'eyToken=91d62ebb5b0d1b1b'
       
-        'MetaDataPackageLoader=TDBXOracleMetaDataCommandFactory,DbxOracle' +
-        'Driver180.bpl'
+        'MetaDataPackageLoader=TDBXInterbaseMetaDataCommandFactory,DbxInt' +
+        'erBaseDriver230.bpl'
       
-        'MetaDataAssemblyLoader=Borland.Data.TDBXOracleMetaDataCommandFac' +
-        'tory,Borland.Data.DbxOracleDriver,Version=18.0.0.0,Culture=neutr' +
-        'al,PublicKeyToken=91d62ebb5b0d1b1b'
-      'LibraryName=dbxora.dll'
-      'LibraryNameOsx=libsqlora.dylib'
-      'VendorLib=oci.dll'
-      'VendorLibWin64=oci.dll'
-      'VendorLibOsx=libociei.dylib'
-      'Database=XE'
-      'User_Name=VETSHOP'
-      'Password=VETSHOP123'
+        'MetaDataAssemblyLoader=Borland.Data.TDBXInterbaseMetaDataCommand' +
+        'Factory,Borland.Data.DbxInterBaseDriver,Version=23.0.0.0,Culture' +
+        '=neutral,PublicKeyToken=91d62ebb5b0d1b1b'
+      'LibraryName=dbxint.dll'
+      'LibraryNameOsx=libsqlib.dylib'
+      'VendorLib=GDS32.DLL'
+      'VendorLibWin64=ibclient64.dll'
+      'VendorLibOsx=libgds.dylib'
+      'User_Name=SYSDBA'
+      'Password=masterkey'
+      'Role=RoleName'
       'MaxBlobSize=-1'
       'LocaleCode=0000'
       'IsolationLevel=ReadCommitted'
-      'RowsetSize=20'
-      'OSAuthentication=False'
-      'MultipleTransactions=False'
+      'SQLDialect=3'
+      'CommitRetain=False'
+      'WaitOnLocks=True'
       'TrimChar=False'
+      'DisplayDriverName=InterBase Server'
       'BlobSize=-1'
       'ErrorResourceFile='
-      'OS Authentication=False'
-      'Multiple Transaction=False'
+      'RoleName=RoleName'
+      'ServerCharSet='
       'Trim Char=False'
-      'Decimal Separator=.')
+      'SEP='
+      
+        'Database=C:\Users\ferna\Dropbox\Git\ProjetoFinal\Dados\VETSHOP.F' +
+        'DB')
     AfterConnect = sqlConAfterConnect
-    Connected = True
-    Left = 24
+    Left = 25
     Top = 16
   end
-  object dspClientes: TDataSetProvider
-    DataSet = sqlClientes
-    Left = 224
-    Top = 72
+  object dsp: TDataSetProvider
+    DataSet = sql
+    Left = 22
+    Top = 78
   end
-  object cdsClientes: TClientDataSet
+  object cds: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'dspClientes'
-    Left = 152
-    Top = 72
-    object cdsClientesCD_PESSOA: TFMTBCDField
+    Left = 133
+    Top = 76
+    object cdsCD_PESSOA: TFMTBCDField
       FieldName = 'CD_PESSOA'
       Required = True
       Precision = 32
     end
-    object cdsClientesNM_PESSOA: TWideStringField
+    object cdsNM_PESSOA: TWideStringField
       FieldName = 'NM_PESSOA'
       Required = True
       Size = 60
     end
-    object cdsClientesTP_PESSOA: TFMTBCDField
+    object cdsTP_PESSOA: TFMTBCDField
       FieldName = 'TP_PESSOA'
       Required = True
       Precision = 32
     end
   end
-  object sqlClientes: TSQLQuery
+  object sql: TSQLQuery
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
       'SELECT * FROM PESSOA')
     SQLConnection = sqlCon
-    Left = 296
-    Top = 72
+    Left = 75
+    Top = 76
   end
 end
