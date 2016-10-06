@@ -7,24 +7,27 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls,
   cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit, Vcl.StdCtrls,
   cxTextEdit, cxMaskEdit, cxDBEdit, cxGroupBox, Vcl.Menus, cxButtons,
-  System.Actions, Vcl.ActnList, Data.FMTBcd, Data.DB, Data.SqlExpr;
+  System.Actions, Vcl.ActnList, Data.FMTBcd, Data.DB, Data.SqlExpr,
+  Vcl.Buttons, Vcl.ComCtrls, Vcl.ExtCtrls;
 
 type
   TFLogin = class(TForm)
     qryLogin: TSQLQuery;
-    cxGroupBox1: TcxGroupBox;
+    StatusBar1: TStatusBar;
+    dbSenha: TcxDBMaskEdit;
     Label1: TLabel;
     Senha: TLabel;
     dbLogin: TcxDBMaskEdit;
-    dbSenha: TcxDBMaskEdit;
-    btEntrar: TcxButton;
-    btSair: TcxButton;
+    btEntrar: TSpeedButton;
+    Image1: TImage;
     procedure btEntrarClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btSairClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+    cUsuario : String;
     lLogado : Boolean;
   public
     { Public declarations }
@@ -55,7 +58,7 @@ begin
   end
   else
     begin
-    if (qryLogin.FieldByName('SENHA').AsString = edtSenha.Text) then
+    if (qryLogin.FieldByName('SENHA').AsString = dbSenha.Text) then
       begin
       //ShowMessage('Usuário validado com sucesso!');
       lLogado := true;
@@ -65,7 +68,7 @@ begin
     else
       begin
       ShowMessage('Senha inválida!');
-      edtSenha.SetFocus;
+      dbSenha.SetFocus;
     end;
   end;
 
@@ -85,9 +88,14 @@ begin
     Application.Terminate;  //Encerra a aplicação
 end;
 
+procedure TFLogin.FormCreate(Sender: TObject);
+begin
+  Self.Caption := 'Acesso ao sistema '+ GetVersaoAtual;
+end;
+
 procedure TFLogin.FormKeyPress(Sender: TObject; var Key: Char);
 begin
-  if (key = #13) then
+  if (Key = #13) then
     begin
     key := #0;
     Perform(WM_NEXTDLGCTL, 0, 0);

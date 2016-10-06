@@ -1,11 +1,11 @@
 object FLogin: TFLogin
   Left = 0
   Top = 0
-  BorderStyle = bsNone
-  Caption = 'Acessar Sistema VetShop 1.0.0.1'
-  ClientHeight = 284
-  ClientWidth = 327
-  Color = clWhite
+  BorderStyle = bsSingle
+  Caption = 'Acessar Sistema '
+  ClientHeight = 315
+  ClientWidth = 292
+  Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -14,78 +14,111 @@ object FLogin: TFLogin
   OldCreateOrder = False
   Position = poDesktopCenter
   OnClose = FormClose
+  OnCreate = FormCreate
   OnKeyPress = FormKeyPress
   PixelsPerInch = 96
   TextHeight = 13
-  object cxGroupBox1: TcxGroupBox
-    Left = 19
-    Top = 73
-    Caption = 'Por favor, Insira suas credenciais'
-    TabOrder = 0
-    Height = 183
-    Width = 286
-    object Label1: TLabel
-      Left = 26
-      Top = 28
-      Width = 35
-      Height = 16
-      Caption = 'Login:'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Senha: TLabel
-      Left = 26
-      Top = 85
-      Width = 41
-      Height = 16
-      Caption = 'Senha:'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object dbLogin: TcxDBMaskEdit
-      Left = 26
-      Top = 107
-      Properties.PasswordChar = '*'
-      TabOrder = 0
-      Width = 225
-    end
-    object dbSenha: TcxDBMaskEdit
-      Left = 26
-      Top = 50
-      TabOrder = 1
-      Width = 225
-    end
-    object btEntrar: TcxButton
-      Left = 41
-      Top = 134
-      Width = 75
-      Height = 25
-      Hint = 'Pressione para tentar entrar no sistema'
-      Caption = 'Entrar'
-      TabOrder = 2
-      OnClick = btEntrarClick
-    end
-    object btSair: TcxButton
-      Left = 142
-      Top = 134
-      Width = 75
-      Height = 25
-      Caption = 'Sair'
-      TabOrder = 3
-      OnClick = btSairClick
-    end
+  object Label1: TLabel
+    Left = 5
+    Top = 185
+    Width = 48
+    Height = 16
+    Caption = 'Us'#250'ario:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Senha: TLabel
+    Left = 14
+    Top = 211
+    Width = 41
+    Height = 16
+    Caption = 'Senha:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object btEntrar: TSpeedButton
+    Left = 98
+    Top = 236
+    Width = 129
+    Height = 27
+    Caption = 'Conectar'
+    Glyph.Data = {
+      36040000424D3604000000000000360000002800000010000000100000000100
+      2000000000000004000000000000000000000000000000000000000000090000
+      000E000000100000001000000010000000100000001000000011000000110000
+      0011000000110000001100000011000000100000000B00000003845633C1B777
+      46FFB77746FFB77746FFAA7B6DFFA97A6CFFA97A6BFFA97A6BFFA9796BFFA87A
+      6BFFA7786AFFA7786AFFA77869FFA77869FF78564AC30000000AC68C5CFFE0BF
+      99FFE0BC94FFD7AD84FFF8F0ECFFF8F0ECFFF8F0ECFFF8F0ECFFF7EFEBFFF8EF
+      EBFFF7EFEBFFF7EFEBFFF7EFEBFFF7F0EBFFA8796AFF0000000FC68E5DFFE2C4
+      9DFFD8B081FFD1A476FFF6ECE8FFF6EDE8FFF6ECE8FFF6EDE8FFF6ECE8FFF7ED
+      E8FFF6EDE7FFF6ECE8FFF6ECE8FFF8F0ECFFA97B6BFF00000010C7905FFFE4C6
+      A2FFDAB285FFD3A679FFF7EDE8FFF6EDE8FFF6EDE8FFF6EDE8FFF6EDE8FFF6EC
+      E8FFF7EDE8FFF6ECE8FFF6ECE8FFF8F1EDFFAA7C6DFF0000000FC89261FFE6C9
+      A8FFDCB589FFD4A87BFFF7EEE9FFF7EDE9FFF7EDE9FFF7EDE9FFBC8D73FFF1E4
+      DEFFF6EDE9FFF7EDE8FFF6EDE9FFF9F1EDFFAB7E6FFF0000000ECA9463FFE7CE
+      ACFFDEB88BFFD6AA7DFFF7EEE9FFF7EDE9FFF7EEE9FFF7EDE9FFA2613AFFA46B
+      4AFFDDC6BAFFF6EDE9FFF7EEE9FFF8F1EEFFAD8072FF0000000ECB9565FFE9D1
+      B0FFDEBA8FFFD6AC80FFF7EDEAFFB57D56FFA76740FFA6663FFFA6653EFFEEBB
+      75FFB17548FFC29A86FFF4E9E3FFF9F2EFFFAF8274FF0000000DCC9767FFEBD4
+      B5FFE0BD92FFD7AE82FFF7EEEAFFB8825BFFFEEAC1FFF9CA82FFF8C980FFF9C8
+      80FFF8C87EFFCD955EFFBB8E77FFF9F2EFFFB08476FF0000000CCE996AFFECD7
+      B9FFE1BF96FFD8B085FFF7EEEAFFBC875FFFBB855EFFBB845DFFB9835CFFF3DA
+      B2FFB7835EFFC7A28CFFF5EBE6FFF9F3F0FFB28679FF0000000CCF9B6DFFEDD9
+      BEFFE3C299FFD9B187FFF7EFEBFFF7EFEBFFF7EFEBFFF8EEEBFFBC8861FFB47F
+      5DFFE2CDC0FFF7EEEAFFF7EFEBFFFAF4F1FFB3897BFF0000000BCF9D6EFFEFDC
+      C0FFE4C59CFFDAB48AFFF8EFEBFFF7EEEBFFF7EFEBFFF7EFEBFFD3AF94FFF2E7
+      E1FFF7EFEBFFF7EFEBFFF7EEEBFFFAF3F2FFB58B7DFF0000000AD09F70FFF0DF
+      C4FFE5C89FFFDBB68CFFF7EFECFFF8EFECFFF8EFECFFF7EFECFFF7EFECFFF7EF
+      ECFFF7EFEBFFF7EFEBFFF7EFECFFFAF5F2FFB68D80FF00000009D2A072FFF2E0
+      C7FFE6CAA2FFDCB88EFFF8F0EDFFF8EFECFFF8EFECFFF8EFECFFF8F0ECFFF7F0
+      ECFFF8EFECFFF8EFECFFF7EFECFFFAF5F2FFB99083FF00000009D2A274FFF3E4
+      CEFFF3E4CEFFE6CCAFFFFAF8F5FFFAF8F6FFFAF8F5FFFAF8F6FFFAF8F5FFFAF8
+      F5FFFAF8F5FFFAF8F5FFFAF7F5FFFAF6F4FFBB9286FF000000089D7857C0D3A3
+      75FFD2A375FFD3A374FFC09B8EFFC09A8EFFBF9A8DFFBF998CFFBE988CFFBE98
+      8BFFBD978AFFBD978AFFBD9689FFBD9589FF8A6E64C200000005}
+    OnClick = btEntrarClick
+  end
+  object Image1: TImage
+    Left = 26
+    Top = 25
+    Width = 221
+    Height = 121
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 296
+    Width = 292
+    Height = 19
+    Panels = <>
+    ExplicitLeft = 148
+    ExplicitTop = 216
+    ExplicitWidth = 0
+  end
+  object dbSenha: TcxDBMaskEdit
+    Left = 59
+    Top = 207
+    Properties.PasswordChar = '*'
+    TabOrder = 1
+    Width = 209
+  end
+  object dbLogin: TcxDBMaskEdit
+    Left = 59
+    Top = 184
+    TabOrder = 2
+    Width = 209
   end
   object qryLogin: TSQLQuery
     Params = <>
-    Left = 270
-    Top = 11
+    Left = 105
+    Top = 51
   end
 end
