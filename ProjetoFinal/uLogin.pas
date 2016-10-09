@@ -7,29 +7,42 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls,
   cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit, Vcl.StdCtrls,
   cxTextEdit, cxMaskEdit, cxDBEdit, cxGroupBox, Vcl.Menus, cxButtons,
-  System.Actions, Vcl.ActnList, Data.FMTBcd, Data.DB, Data.SqlExpr;
+  System.Actions, Vcl.ActnList, Data.FMTBcd, Data.DB, Data.SqlExpr,
+  Vcl.Buttons, Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.Mask;
 
 type
   TFLogin = class(TForm)
-    cxGroupBox1: TcxGroupBox;
-    dbLogin: TcxDBMaskEdit;
+    qryLogin: TSQLQuery;
     Label1: TLabel;
     Senha: TLabel;
-    dbSenha: TcxDBMaskEdit;
+    ebSenha: TMaskEdit;
+    lbEsqueciSenha: TLabel;
     btEntrar: TcxButton;
-    btSair: TcxButton;
-    qryLogin: TSQLQuery;
-    procedure btEntrarClick(Sender: TObject);
+    ebUser: TMaskEdit;
+    Panel1: TPanel;
+    Label3: TLabel;
+    Label4: TLabel;
+    lbVersao: TLabel;
+    btFechar: TcxButton;
+    Panel2: TPanel;
+    lbDesenv: TLabel;
+    acLogin: TActionList;
+    acConectar: TAction;
+    acFechar: TAction;
+
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure btSairClick(Sender: TObject);
+
+    procedure FormCreate(Sender: TObject);
+    procedure acConectarExecute(Sender: TObject);
+    procedure acFecharExecute(Sender: TObject);
   private
     { Private declarations }
+    cUsuario : String;
     lLogado : Boolean;
   public
     { Public declarations }
   end;
-
 var
   FLogin: TFLogin;
 
@@ -37,26 +50,31 @@ implementation
 
 {$R *.dfm}
 
-uses uClientDataSetHelper, uDmPrinc, uMenuBase, uUsuario, BibStr;
+uses
+  uClientDataSetHelper
+  , uDmPrinc
+  , uMenuBase
+  , uUsuario
+  , BibStr
+  , BibGeral;
 
-procedure TFLogin.btEntrarClick(Sender: TObject);
+procedure TFLogin.acConectarExecute(Sender: TObject);
 begin
   lLogado := False;
   qryLogin.SQL.Text :=
-    'SELECT NOME, SENHA FROM USUARIO WHERE LOGIN = '+ QuotedStr(dbLogin.Text);
+    'SELECT NOME, SENHA FROM USUARIO WHERE LOGIN = '+ QuotedStr(ebUser.Text);
   qryLogin.Open;
 
   //Verifica se está vazio a query
   if (qryLogin.IsEmpty) then
     begin
-    ShowMessage('Usuário não encontrado!');
-    dbLogin.SetFocus;
+    RespOkCancel('Atenção', 'Usuário não encontrado');
+    ebUser.SetFocus;
   end
   else
     begin
-    if (qryLogin.FieldByName('SENHA').AsString = edtSenha.Text) then
+    if (qryLogin.FieldByName('SENHA').AsString = ebSenha.Text) then
       begin
-      //ShowMessage('Usuário validado com sucesso!');
       lLogado := true;
       cUsuario := qryLogin.FieldByName('NOME').AsString;
       Self.Close;
@@ -64,16 +82,16 @@ begin
     else
       begin
       ShowMessage('Senha inválida!');
-      edtSenha.SetFocus;
+      ebSenha.SetFocus;
     end;
   end;
 
   qryLogin.Close;
 end;
 
-procedure TFLogin.btSairClick(Sender: TObject);
+procedure TFLogin.acFecharExecute(Sender: TObject);
 begin
-  Application.Terminate;
+    Application.Terminate;
 end;
 
 procedure TFLogin.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -84,9 +102,18 @@ begin
     Application.Terminate;  //Encerra a aplicação
 end;
 
+procedure TFLogin.FormCreate(Sender: TObject);
+var
+  sVersao : String;
+begin
+  sVersao := GetVersaoAtual;
+  Self.Caption := 'Acesso ao sistema VetShop '+ sVersao;
+  lbVersao := 'Versão: ' + sVersao;
+end;
+
 procedure TFLogin.FormKeyPress(Sender: TObject; var Key: Char);
 begin
-  if (key = #13) then
+  if (Key = #13) then
     begin
     key := #0;
     Perform(WM_NEXTDLGCTL, 0, 0);

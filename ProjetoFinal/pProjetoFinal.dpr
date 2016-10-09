@@ -12,13 +12,15 @@ uses
   uClientDataSetHelper in 'Bibliotecas\uClientDataSetHelper.pas',
   uUsuario in 'uUsuario.pas',
   BibStr in 'Bibliotecas\BibStr.pas',
-  BibGeral in 'Bibliotecas\BibGeral.pas';
+  BibGeral in 'Bibliotecas\BibGeral.pas',
+  uEsqueciSenha in 'uEsqueciSenha.pas' {FEsqueciSenha};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TFMenuBase, FMenuBase);
+  Application.CreateForm(TDmPrinc, DmPrinc);
+  Application.CreateForm(TFLogin, FLogin);
   Application.Run;
 end.

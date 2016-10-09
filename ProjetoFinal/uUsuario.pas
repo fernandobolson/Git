@@ -3,26 +3,28 @@ unit uUsuario;
 interface
 
 type
-  TMyClass = class
+  TUsuario = class
   private
-    FNome: String;
-    FEmpresa: String;
+    FDtInclusao: TDateTime;
+    FUserId: Integer;
     FSenha: String;
-    FLogin: String;
-    FTempoLogado: TDateTime;
-    procedure SetNome(const Value: String);
-    procedure SetEmpresa(const Value: String);
-    procedure SetLogin(const Value: String);
+    FNome: String;
+    procedure SetDtInclusao(const Value: TDateTime);
     procedure SetSenha(const Value: String);
-    procedure SetTempoLogado(const Value: TDateTime);
-  protected
-    property Nome : String  read FNome write SetNome;
-    property Login : String read FLogin write SetLogin;
-    property Senha : String read FSenha write SetSenha;
-    property Empresa : String read FEmpresa write SetEmpresa;
-    property TempoLogado : TDateTime read FTempoLogado write SetTempoLogado;
-  public
+    procedure SetUserId(const Value: String);
+    procedure SetNome(const Value: String);
 
+    function GetSenhaDescript(UserId : Integer) : String;
+    function EncriptaSenha(pSenha : String) : String;
+    function EncriptaNome(pNome : String) : String;
+  protected
+    property UserId : Integer read FUserId write SetUserId;
+    property Nome : String read FNome write SetNome;
+    property Senha : String read FSenha write SetSenha;
+    property DtInclusao : TDateTime read FDtInclusao write SetDtInclusao;
+  public
+    Constructor Create(UserId : Integer); override; overload;
+    Constructor Create; override;
   published
 
   end;
@@ -31,29 +33,54 @@ implementation
 
 { TMyClass }
 
-procedure TMyClass.SetEmpresa(const Value: String);
+
+
+{ TUsuario }
+
+constructor TUsuario.Create(UserId : Integer);
 begin
-  FEmpresa := Value;
+  inherited;
+
 end;
 
-procedure TMyClass.SetLogin(const Value: String);
+constructor TUsuario.Create;
 begin
-  FLogin := Value;
+
 end;
 
-procedure TMyClass.SetNome(const Value: String);
+function TUsuario.EncriptaNome(pNome: String): String;
+begin
+
+end;
+
+function TUsuario.EncriptaSenha(pSenha: String): String;
+begin
+
+end;
+
+function TUsuario.GetSenhaDescript(UserId: Integer): String;
+begin
+
+end;
+
+procedure TUsuario.SetDtInclusao(const Value: TDateTime);
+begin
+  FDtInclusao := Value;
+end;
+
+procedure TUsuario.SetNome(const Value: String);
 begin
   FNome := Value;
 end;
 
-procedure TMyClass.SetSenha(const Value: String);
+procedure TUsuario.SetSenha(const Value: String);
 begin
   FSenha := Value;
 end;
 
-procedure TMyClass.SetTempoLogado(const Value: TDateTime);
+procedure TUsuario.SetUserId(const Value: Integer);
 begin
-  FTempoLogado := Value;
+  FUserId := Value;
 end;
 
 end.
