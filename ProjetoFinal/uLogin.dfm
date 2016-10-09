@@ -133,7 +133,7 @@ object FLogin: TFLogin
     end
   end
   object btFechar: TcxButton
-    Left = 156
+    Left = 157
     Top = 243
     Width = 88
     Height = 24
