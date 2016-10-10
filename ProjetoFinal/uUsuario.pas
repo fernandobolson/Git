@@ -11,7 +11,7 @@ type
     FNome: String;
     procedure SetDtInclusao(const Value: TDateTime);
     procedure SetSenha(const Value: String);
-    procedure SetUserId(const Value: String);
+    procedure SetUserId(const Value: Integer);
     procedure SetNome(const Value: String);
 
     function GetSenhaDescript(UserId : Integer) : String;
@@ -23,8 +23,7 @@ type
     property Senha : String read FSenha write SetSenha;
     property DtInclusao : TDateTime read FDtInclusao write SetDtInclusao;
   public
-    Constructor Create(UserId : Integer); override; overload;
-    Constructor Create; override;
+    Constructor Create(UserId : Integer); overload;
   published
 
   end;
@@ -37,15 +36,10 @@ implementation
 
 { TUsuario }
 
-constructor TUsuario.Create(UserId : Integer);
+
+constructor TUsuario.Create(UserId: Integer);
 begin
-  inherited;
-
-end;
-
-constructor TUsuario.Create;
-begin
-
+//
 end;
 
 function TUsuario.EncriptaNome(pNome: String): String;

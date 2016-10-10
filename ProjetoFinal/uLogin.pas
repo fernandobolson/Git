@@ -108,7 +108,7 @@ var
 begin
   sVersao := GetVersaoAtual;
   Self.Caption := 'Acesso ao sistema VetShop '+ sVersao;
-  lbVersao := 'Versão: ' + sVersao;
+  lbVersao.Caption := 'Versão: ' + sVersao;
 end;
 
 procedure TFLogin.FormKeyPress(Sender: TObject; var Key: Char);
