@@ -13,7 +13,8 @@ uses
   uUsuario in 'uUsuario.pas',
   BibStr in 'Bibliotecas\BibStr.pas',
   BibGeral in 'Bibliotecas\BibGeral.pas',
-  uEsqueciSenha in 'uEsqueciSenha.pas' {FEsqueciSenha};
+  uEsqueciSenha in 'uEsqueciSenha.pas' {FEsqueciSenha},
+  steste in 'steste.pas' {Form1};
 
 {$R *.res}
 

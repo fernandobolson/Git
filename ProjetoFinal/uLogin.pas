@@ -8,7 +8,7 @@ uses
   cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit, Vcl.StdCtrls,
   cxTextEdit, cxMaskEdit, cxDBEdit, cxGroupBox, Vcl.Menus, cxButtons,
   System.Actions, Vcl.ActnList, Data.FMTBcd, Data.DB, Data.SqlExpr,
-  Vcl.Buttons, Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.Mask;
+  Vcl.Buttons, Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.Mask, uDmPrinc;
 
 type
   TFLogin = class(TForm)
@@ -29,6 +29,7 @@ type
     acLogin: TActionList;
     acConectar: TAction;
     acFechar: TAction;
+    Button1: TButton;
 
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -36,10 +37,13 @@ type
     procedure FormCreate(Sender: TObject);
     procedure acConectarExecute(Sender: TObject);
     procedure acFecharExecute(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
     cUsuario : String;
     lLogado : Boolean;
+    procedure ValidaSenha;
+    procedure ValidaUsuario(sUser : String);
   public
     { Public declarations }
   end;
@@ -51,8 +55,7 @@ implementation
 {$R *.dfm}
 
 uses
-  uClientDataSetHelper
-  , uDmPrinc
+  uClientDataSetHelper   
   , uMenuBase
   , uUsuario
   , BibStr
@@ -89,9 +92,36 @@ begin
   qryLogin.Close;
 end;
 
+procedure TFLogin.ValidaUsuario(sUser : String);
+begin
+  qryLogin.Close;
+  qryLogin.Sql.Text := 'SELECT P1, P2 FROM USUARIOS WHERE P1 =' + QuotedStr(Criptografa(ebUser.Text));
+  qryLogin.Open;
+
+  if qryLogin.IsEmpty then
+    raise Exception.Create('Usúario não encontrado')
+  else
+    begin  
+    if Criptografa(ebSenha.Text) = qryLogin.FieldByName('P2').Text then
+      ShowMessage('asdsa');
+    
+  end;
+  
+end;
+
+procedure TFLogin.ValidaSenha;
+begin
+
+end;
+
 procedure TFLogin.acFecharExecute(Sender: TObject);
 begin
     Application.Terminate;
+end;
+
+procedure TFLogin.Button1Click(Sender: TObject);
+begin
+  ValidaUsuario(ebUser.Text);
 end;
 
 procedure TFLogin.FormClose(Sender: TObject; var Action: TCloseAction);

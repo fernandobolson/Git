@@ -1,10 +1,9 @@
 object FLogin: TFLogin
   Left = 0
   Top = 0
-  BorderStyle = bsNone
-  Caption = 'Acessar Sistema '
-  ClientHeight = 350
-  ClientWidth = 298
+  BorderStyle = bsDialog
+  ClientHeight = 353
+  ClientWidth = 311
   Color = clWindow
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -46,7 +45,7 @@ object FLogin: TFLogin
   end
   object lbEsqueciSenha: TLabel
     Left = 70
-    Top = 277
+    Top = 273
     Width = 158
     Height = 13
     Caption = 'Esqueceu sua senha? Clique aqui'
@@ -58,20 +57,20 @@ object FLogin: TFLogin
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 93
-    Top = 37
-    Width = 111
+    Left = 70
+    Top = 29
+    Width = 138
     Height = 40
     Caption = 'VetShop'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -33
-    Font.Name = 'Arial Narrow'
+    Font.Name = 'Lucida Sans Unicode'
     Font.Style = [fsBold]
     ParentFont = False
   end
   object lbVersao: TLabel
-    Left = 109
+    Left = 98
     Top = 83
     Width = 80
     Height = 13
@@ -111,9 +110,9 @@ object FLogin: TFLogin
     TextHint = 'Us'#250'ario'
   end
   object Panel1: TPanel
-    Left = -9
+    Left = -12
     Top = 102
-    Width = 310
+    Width = 328
     Height = 29
     Color = clGradientActiveCaption
     ParentBackground = False
@@ -142,8 +141,8 @@ object FLogin: TFLogin
   end
   object Panel2: TPanel
     Left = 0
-    Top = 319
-    Width = 298
+    Top = 322
+    Width = 311
     Height = 31
     Align = alBottom
     Color = clGradientActiveCaption
@@ -163,8 +162,19 @@ object FLogin: TFLogin
       ParentFont = False
     end
   end
+  object Button1: TButton
+    Left = 232
+    Top = 136
+    Width = 75
+    Height = 25
+    Caption = 'Button1'
+    TabOrder = 6
+    OnClick = Button1Click
+  end
   object qryLogin: TSQLQuery
+    MaxBlobSize = -1
     Params = <>
+    SQLConnection = DmPrinc.sqlCon
     Left = 258
     Top = 12
   end
