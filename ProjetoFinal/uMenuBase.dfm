@@ -6240,4 +6240,9 @@ object FMenuBase: TFMenuBase
     Left = 32
     Top = 296
   end
+  object SQLQuery1: TSQLQuery
+    Params = <>
+    Left = 507
+    Top = 319
+  end
 end

@@ -10,12 +10,14 @@ uses
   opData in 'Bibliotecas\opData.pas',
   opMath in 'Bibliotecas\opMath.pas',
   uClientDataSetHelper in 'Bibliotecas\uClientDataSetHelper.pas',
-  uUsuario in 'uUsuario.pas',
   BibStr in 'Bibliotecas\BibStr.pas',
   BibGeral in 'Bibliotecas\BibGeral.pas',
   uEsqueciSenha in 'uEsqueciSenha.pas' {FEsqueciSenha},
   steste in 'steste.pas' {Form1},
-  FormPadrao in 'Bibliotecas\FormPadrao.pas' {Form2};
+  FormPadrao in 'Bibliotecas\FormPadrao.pas' {Form2},
+  BibConsultas in 'Bibliotecas\BibConsultas.pas',
+  uUsuario in 'Bibliotecas\uUsuario.pas',
+  uAlterarSenha in 'uAlterarSenha.pas' {FAlterarSenha};
 
 {$R *.res}
 

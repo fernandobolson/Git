@@ -58,7 +58,7 @@ type
     { Public declarations }
     property Estado :TEstado read FEstado write SetEstado;
   protected
-    procedure SetNomeRotina; abstract; virtual;
+//    procedure SetNomeRotina; abstract; virtual;
 
   end;
 

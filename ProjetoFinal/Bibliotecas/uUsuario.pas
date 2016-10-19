@@ -3,7 +3,7 @@ unit uUsuario;
 interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Data.FMTBcd, Data.DB, Data.SqlExpr;
 
 type
   TUsuario = class
@@ -12,6 +12,7 @@ type
     FUserId: Integer;
     FSenha: String;
     FNome: String;
+    FSenhaDescript : String;
     procedure SetDtInclusao(const Value: TDateTime);
     procedure SetSenha(const Value: String);
     procedure SetUserId(const Value: Integer);
@@ -20,13 +21,13 @@ type
     function EncriptaNome(pNome : String) : String;
     function GetSenhaDescript: string;
   protected
+  public
+    Constructor Create(UserId : Integer); overload;
     property UserId : Integer read FUserId write SetUserId;
     property Nome : String read FNome write SetNome;
     property Senha : String read FSenha write SetSenha;
     property DtInclusao : TDateTime read FDtInclusao write SetDtInclusao;
-    property SenhaDescript : string read GetSenhaDescript;
-  public
-    Constructor Create(UserId : Integer); overload;
+    property SenhaDescript : string read GetSenhaDescript write FSenhaDescript;
 
   published
 
@@ -42,11 +43,34 @@ uses
 
 
 { TUsuario }
-
-
 constructor TUsuario.Create(UserId: Integer);
+var
+  qry : TSQLQuery;
 begin
+  inherited Create;
+
+//  try
+    qry := TSQLQuery.Create(nil);
+    qry.Close;
+    qry.SQl.Add('SELECT * FROM USUARIOS WHERE USERID ='+IntToStr(UserId));
+    qry.Open;
+
+    if qry.IsEmpty then
+      Exit;
+
+    with Self do
+      begin
+      UserId := qry.FieldByName('USERID').AsInteger;
+      Nome   := qry.FieldByName('NOME').AsString;
+      Senha  := qry.FieldByName('SENHA').AsString;
+      DtInclusao := qry.FieldByName('SENHA').AsDateTime;
+      SenhaDescript := Descriptografa(qry.FieldByName('SENHA').AsString);
+    end;
+//  except
 //
+//  end;
+   if Assigned(qry) then
+    FreeAndNil(qry);
 end;
 
 function TUsuario.EncriptaNome(pNome: String): String;

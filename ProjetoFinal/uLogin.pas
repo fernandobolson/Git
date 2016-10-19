@@ -36,6 +36,7 @@ type
     procedure acFecharExecute(Sender: TObject);
   private
     cUsuario : String;
+
     procedure ValidaLoginSenha;
   public
     lUsuarioAutorizado : Boolean;
@@ -50,7 +51,7 @@ implementation
 uses
   uClientDataSetHelper   
   , uMenuBase
-  , uUsuario
+//  , uUsuario
   , BibStr
   , BibGeral;
 
@@ -71,6 +72,7 @@ begin
       if Descriptografa(QryLogin.FieldByName('senha').AsString) = ebSenha.Text then
         begin
         lUsuarioAutorizado := True;
+        FMenuBase.nCodUsuario := qryLogin.FieldByName('USERID').AsInteger;
         Close;
       end
       else
@@ -87,8 +89,8 @@ end;
 
 procedure TFLogin.acConectarExecute(Sender: TObject);
 begin              
-  ValidaLoginSenha;  
-end;  
+  ValidaLoginSenha;
+end;
 
 procedure TFLogin.acFecharExecute(Sender: TObject);
 begin
