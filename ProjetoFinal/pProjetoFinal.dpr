@@ -14,7 +14,8 @@ uses
   BibStr in 'Bibliotecas\BibStr.pas',
   BibGeral in 'Bibliotecas\BibGeral.pas',
   uEsqueciSenha in 'uEsqueciSenha.pas' {FEsqueciSenha},
-  steste in 'steste.pas' {Form1};
+  steste in 'steste.pas' {Form1},
+  FormPadrao in 'Bibliotecas\FormPadrao.pas' {Form2};
 
 {$R *.res}
 
@@ -22,6 +23,7 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDmPrinc, DmPrinc);
-  Application.CreateForm(TFLogin, FLogin);
+  Application.CreateForm(TFMenuBase, FMenuBase);
+  Application.CreateForm(TForm2, Form2);
   Application.Run;
 end.

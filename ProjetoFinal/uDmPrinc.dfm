@@ -49,6 +49,7 @@ object DmPrinc: TDmPrinc
       
         'Database=C:\Users\ferna\Dropbox\Git\ProjetoFinal\Dados\VETSHOP.F' +
         'DB')
+    Connected = True
     Left = 25
     Top = 16
   end

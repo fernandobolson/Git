@@ -12,6 +12,8 @@ type
     Memo1: TMemo;
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -27,5 +29,15 @@ uses
   BibStr;
 
 {$R *.dfm}
+
+procedure TForm1.BitBtn1Click(Sender: TObject);
+begin
+  Memo1.Lines.Add(Criptografa(Edit1.Text));
+end;
+
+procedure TForm1.BitBtn2Click(Sender: TObject);
+begin
+  Memo1.Lines.Add(Descriptografa(Edit1.Text));
+end;
 
 end.

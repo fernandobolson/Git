@@ -29,23 +29,16 @@ type
     acLogin: TActionList;
     acConectar: TAction;
     acFechar: TAction;
-    Button1: TButton;
-
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-
     procedure FormCreate(Sender: TObject);
     procedure acConectarExecute(Sender: TObject);
     procedure acFecharExecute(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
   private
-    { Private declarations }
     cUsuario : String;
-    lLogado : Boolean;
-    procedure ValidaSenha;
-    procedure ValidaUsuario(sUser : String);
+    procedure ValidaLoginSenha;
   public
-    { Public declarations }
+    lUsuarioAutorizado : Boolean;
   end;
 var
   FLogin: TFLogin;
@@ -61,75 +54,53 @@ uses
   , BibStr
   , BibGeral;
 
-procedure TFLogin.acConectarExecute(Sender: TObject);
+procedure TFLogin.ValidaLoginSenha;
 begin
-  lLogado := False;
-  qryLogin.SQL.Text :=
-    'SELECT NOME, SENHA FROM USUARIO WHERE LOGIN = '+ QuotedStr(ebUser.Text);
-  qryLogin.Open;
+  try
+    qryLogin.Close;
+    qryLogin.Sql.Text := 'SELECT LOGIN, SENHA FROM USUARIOS WHERE LOGIN='+ QuotedStr(ebuser.text);
+    qryLogin.Open;
 
-  //Verifica se está vazio a query
-  if (qryLogin.IsEmpty) then
-    begin
-    RespOkCancel('Atenção', 'Usuário não encontrado');
-    ebUser.SetFocus;
-  end
-  else
-    begin
-    if (qryLogin.FieldByName('SENHA').AsString = ebSenha.Text) then
+    if QryLogin.IsEmpty then
       begin
-      lLogado := true;
-      cUsuario := qryLogin.FieldByName('NOME').AsString;
-      Self.Close;
+      RespOkCancel('Atenção', 'Usuário não encontrado');
+      ebUser.SetFocus;
     end
     else
+      begin 
+      if Descriptografa(QryLogin.FieldByName('senha').AsString) = ebSenha.Text then
+        begin
+        lUsuarioAutorizado := True;
+        Close;
+      end
+      else
+        RespOkCancel('Atenção', 'Senha incorreta, tente novamente.');            
+    end;                                                                                
+  except
+    on E: Exception do
       begin
-      ShowMessage('Senha inválida!');
-      ebSenha.SetFocus;
+      RespOkCancel('Atenção', 'Houve um problema ao validar as suas credenciais, por favor, tente novamente');
+      lUsuarioAutorizado := False;
     end;
-  end;
-
-  qryLogin.Close;
+  end;                                                                                
 end;
 
-procedure TFLogin.ValidaUsuario(sUser : String);
-begin
-  qryLogin.Close;
-  qryLogin.Sql.Text := 'SELECT P1, P2 FROM USUARIOS WHERE P1 =' + QuotedStr(Criptografa(ebUser.Text));
-  qryLogin.Open;
-
-  if qryLogin.IsEmpty then
-    raise Exception.Create('Usúario não encontrado')
-  else
-    begin  
-    if Criptografa(ebSenha.Text) = qryLogin.FieldByName('P2').Text then
-      ShowMessage('asdsa');
-    
-  end;
-  
-end;
-
-procedure TFLogin.ValidaSenha;
-begin
-
-end;
+procedure TFLogin.acConectarExecute(Sender: TObject);
+begin              
+  ValidaLoginSenha;  
+end;  
 
 procedure TFLogin.acFecharExecute(Sender: TObject);
 begin
-    Application.Terminate;
-end;
-
-procedure TFLogin.Button1Click(Sender: TObject);
-begin
-  ValidaUsuario(ebUser.Text);
+  Application.Terminate;
 end;
 
 procedure TFLogin.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  if lLogado then
-    Action := caFree //Fecha essa tela e abre o menu
+  if lUsuarioAutorizado then
+    Action := caFree
   else
-    Application.Terminate;  //Encerra a aplicação
+    Application.Terminate;
 end;
 
 procedure TFLogin.FormCreate(Sender: TObject);
@@ -139,6 +110,7 @@ begin
   sVersao := GetVersaoAtual;
   Self.Caption := 'Acesso ao sistema VetShop '+ sVersao;
   lbVersao.Caption := 'Versão: ' + sVersao;
+  lUsuarioAutorizado := False;
 end;
 
 procedure TFLogin.FormKeyPress(Sender: TObject; var Key: Char);

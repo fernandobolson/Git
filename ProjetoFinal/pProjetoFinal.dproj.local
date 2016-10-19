@@ -11,18 +11,31 @@
     <Transaction>2016/09/23 19:25:24.000.882,C:\ProjetoFinal\uDmPrinc.dfm=C:\ProjetoFinal\Unit1.dfm</Transaction>
     <Transaction>2016/09/23 19:25:24.000.882,C:\ProjetoFinal\uDmPrinc.pas=C:\ProjetoFinal\Unit1.pas</Transaction>
     <Transaction>2016/09/23 19:47:42.000.917,=C:\ProjetoFinal\Unit1.pas</Transaction>
-    <Transaction>2016/09/23 19:47:51.000.745,C:\ProjetoFinal\Unit1.pas=C:\ProjetoFinal\uLogin.pas</Transaction>
     <Transaction>2016/09/23 19:47:51.000.745,C:\ProjetoFinal\Unit1.dfm=C:\ProjetoFinal\uLogin.dfm</Transaction>
-    <Transaction>2016/09/23 20:06:02.000.971,=C:\ProjetoFinal\Bibliotecas\Cpf_cnpj.pas</Transaction>
+    <Transaction>2016/09/23 19:47:51.000.745,C:\ProjetoFinal\Unit1.pas=C:\ProjetoFinal\uLogin.pas</Transaction>
     <Transaction>2016/09/23 20:06:02.000.999,=C:\ProjetoFinal\Bibliotecas\opMath.pas</Transaction>
-    <Transaction>2016/09/23 20:06:02.000.990,=C:\ProjetoFinal\Bibliotecas\opData.pas</Transaction>
     <Transaction>2016/09/23 20:06:02.000.981,=C:\ProjetoFinal\Bibliotecas\Extenso.pas</Transaction>
+    <Transaction>2016/09/23 20:06:02.000.971,=C:\ProjetoFinal\Bibliotecas\Cpf_cnpj.pas</Transaction>
+    <Transaction>2016/09/23 20:06:02.000.990,=C:\ProjetoFinal\Bibliotecas\opData.pas</Transaction>
     <Transaction>2016/09/23 20:06:03.000.019,=C:\ProjetoFinal\Bibliotecas\uClientDataSetHelper.pas</Transaction>
     <Transaction>2016/09/23 20:06:03.000.009,=C:\ProjetoFinal\Bibliotecas\opString.pas</Transaction>
     <Transaction>2016/09/23 20:13:48.000.937,=C:\ProjetoFinal\Unit1.pas</Transaction>
     <Transaction>2016/09/23 20:15:16.000.752,C:\ProjetoFinal\Unit1.pas=C:\ProjetoFinal\uUsuario.pas</Transaction>
     <Transaction>2016/09/25 12:59:18.000.180,=C:\Users\ferna\Dropbox\Git\ProjetoFinal\Bibliotecas\BibStr.pas</Transaction>
-    <Transaction>2016/09/25 23:21:05.719,=C:\Users\ferna\Dropbox\Git\ProjetoFinal\Unit1.pas</Transaction>
-    <Transaction>2016/09/25 23:21:20.423,C:\Users\ferna\Dropbox\Git\ProjetoFinal\Bibliotecas\BibGeral.pas=C:\Users\ferna\Dropbox\Git\ProjetoFinal\Unit1.pas</Transaction>
+    <Transaction>2016/09/25 23:21:05.000.719,=C:\Users\ferna\Dropbox\Git\ProjetoFinal\Unit1.pas</Transaction>
+    <Transaction>2016/09/25 23:21:20.000.423,C:\Users\ferna\Dropbox\Git\ProjetoFinal\Bibliotecas\BibGeral.pas=C:\Users\ferna\Dropbox\Git\ProjetoFinal\Unit1.pas</Transaction>
+    <Transaction>2016/10/07 20:02:19.000.606,=C:\Users\Fernando\Dropbox\Git\ProjetoFinal\Unit1.pas</Transaction>
+    <Transaction>2016/10/07 21:26:05.000.630,=C:\Users\Fernando\Dropbox\Git\ProjetoFinal\Unit1.pas</Transaction>
+    <Transaction>2016/10/07 21:26:53.000.961,C:\Users\Fernando\Dropbox\Git\ProjetoFinal\Unit1.dfm=C:\Users\Fernando\Dropbox\Git\ProjetoFinal\uEsqueciSenha.dfm</Transaction>
+    <Transaction>2016/10/07 21:26:53.000.961,C:\Users\Fernando\Dropbox\Git\ProjetoFinal\Unit1.pas=C:\Users\Fernando\Dropbox\Git\ProjetoFinal\uEsqueciSenha.pas</Transaction>
+    <Transaction>2016/10/08 18:41:05.000.991,=C:\Users\ferna\Dropbox\Git\ProjetoFinal\Unit1.pas</Transaction>
+    <Transaction>2016/10/09 11:54:48.000.118,=C:\ProjetoMax\ProjetoDelphiMax\ProjetoFinal\Unit1.pas</Transaction>
+    <Transaction>2016/10/09 12:36:14.000.256,C:\ProjetoMax\ProjetoDelphiMax\ProjetoFinal\Unit1.dfm=C:\ProjetoMax\ProjetoDelphiMax\ProjetoFinal\steste.dfm</Transaction>
+    <Transaction>2016/10/09 12:36:14.000.256,C:\ProjetoMax\ProjetoDelphiMax\ProjetoFinal\Unit1.pas=C:\ProjetoMax\ProjetoDelphiMax\ProjetoFinal\steste.pas</Transaction>
+    <Transaction>2016/10/09 23:17:42.000.583,C:\ProjetoMax\ProjetoDelphiMax\ProjetoFinal\steste.pas=</Transaction>
+    <Transaction>2016/10/09 23:22:56.000.001,=C:\ProjetoMax\ProjetoDelphiMax\ProjetoFinal\steste.pas</Transaction>
+    <Transaction>2016/10/16 23:43:44.000.411,=C:\ProjetoMax\ProjetoDelphiMax\ProjetoFinal\Unit2.pas</Transaction>
+    <Transaction>2016/10/16 23:44:23.000.433,C:\ProjetoMax\ProjetoDelphiMax\ProjetoFinal\Unit2.dfm=C:\ProjetoMax\ProjetoDelphiMax\ProjetoFinal\Bibliotecas\FormPadrao.dfm</Transaction>
+    <Transaction>2016/10/16 23:44:23.000.433,C:\ProjetoMax\ProjetoDelphiMax\ProjetoFinal\Unit2.pas=C:\ProjetoMax\ProjetoDelphiMax\ProjetoFinal\Bibliotecas\FormPadrao.pas</Transaction>
   </Transactions>
 </BorlandProject>

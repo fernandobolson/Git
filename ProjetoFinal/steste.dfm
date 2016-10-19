@@ -14,33 +14,35 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 13
   object Edit1: TEdit
-    Left = 160
-    Top = 96
+    Left = 72
+    Top = 72
     Width = 265
     Height = 21
     TabOrder = 0
   end
   object Memo1: TMemo
-    Left = 160
-    Top = 123
-    Width = 185
-    Height = 89
+    Left = 72
+    Top = 99
+    Width = 265
+    Height = 126
     TabOrder = 1
   end
   object BitBtn1: TBitBtn
-    Left = 400
-    Top = 176
+    Left = 368
+    Top = 112
     Width = 75
     Height = 25
     Caption = 'ENCRIPT'
     TabOrder = 2
+    OnClick = BitBtn1Click
   end
   object BitBtn2: TBitBtn
-    Left = 400
-    Top = 224
+    Left = 368
+    Top = 160
     Width = 75
     Height = 25
     Caption = 'DESCRIP'
     TabOrder = 3
+    OnClick = BitBtn2Click
   end
 end

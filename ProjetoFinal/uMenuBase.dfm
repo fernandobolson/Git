@@ -15,13 +15,14 @@ object FMenuBase: TFMenuBase
   OldCreateOrder = False
   WindowState = wsMaximized
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage
     Left = 0
-    Top = 29
+    Top = 49
     Width = 1027
-    Height = 578
+    Height = 539
     Align = alClient
     Picture.Data = {
       0D546478536D617274496D616765FFD8FFE000104A4649460001010100960096
@@ -6098,33 +6099,67 @@ object FMenuBase: TFMenuBase
       E7ABD5EE7ABD5EE7ABD5EE7ABD5EE7ABD5EE7ABD5EE7ABD5EE7ABD5EE7ABD5EE
       7ABD5EE7ABD5EE7ABD5EE7ABD5EE7ABD5EE7ABD5FFD9}
     Stretch = True
-    ExplicitLeft = 224
-    ExplicitTop = 144
-    ExplicitWidth = 345
-    ExplicitHeight = 153
+    ExplicitTop = 29
+    ExplicitHeight = 560
   end
-  object ActionToolBar1: TActionToolBar
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 588
+    Width = 1027
+    Height = 19
+    Panels = <
+      item
+        Text = 'Desenvolvido por Fernando Bolson Dias'
+        Width = 350
+      end
+      item
+        Alignment = taCenter
+        Width = 50
+      end>
+  end
+  object Panel1: TPanel
     Left = 0
     Top = 0
     Width = 1027
-    Height = 29
-    ActionManager = acmMenu
-    Caption = 'acToolbar1'
-    Color = clMenuBar
-    ColorMap.DisabledFontColor = 7171437
-    ColorMap.HighlightColor = clWhite
-    ColorMap.BtnSelectedFont = clBlack
-    ColorMap.UnusedColor = clWhite
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    Spacing = 0
-    ExplicitLeft = 312
-    ExplicitTop = 208
-    ExplicitWidth = 150
+    Height = 49
+    Align = alTop
+    TabOrder = 0
+    object SpeedButton1: TSpeedButton
+      Left = 9
+      Top = 0
+      Width = 48
+      Height = 48
+      Action = ac_Fechar
+      Layout = blGlyphTop
+    end
+    object SpeedButton2: TSpeedButton
+      Left = 77
+      Top = 0
+      Width = 48
+      Height = 48
+      Layout = blGlyphTop
+    end
+    object SpeedButton3: TSpeedButton
+      Left = 146
+      Top = 0
+      Width = 48
+      Height = 48
+      Layout = blGlyphTop
+    end
+    object SpeedButton4: TSpeedButton
+      Left = 214
+      Top = 0
+      Width = 48
+      Height = 48
+      Layout = blGlyphTop
+    end
+    object SpeedButton5: TSpeedButton
+      Left = 283
+      Top = 0
+      Width = 48
+      Height = 48
+      Layout = blGlyphTop
+    end
   end
   object acmMenu: TActionManager
     ActionBars = <
@@ -6134,10 +6169,9 @@ object FMenuBase: TFMenuBase
       item
       end
       item
-        ActionBar = ActionToolBar1
       end>
     Left = 34
-    Top = 95
+    Top = 191
     StyleName = 'Platform Default'
     object acEspecies: TAction
       Caption = 'Cadastro de Esp'#233'cies'
@@ -6145,17 +6179,26 @@ object FMenuBase: TFMenuBase
     object acRacas: TAction
       Caption = 'Cadastro de Ra'#231'as'
     end
+    object Action1: TAction
+      Caption = 'Cadastro de Pessoas'
+    end
+    object ac_CadPessoas: TAction
+      Caption = 'Cadastro de Pessoas'
+    end
   end
   object aclMenu: TActionList
-    Left = 37
-    Top = 159
-    object Action1: TAction
-      Caption = 'Action1'
+    Left = 29
+    Top = 247
+    object ac_Fechar: TAction
+      OnExecute = ac_FecharExecute
+    end
+    object ac_Pessoas: TAction
+      Caption = 'ac_Pessoas'
     end
   end
   object MainMenu1: TMainMenu
-    Left = 40
-    Top = 40
+    Left = 32
+    Top = 136
     object Action11: TMenuItem
       Caption = 'Configura'#231#245'es'
       object ConfiguraesGerais1: TMenuItem
@@ -6186,5 +6229,15 @@ object FMenuBase: TFMenuBase
         Caption = 'Cadastro de Pessoas'
       end
     end
+    object Pessoas1: TMenuItem
+      Caption = 'Pessoas'
+      object Action21: TMenuItem
+        Action = ac_CadPessoas
+      end
+    end
+  end
+  object Timer: TTimer
+    Left = 32
+    Top = 296
   end
 end
