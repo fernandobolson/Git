@@ -29,6 +29,7 @@ object DmPrinc: TDmPrinc
       'VendorLib=GDS32.DLL'
       'VendorLibWin64=ibclient64.dll'
       'VendorLibOsx=libgds.dylib'
+      'Database=C:\Users\ferna\Dropbox\VETSHOP.fdb'
       'User_Name=SYSDBA'
       'Password=masterkey'
       'Role=RoleName'
@@ -45,11 +46,7 @@ object DmPrinc: TDmPrinc
       'RoleName=RoleName'
       'ServerCharSet='
       'Trim Char=False'
-      'SEP='
-      
-        'Database=C:\Users\ferna\Dropbox\Git\ProjetoFinal\Dados\VETSHOP.F' +
-        'DB')
-    Connected = True
+      'SEP=')
     Left = 25
     Top = 16
   end

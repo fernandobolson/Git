@@ -9,25 +9,28 @@ type
   TUsuario = class
   private
     FDtInclusao: TDateTime;
-    FUserId: Integer;
+    FId: Integer;
     FSenha: String;
     FNome: String;
     FSenhaDescript : String;
+    FLoginDescript: string;
     procedure SetDtInclusao(const Value: TDateTime);
     procedure SetSenha(const Value: String);
-    procedure SetUserId(const Value: Integer);
+    procedure SetId(const Value: Integer);
     procedure SetNome(const Value: String);
     function EncriptaSenha(pSenha : String) : String;
     function EncriptaNome(pNome : String) : String;
     function GetSenhaDescript: string;
+    function GetLoginDescript: string;
   protected
   public
-    Constructor Create(UserId : Integer); overload;
-    property UserId : Integer read FUserId write SetUserId;
-    property Nome : String read FNome write SetNome;
+    Constructor Create(ID : Integer); overload;
+    property ID : Integer read FId write SetId;
+    property Login : String read FNome write SetNome;
     property Senha : String read FSenha write SetSenha;
     property DtInclusao : TDateTime read FDtInclusao write SetDtInclusao;
     property SenhaDescript : string read GetSenhaDescript write FSenhaDescript;
+    property LoginDescript : string read GetLoginDescript write FLoginDescript;
 
   published
 
@@ -36,41 +39,48 @@ type
 implementation
 
 uses
-  BibStr, System.DateUtils;
+  BibStr, System.DateUtils, uDmPrinc;
 
 { TMyClass }
 
 
 
 { TUsuario }
-constructor TUsuario.Create(UserId: Integer);
+constructor TUsuario.Create(ID: Integer);
 var
   qry : TSQLQuery;
 begin
   inherited Create;
+  try
+    try
+      qry := TSQLQuery.Create(nil);
+      qry.Close;
+      qry.SQLConnection := DmPrinc.sqlCon;
+      qry.SQl.Add('SELECT * FROM USUARIOS WHERE ID ='+IntToStr(ID));
+      qry.Open;
 
-//  try
-    qry := TSQLQuery.Create(nil);
-    qry.Close;
-    qry.SQl.Add('SELECT * FROM USUARIOS WHERE USERID ='+IntToStr(UserId));
-    qry.Open;
+      if qry.IsEmpty then
+        Exit;
 
-    if qry.IsEmpty then
-      Exit;
+      with Self do
+        begin
+        ID            := qry.FieldByName('ID').AsInteger;
+        Login         := qry.FieldByName('LOGIN').AsString;
+        LoginDescript := Descriptografa(qry.FieldByName('SENHA').AsString);
+        Senha         := qry.FieldByName('SENHA').AsString;
+        SenhaDescript := Descriptografa(qry.FieldByName('SENHA').AsString);
+        DtInclusao    := qry.FieldByName('DTINCLUSAO').AsDateTime;
+      end;
 
-    with Self do
-      begin
-      UserId := qry.FieldByName('USERID').AsInteger;
-      Nome   := qry.FieldByName('NOME').AsString;
-      Senha  := qry.FieldByName('SENHA').AsString;
-      DtInclusao := qry.FieldByName('SENHA').AsDateTime;
-      SenhaDescript := Descriptografa(qry.FieldByName('SENHA').AsString);
+    except
+      on E: Exception do
+        raise Exception.Create('Erro: '+E.Message);
     end;
-//  except
-//
-//  end;
+
+  finally
    if Assigned(qry) then
     FreeAndNil(qry);
+  end;
 end;
 
 function TUsuario.EncriptaNome(pNome: String): String;
@@ -81,6 +91,11 @@ end;
 function TUsuario.EncriptaSenha(pSenha: String): String;
 begin
 
+end;
+
+function TUsuario.GetLoginDescript: string;
+begin
+  Result := FLoginDescript;
 end;
 
 function TUsuario.GetSenhaDescript: string;
@@ -103,9 +118,9 @@ begin
   FSenha := Value;
 end;
 
-procedure TUsuario.SetUserId(const Value: Integer);
+procedure TUsuario.SetId(const Value: Integer);
 begin
-  FUserId := Value;
+  FId := Value;
 end;
 
 end.

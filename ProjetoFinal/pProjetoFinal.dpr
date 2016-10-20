@@ -26,6 +26,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDmPrinc, DmPrinc);
   Application.CreateForm(TFMenuBase, FMenuBase);
-  Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TFLogin, FLogin);
   Application.Run;
 end.

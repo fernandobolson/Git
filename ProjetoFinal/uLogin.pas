@@ -51,40 +51,50 @@ implementation
 uses
   uClientDataSetHelper   
   , uMenuBase
-//  , uUsuario
+  , uUsuario
   , BibStr
   , BibGeral;
 
 procedure TFLogin.ValidaLoginSenha;
+var
+  oUser :TUsuario;
 begin
   try
-    qryLogin.Close;
-    qryLogin.Sql.Text := 'SELECT LOGIN, SENHA FROM USUARIOS WHERE LOGIN='+ QuotedStr(ebuser.text);
-    qryLogin.Open;
+    try
+      qryLogin.Close;
+      qryLogin.Sql.Text := 'SELECT * FROM USUARIOS WHERE LOGIN='+ QuotedStr(ebuser.text);
+      qryLogin.Open;
 
-    if QryLogin.IsEmpty then
-      begin
-      RespOkCancel('Atenção', 'Usuário não encontrado');
-      ebUser.SetFocus;
-    end
-    else
-      begin 
-      if Descriptografa(QryLogin.FieldByName('senha').AsString) = ebSenha.Text then
+      if QryLogin.IsEmpty then
         begin
-        lUsuarioAutorizado := True;
-        FMenuBase.nCodUsuario := qryLogin.FieldByName('USERID').AsInteger;
-        Close;
+        RespOkCancel('Atenção', 'Usuário não encontrado');
+        ebUser.SetFocus;
       end
       else
-        RespOkCancel('Atenção', 'Senha incorreta, tente novamente.');            
-    end;                                                                                
-  except
-    on E: Exception do
-      begin
-      RespOkCancel('Atenção', 'Houve um problema ao validar as suas credenciais, por favor, tente novamente');
-      lUsuarioAutorizado := False;
+        begin
+        oUser := TUsuario.Create(qryLogin.FieldByName('ID').AsInteger);
+
+        if (oUser.SenhaDescript = ebSenha.Text) then
+          begin
+          lUsuarioAutorizado := True;
+          FMenuBase.nCodUsuario := oUser.Id;
+          Close;
+        end
+        else
+          RespOkCancel('Atenção', 'Senha incorreta, tente novamente.');
+      end;
+    except
+      on E: Exception do
+        begin
+        RespOkCancel('Atenção', 'Houve um problema ao validar as suas credenciais, por favor, tente novamente' +
+                      #13#10 + E.Message);
+        lUsuarioAutorizado := False;
+      end;
     end;
-  end;                                                                                
+  finally
+     if Assigned(oUser) then
+      FreeAndNil(oUser);
+  end;
 end;
 
 procedure TFLogin.acConectarExecute(Sender: TObject);

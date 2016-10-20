@@ -41,7 +41,6 @@ type
     ac_CadPessoas: TAction;
     Action21: TMenuItem;
     Image1: TImage;
-    SQLQuery1: TSQLQuery;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ac_FecharExecute(Sender: TObject);
@@ -70,7 +69,10 @@ implementation
 uses
     uDmPrinc
   , uLogin
-  , uAlterarSenha;
+  , uAlterarSenha
+  , BibStr
+  , BibGeral
+  , BibConsultas;
 
 procedure TFMenuBase.ac_FecharExecute(Sender: TObject);
 begin
@@ -87,7 +89,7 @@ end;
 
 procedure TFMenuBase.ConfiguraStaturBar;
 begin
-  StatusBar1.Panels[0].Text := 'Usuário: ';//+ FLogin.cUsuario;
+  StatusBar1.Panels[0].Text := 'Usuário: ' + oUsuario.Login;
   StatusBar1.panels[1].Text := DateToStr(Date) + ', '+ Timer.ToString;
 end;
 
@@ -96,13 +98,13 @@ begin
   try
     ConectaBanco;
     MostraTelaLogin;
-    ConfiguraStaturBar;
     CriaObjetoUsuario;
+    ConfiguraStaturBar; //arrumar
   except
-    on e: exception do
-      Application.MessageBox('Houve um problema ao conectar com o Banco de Dados,'+
-                          ' verifique se o arquivo Conexão.ini está correto.',
-                          'Atenção', MB_OK + MB_ICONSTOP);
+    on E: exception do
+      RespOkCancel('Houve um problema ao conectar com o Banco de Dados,'+
+                   'verifique se o arquivo Conexão.ini está correto.' +
+                   #13#10 + E.Message);
   end;
 end;
 
@@ -118,7 +120,7 @@ end;
 
 procedure TFMenuBase.VerificaPrimeiroAcessoPedindoAlterarSenha;
 begin
-  if (oUsuario.Nome = 'ADM') and (oUsuario.SenhaDescript = '123') then
+  if (oUsuario.Login = 'ADM') and (oUsuario.SenhaDescript = '123') then
     begin
     if (not Assigned(FAlterarSenha)) then
       Application.CreateForm(TFAlterarSenha, FAlterarSenha);

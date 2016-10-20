@@ -20,6 +20,51 @@ object FAlterarSenha: TFAlterarSenha
     TabOrder = 0
     Height = 142
     Width = 368
+    object Label1: TLabel
+      Left = 42
+      Top = 22
+      Width = 48
+      Height = 16
+      Caption = 'Usu'#225'rio:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Senha: TLabel
+      Left = 42
+      Top = 72
+      Width = 41
+      Height = 16
+      Caption = 'Senha:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object ebSenha: TMaskEdit
+      Left = 42
+      Top = 94
+      Width = 214
+      Height = 21
+      PasswordChar = '*'
+      TabOrder = 1
+      Text = ''
+      TextHint = 'Senha'
+    end
+    object ebUser: TMaskEdit
+      Left = 42
+      Top = 45
+      Width = 214
+      Height = 21
+      TabOrder = 0
+      Text = ''
+      TextHint = 'Us'#250'ario'
+    end
   end
   object Edit1: TEdit
     Left = 382

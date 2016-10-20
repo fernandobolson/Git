@@ -8,17 +8,20 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Data.FMTBcd,
   Data.DB, Data.SqlExpr, Vcl.Imaging.jpeg;
 
-function RespOkCancel(sTit, sMsg: PWideChar) : Integer;
+function RespOkCancel(sTit, sMsg: String) : Integer; overload;
+function RespOkCancel(sMsg: String) : Integer; overload;
 function GetVersaoAtual: String;
 
 implementation
 
-function RespOkCancel(sTit, sMsg: PWideChar) : Integer;
+function RespOkCancel(sTit, sMsg: String) : Integer;
 begin
-  if sTit = '' then
-    sTit := 'Atenção!';
+  Result := Application.MessageBox(PChar(sMsg), PChar(sTit), MB_OKCANCEL + MB_ICONINFORMATION);
+end;
 
-  Result := Application.MessageBox(sMsg, sTit, MB_OKCANCEL + MB_ICONINFORMATION);
+function RespOkCancel(sMsg: String) : Integer; overload;
+begin
+  Result := Application.MessageBox(PChar(sMsg), 'Atenção', MB_OKCANCEL + MB_ICONINFORMATION);
 end;
 
 function GetVersaoAtual: String;
