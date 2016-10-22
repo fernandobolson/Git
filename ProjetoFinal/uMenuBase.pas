@@ -7,7 +7,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ActnList,
   Vcl.PlatformDefaultStyleActnCtrls, System.Actions, Vcl.ActnMan, Vcl.Menus,
   Vcl.ToolWin, Vcl.ActnCtrls, Vcl.ActnMenus, Vcl.ExtCtrls, dxGDIPlusClasses,
-  Vcl.ComCtrls, Vcl.Buttons, Data.FMTBcd, Data.DB, Data.SqlExpr, uUsuario;
+  Vcl.ComCtrls, Vcl.Buttons, Data.FMTBcd, Data.DB, Data.SqlExpr, uUsuario,
+  Vcl.StdCtrls, Vcl.ActnColorMaps, System.ImageList, Vcl.ImgList;
 
 type
   TFMenuBase = class(TForm)
@@ -29,28 +30,33 @@ type
     acRacas: TAction;
     Timer: TTimer;
     StatusBar1: TStatusBar;
-    Panel1: TPanel;
-    SpeedButton1: TSpeedButton;
-    SpeedButton2: TSpeedButton;
-    SpeedButton3: TSpeedButton;
-    SpeedButton4: TSpeedButton;
-    SpeedButton5: TSpeedButton;
     ac_Pessoas: TAction;
     Action1: TAction;
     Pessoas1: TMenuItem;
     ac_CadPessoas: TAction;
     Action21: TMenuItem;
     Image1: TImage;
+    PnCaption: TPanel;
+    Image2: TImage;
+    XPColorMap1: TXPColorMap;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
+    BitBtn5: TBitBtn;
+    BitBtn6: TBitBtn;
+    ImageList1: TImageList;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ac_FecharExecute(Sender: TObject);
+    procedure TimerTimer(Sender: TObject);
   private
     { Private declarations }
     procedure ConectaBanco;
     procedure MostraTelaLogin;
-    procedure ConfiguraStaturBar;
     procedure VerificaPrimeiroAcessoPedindoAlterarSenha;
     procedure CriaObjetoUsuario;
+    procedure ConfiguraCaptionForm;
   public
     { Public declarations }
     nCodUsuario : SmallInt;
@@ -81,16 +87,22 @@ end;
 
 procedure TFMenuBase.ConectaBanco;
 begin
-  DmPrinc.sqlCon.Close;
-  DmPrinc.sqlCon.Params.Clear;
-  DmPrinc.sqlCon.Params.LoadFromFile('..\..\Conexao.ini');
-  DmPrinc.sqlCon.Open;
+  try
+    DmPrinc.sqlCon.Close;
+    DmPrinc.sqlCon.Params.Clear;
+    DmPrinc.sqlCon.Params.LoadFromFile('..\..\Conexao.ini');
+    DmPrinc.sqlCon.Open;
+  except
+    On e: Exception do
+    raise Exception.Create('Não foi possivel carregar o arquivo Conexao.ini, por favor, verifique se os dados estão corretos'+
+                          sLineBreak + E.Message);
+
+  end; 
 end;
 
-procedure TFMenuBase.ConfiguraStaturBar;
+procedure TFMenuBase.ConfiguraCaptionForm;
 begin
-  StatusBar1.Panels[0].Text := 'Usuário: ' + oUsuario.Login;
-  StatusBar1.panels[1].Text := DateToStr(Date) + ', '+ Timer.ToString;
+  Self.Caption := 'VetSoft -  '+GetVersaoAtual;     
 end;
 
 procedure TFMenuBase.FormCreate(Sender: TObject);
@@ -99,7 +111,8 @@ begin
     ConectaBanco;
     MostraTelaLogin;
     CriaObjetoUsuario;
-    ConfiguraStaturBar; //arrumar
+    ConfiguraCaptionForm;
+    Timer.Enabled := True;
   except
     on E: exception do
       RespOkCancel('Houve um problema ao conectar com o Banco de Dados,'+
@@ -120,7 +133,7 @@ end;
 
 procedure TFMenuBase.VerificaPrimeiroAcessoPedindoAlterarSenha;
 begin
-  if (oUsuario.Login = 'ADM') and (oUsuario.SenhaDescript = '123') then
+  if (oUsuario.Login = 'ADM') and (oUsuario.SenhaDescript = '456') then
     begin
     if (not Assigned(FAlterarSenha)) then
       Application.CreateForm(TFAlterarSenha, FAlterarSenha);
@@ -143,5 +156,11 @@ begin
   Application.ShowMainForm := True;
 end;
 
+
+procedure TFMenuBase.TimerTimer(Sender: TObject);
+begin
+  StatusBar1.Panels[0].Text := 'Usuário: ' + oUsuario.Login;
+  StatusBar1.panels[1].Text := DateToStr(Date) + TimeToStr(Time);
+end;
 
 end.

@@ -12,6 +12,7 @@ function RespOkCancel(sTit, sMsg: String) : Integer; overload;
 function RespOkCancel(sMsg: String) : Integer; overload;
 function GetVersaoAtual: String;
 
+
 implementation
 
 function RespOkCancel(sTit, sMsg: String) : Integer;

@@ -14,7 +14,7 @@ uses
   BibGeral in 'Bibliotecas\BibGeral.pas',
   uEsqueciSenha in 'uEsqueciSenha.pas' {FEsqueciSenha},
   steste in 'steste.pas' {Form1},
-  FormPadrao in 'Bibliotecas\FormPadrao.pas' {Form2},
+  FormPadrao in 'Bibliotecas\FormPadrao.pas' {FPadraoManut},
   BibConsultas in 'Bibliotecas\BibConsultas.pas',
   uUsuario in 'Bibliotecas\uUsuario.pas',
   uAlterarSenha in 'uAlterarSenha.pas' {FAlterarSenha};
