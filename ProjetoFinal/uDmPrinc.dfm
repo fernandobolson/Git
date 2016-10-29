@@ -47,6 +47,7 @@ object DmPrinc: TDmPrinc
       'ServerCharSet='
       'Trim Char=False'
       'SEP=')
+    Connected = True
     Left = 25
     Top = 16
   end
@@ -61,27 +62,10 @@ object DmPrinc: TDmPrinc
     ProviderName = 'dspClientes'
     Left = 133
     Top = 76
-    object cdsCD_PESSOA: TFMTBCDField
-      FieldName = 'CD_PESSOA'
-      Required = True
-      Precision = 32
-    end
-    object cdsNM_PESSOA: TWideStringField
-      FieldName = 'NM_PESSOA'
-      Required = True
-      Size = 60
-    end
-    object cdsTP_PESSOA: TFMTBCDField
-      FieldName = 'TP_PESSOA'
-      Required = True
-      Precision = 32
-    end
   end
   object sql: TSQLQuery
     MaxBlobSize = -1
     Params = <>
-    SQL.Strings = (
-      'SELECT * FROM PESSOA')
     SQLConnection = sqlCon
     Left = 75
     Top = 76

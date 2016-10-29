@@ -1,430 +1,83 @@
-object FPadraoManut: TFPadraoManut
-  Left = 0
-  Top = 0
-  Caption = 'FPadraoManut'
-  ClientHeight = 536
-  ClientWidth = 1033
-  Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'Tahoma'
-  Font.Style = []
-  FormStyle = fsMDIChild
-  OldCreateOrder = False
-  Visible = True
-  WindowState = wsMaximized
-  OnClose = FormClose
-  OnCloseQuery = FormCloseQuery
-  OnCreate = FormCreate
-  OnKeyPress = FormKeyPress
-  OnShow = FormShow
+inherited FCadEspecie: TFCadEspecie
+  Caption = 'Cadastro de Esp'#233'cies'
   PixelsPerInch = 96
   TextHeight = 13
-  object PnCaption: TPanel
-    Left = 0
-    Top = 0
-    Width = 1033
-    Height = 41
-    Align = alTop
-    Color = 9328397
-    ParentBackground = False
-    TabOrder = 0
-    object Image1: TImage
-      Left = 1
-      Top = 1
-      Width = 128
-      Height = 39
-      Align = alLeft
-      ExplicitLeft = 4
-      ExplicitTop = -4
-      ExplicitHeight = 47
-    end
-    object Label1: TLabel
-      AlignWithMargins = True
-      Left = 134
-      Top = 8
-      Width = 63
-      Height = 23
-      Margins.Top = 10
-      Caption = 'Label1'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWhite
-      Font.Height = -19
-      Font.Name = 'Verdana'
-      Font.Style = []
-      ParentFont = False
-    end
-  end
-  object StatusBar1: TStatusBar
-    Left = 0
-    Top = 517
-    Width = 1033
-    Height = 19
-    Panels = <
-      item
-        Width = 50
-      end>
-  end
-  object PC: TPageControl
-    Left = 0
-    Top = 107
-    Width = 1033
-    Height = 410
-    ActivePage = tbCadastro
-    Align = alClient
-    TabOrder = 2
-    OnChange = PCChange
-    object tbCadastro: TTabSheet
-      Caption = 'Cadastro'
-      object pnFundoCadastro: TPanel
-        Left = 0
-        Top = 0
-        Width = 1025
-        Height = 382
-        Align = alClient
-        Color = 16775410
-        ParentBackground = False
-        TabOrder = 0
+  inherited PC: TPageControl
+    inherited tbCadastro: TTabSheet
+      ExplicitHeight = 382
+      inherited pnFundoCadastro: TPanel
+        ExplicitHeight = 382
+        object lbID: TLabel
+          Left = 9
+          Top = 30
+          Width = 181
+          Height = 13
+          Caption = 'C'#243'digo Identificador:...........'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Verdana'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label2: TLabel
+          Left = 9
+          Top = 57
+          Width = 166
+          Height = 13
+          Caption = 'Descri'#231#227'o Esp'#233'cie:...........'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Verdana'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object EB_ID: TcxDBMaskEdit
+          Left = 171
+          Top = 22
+          DataBinding.DataField = 'ID'
+          DataBinding.DataSource = dsPadrao
+          TabOrder = 0
+          Width = 121
+        end
+        object EB_DESCRICAO: TcxDBMaskEdit
+          Left = 171
+          Top = 49
+          DataBinding.DataField = 'DESCRICAO'
+          DataBinding.DataSource = dsPadrao
+          TabOrder = 1
+          Width = 606
+        end
       end
     end
-    object tbConsulta: TTabSheet
-      Caption = 'Consulta Dados'
-      ImageIndex = 1
-      object cxGrid: TcxGrid
-        Left = 0
-        Top = 0
-        Width = 1025
-        Height = 382
-        Align = alClient
-        PopupMenu = PopupMenu1
-        TabOrder = 0
-        LockedStateImageOptions.ShowText = True
-        LockedStateImageOptions.Text = 'Aguarde...'
-        LookAndFeel.NativeStyle = False
-        object cxTableView: TcxGridDBTableView
-          OnDblClick = cxTableViewDblClick
-          Navigator.Buttons.CustomButtons = <>
-          FindPanel.InfoText = 'Insira um texto para a pesquisa...'
-          DataController.DataSource = dsPadrao
-          DataController.Filter.Active = True
-          DataController.Summary.DefaultGroupSummaryItems = <>
-          DataController.Summary.FooterSummaryItems = <>
-          DataController.Summary.SummaryGroups = <>
-          FilterRow.InfoText = 'Clique aqui para defirnir um filtro'
-          FilterRow.Visible = True
-          NewItemRow.InfoText = 'Clique aqui para adicionar uma nova linha'
-          OptionsData.Editing = False
-          OptionsSelection.CellSelect = False
-          OptionsView.NoDataToDisplayInfoText = '<N'#227'o h'#225' informa'#231#227'oes para exibi'#231#227'o>'
-          Styles.ContentEven = StyleAzul
-        end
-        object cxGridLevel: TcxGridLevel
-          GridView = cxTableView
+    inherited tbConsulta: TTabSheet
+      ExplicitHeight = 382
+      inherited cxGrid: TcxGrid
+        ExplicitTop = -2
+        ExplicitHeight = 382
+        inherited cxTableView: TcxGridDBTableView
+          object cxTableViewID: TcxGridDBColumn
+            DataBinding.FieldName = 'ID'
+          end
+          object cxTableViewDESCRICAO: TcxGridDBColumn
+            DataBinding.FieldName = 'DESCRICAO'
+          end
         end
       end
     end
   end
-  object PnTools: TPanel
-    Left = 0
-    Top = 41
-    Width = 1033
-    Height = 66
-    Align = alTop
-    Color = 16047044
-    ParentBackground = False
-    TabOrder = 1
-    DesignSize = (
-      1033
-      66)
-    object SpeedButton5: TSpeedButton
-      Left = 7
-      Top = 7
-      Width = 58
-      Height = 51
-      Action = ac_Consultas
-      Flat = True
-      Layout = blGlyphTop
-    end
-    object GbComandosPadrao: TcxGroupBox
-      Left = 77
-      Top = 3
-      PanelStyle.Active = True
-      PanelStyle.BorderWidth = 10
-      TabOrder = 0
-      Transparent = True
-      Height = 59
-      Width = 275
-      object SpeedButton1: TSpeedButton
-        Left = 10
-        Top = 4
-        Width = 56
-        Height = 51
-        Action = Ac_Incluir
-        Flat = True
-        Layout = blGlyphTop
-      end
-      object SpeedButton2: TSpeedButton
-        Left = 142
-        Top = 4
-        Width = 56
-        Height = 51
-        Action = Ac_Excluir
-        Flat = True
-        Layout = blGlyphTop
-      end
-      object SpeedButton3: TSpeedButton
-        Left = 76
-        Top = 4
-        Width = 56
-        Height = 51
-        Action = Ac_Editar
-        Flat = True
-        Layout = blGlyphTop
-      end
-      object SpeedButton4: TSpeedButton
-        Left = 208
-        Top = 4
-        Width = 56
-        Height = 51
-        Action = Ac_Visualizar
-        Flat = True
-        Layout = blGlyphTop
-      end
-    end
-    object gbSaveCancel: TcxGroupBox
-      Left = 392
-      Top = 3
-      PanelStyle.Active = True
-      PanelStyle.BorderWidth = 10
-      TabOrder = 1
-      Transparent = True
-      Height = 59
-      Width = 150
-      object SpeedButton7: TSpeedButton
-        Left = 13
-        Top = 4
-        Width = 56
-        Height = 51
-        Action = Ac_Salvar
-        Flat = True
-        Glyph.Data = {
-          36100000424D3610000000000000360000002800000020000000200000000100
-          2000000000000010000000000000000000000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF2725
-          25001B1818001B1818002C2A2A001F1D1D001F1D1D001F1D1D001F1D1D001F1D
-          1D001F1D1D001F1D1D001F1D1D001F1D1D001F1D1D001F1D1D001F1D1D001F1D
-          1D001F1D1D001F1D1D001F1D1D001F1D1D001F1D1D001F1D1D001F1D1D001F1D
-          1D00201E1E001B1818001B1818001B18180071717100FFFFFFFFFFFFFFFF4140
-          4000646260004D4B4B002D2A2A00949090009490900094909000949090009490
-          9000949090009490900094909000949090009490900094909000949090009490
-          9000949090009490900094909000949090009490900094909000949090009490
-          9000777373001B18180048454500605F5D0051505000FFFFFFFFFFFFFFFF4847
-          4700DDDDDD00615F5F002F2C2C00A7A4A300B9B6B500B9B6B500B9B6B500B9B6
-          B500B9B6B500B9B6B500B9B6B500B9B6B500B9B6B500B9B6B500B9B6B500B9B6
-          B500B9B6B500B9B6B500B9B6B500B9B6B500B9B6B500B9B6B500B9B6B500B9B6
-          B5007E7B7B001D1A1A0084828200C3C2C20052505000FFFFFFFFFFFFFFFF1F1C
-          1C001E1B1B001E1B1B00302D2D00C6C2C200F1EDEC00F1EDEC00F1EDEC00F1ED
-          EC00F1EDEC00F1EDEC00F1EDEC00F1EDEC00F1EDEC00F1EDEC00F1EDEC00F1ED
-          EC00F1EDEC00F1EDEC00F1EDEC00F1EDEC00F1EDEC00F1EDEC00F1EDEC00F1ED
-          EC00878484001E1B1B001E1B1B001E1B1B0052505000FFFFFFFFFFFFFFFF201D
-          1D001F1C1C001F1C1C00312E2E00C5C2C100E6E2E200E0DDDC00E0DDDC00E0DD
-          DC00E0DDDC00E0DDDC00E0DDDC00E0DDDC00E0DDDC00E0DDDC00E0DDDC00E0DD
-          DC00E0DDDC00E0DDDC00E0DDDC00E0DDDC00E0DDDC00E0DDDC00E0DDDC00EAE7
-          E600878484001F1C1C001F1C1C001F1C1C0053505000FFFFFFFFFFFFFFFF221F
-          1E00211E1D00211E1D0032302F00C4C0C000EFEAEA00EFEAEA00EFEAEA00EFEA
-          EA00EFEAEA00EFEAEA00EFEAEA00EFEAEA00EFEAEA00EFEAEA00EFEAEA00EFEA
-          EA00EFEAEA00EFEAEA00EFEAEA00EFEAEA00EFEAEA00EFEAEA00EFEAEA00EFEA
-          EA0088838300211E1D00211E1D00211E1D0053525200FFFFFFFFFFFFFFFF2320
-          2000221F1F00221F1F0033313100C3BFBE00EEE9E800EEE9E800EEE9E800EEE9
-          E800EEE9E800EEE9E800EEE9E800EEE9E800EEE9E800EEE9E800EEE9E800EEE9
-          E800EEE9E800EEE9E800EEE9E800EEE9E800EEE9E800EEE9E800EEE9E800EEE9
-          E80086838300221F1F00221F1F00221F1F0055525200FFFFFFFFFFFFFFFF2421
-          2100232020002320200034313100C2BEBD00E3DFDE00DEDAD900DEDAD900DEDA
-          D900DEDAD900DEDAD900DEDAD900DEDAD900DEDAD900DEDAD900DEDAD900DEDA
-          D900DEDAD900DEDAD900DEDAD900DEDAD900DEDAD900DEDAD900DEDAD900E8E3
-          E2008583820023202000232020002320200054535300FFFFFFFFFFFFFFFF2623
-          2200252221002522210036333200C1BDBD00ECE6E600ECE6E600ECE6E600ECE6
-          E600ECE6E600ECE6E600ECE6E600ECE6E600ECE6E600ECE6E600ECE6E600ECE6
-          E600ECE6E600ECE6E600ECE6E600ECE6E600ECE6E600ECE6E600ECE6E600ECE6
-          E6008682820025222100252221002522210055535200FFFFFFFFFFFFFFFF2724
-          2400262323002623230037343400C0BCBB00E1DCDB00DCD7D700DCD7D700DCD7
-          D700DCD7D700DCD7D700DCD7D700DCD7D700DCD7D700DCD7D700DCD7D700DCD7
-          D700DCD7D700DCD7D700DCD7D700DCD7D700DCD7D700DCD7D700DCD7D700E5E0
-          DF008581800026232300262323002623230055535300FFFFFFFFFFFFFFFF2825
-          2500272424002724240038353500BFBBBA00EAE4E300EAE4E300EAE4E300EAE4
-          E300EAE4E300EAE4E300EAE4E300EAE4E300EAE4E300EAE4E300EAE4E300EAE4
-          E300EAE4E300EAE4E300EAE4E300EAE4E300EAE4E300EAE4E300EAE4E300EAE4
-          E3008580800027242400272424002724240055555500FFFFFFFFFFFFFFFF2A27
-          260029262500292625003A373600BEB9B900E7E0E000E5DFDF00E5DFDF00E5DF
-          DF00E5DFDF00E5DFDF00E5DFDF00E5DFDF00E5DFDF00E5DFDF00E5DFDF00E5DF
-          DF00E5DFDF00E5DFDF00E5DFDF00E5DFDF00E5DFDF00E5DFDF00E5DFDF00E8E1
-          E1008481800029262500292625002926250056555500FFFFFFFFFFFFFFFF2C28
-          27002A2726002A2726003B383700BDB8B800E1DBDB00DED8D800DED8D800DED8
-          D800DED8D800DED8D800DED8D800DED8D800DED8D800DED8D800DED8D800DED8
-          D800DED8D800DED8D800DED8D800DED8D800DED8D800DED8D800DED8D800E4DD
-          DD0084817F002A2726002A2726002A27260058555500FFFFFFFFFFFFFFFF2C29
-          29002B2828002B2828003C393900B9B3B300E7E0DF00E7E0DF00E7E0DF00E7E0
-          DF00E7E0DF00E7E0DF00E7E0DF00E7E0DF00E7E0DF00E7E0DF00E7E0DF00E7E0
-          DF00E7E0DF00E7E0DF00E7E0DF00E7E0DF00E7E0DF00E7E0DF00E7E0DF00E7E0
-          DF007E7B7A002B2828002B2828002B28280058565600FFFFFFFFFFFFFFFF2C2C
-          2A002D2A29002D2A29003F3C3B0085828100B0AAAA00B2ADAD00B2ADAD00B2AD
-          AD00B2ADAD00B2ADAD00B2ADAD00B2ADAD00B2ADAD00B2ADAD00B2ADAD00B2AD
-          AD00B2ADAD00B2ADAD00B2ADAD00B2ADAD00B2ADAD00B2ADAD00B2ADAD00A4A0
-          A000625F5F002D2A29002D2A29002D2A290058565600FFFFFFFFFFFFFFFF2D2C
-          2C002E2B2A002E2B2A0034313000403D3C003F3C3C003F3C3C003F3C3C003F3C
-          3C003F3C3C003F3C3C003F3C3C003F3C3C003F3C3C003F3C3C003F3C3C003F3C
-          3C003F3C3C003F3C3C003F3C3C003F3C3C003F3C3C003F3C3C003F3C3C003F3C
-          3C003F3C3C002E2B2A002E2B2A002E2B2A0059585600FFFFFFFFFFFFFFFF2E2C
-          2C002F2C2C002F2C2C002F2C2C002F2C2C002F2C2C002F2C2C002F2C2C002F2C
-          2C002F2C2C002F2C2C002F2C2C002F2C2C002F2C2C002F2C2C002F2C2C002F2C
-          2C002F2C2C002F2C2C002F2C2C002F2C2C002F2C2C002F2C2C002F2C2C002F2C
-          2C002F2C2C002F2C2C002F2C2C002F2C2C0059585800FFFFFFFFFFFFFFFF302D
-          2C00312E2D00312E2D00312E2D00312E2D00312E2D00312E2D00312E2D00312E
-          2D00312E2D00312E2D00312E2D00312E2D00312E2D00312E2D00312E2D00312E
-          2D00312E2D00312E2D00312E2D00312E2D00312E2D00312E2D00312E2D00312E
-          2D00312E2D00312E2D00312E2D00312E2D005B585800FFFFFFFFFFFFFFFF312E
-          2D00322F2E00322F2E00322F2E00322F2E005C5A59004E4B4B00515050005150
-          5000515050005150500051505000515050005150500051505000515050005150
-          5000515050005150500051505000515050004C4B4B0048464600484646004A47
-          46004E4C4B00322F2E00322F2E00322F2E005B585800FFFFFFFFFFFFFFFF3431
-          30003532310035323100353231003532310065646300A6A1A100B9B7B700B9B7
-          B700B9B7B700B9B7B700B9B7B700B9B7B700B9B7B700B9B7B700B9B7B700B9B7
-          B700B9B7B700B9B7B700B9B7B700B9B7B700BCB8B800343030001E1A1A001E1A
-          1A004B4948003532310035323100353231005C5B5900FFFFFFFFFFFFFFFF3835
-          33003936340039363400393634003936340066636200B2AEAE00B5B4B4009A99
-          99002E2A2A002E2A2A009E9C9C00B5B4B400B5B4B400B5B4B400B5B4B400B5B4
-          B400B5B4B400B5B4B400B5B4B400B5B4B400BBB8B80049464600221E1E00221E
-          1E004E4B4A003936340039363400393634005E5B5B00FFFFFFFFFFFFFFFF3C39
-          37003D3A38003D3A38003D3A38003D3A380068656400B2AFAF00B5B4B4009998
-          980026212100262121009D9C9C00B5B4B400B5B4B400B5B4B400B5B4B400B5B4
-          B400B5B4B400B5B4B400B5B4B400B5B4B400BBB8B8004C484800262121002621
-          2100514D4C003D3A38003D3A38003D3A38005F5E5E00FFFFFFFFFFFFFFFF403D
-          3B00413E3C00413E3C00413E3C00413E3C006A686800B2AFAF00B5B4B4009A98
-          980029252500292525009D9D9D00B5B4B400B5B4B400B5B4B400B5B4B400B5B4
-          B400B5B4B400B5B4B400B5B4B400B5B4B400BBB8B8004E4B4B00292525002925
-          250055515000413E3C00413E3C00413E3C00615E5E00FFFFFFFFFFFFFFFF4340
-          3E0045413F0045413F0045413F0045413F006C696900B3AFAF00B5B4B4009A9A
-          9A002D2828002D2828009F9D9D00B5B4B400B5B4B400B5B4B400B5B4B400B5B4
-          B400B5B4B400B5B4B400B5B4B400B5B4B400BBB8B800514D4D002D2828002D28
-          28005854530045413F0045413F0045413F00615F5E00FFFFFFFFFFFFFFFF4743
-          4100494543004945430049454300494543006F6C6C00B7B3B300B9B8B8009C9B
-          9B00312C2C00312C2C00A1A0A000B9B8B800B9B8B800B9B8B800B9B8B800B9B8
-          B800B9B8B800B9B8B800B9B8B800B9B8B800BFBCBC0054505000312C2C00312C
-          2C005B58570049454300494543004945430064616100FFFFFFFFFFFFFFFF4B47
-          45004D4947004D4947004D4947004D494700726E6E00C2C0C000C9C8C800A3A1
-          A100352F2F00352F2F00ABABAB00C9C8C800C9C8C800C9C8C800C9C8C800C9C8
-          C800C9C8C800C9C8C800C9C8C800C9C8C800CDCBCB0057525200352F2F00352F
-          2F005F5A5A004D4947004D4947004D49470064646100FFFFFFFFFFFFFFFF4F4B
-          4800514D4A00514D4A00514D4A00514D4A0074707000CECBCB00D8D7D700A8A7
-          A7003933330039333300B6B4B400D8D7D700D8D7D700D8D7D700D8D7D700D8D7
-          D700D8D7D700D8D7D700D8D7D700D8D7D700DBD8D8005A555500393333003933
-          3300625E5D00514D4A00514D4A00514D4A0066646400FFFFFFFFFFFFFFFF837F
-          7D0054514E0054514E0054514E0054514E0076727200DBD8D800E7E7E700BCBB
-          BB006E6969006E696900CAC9C900E7E7E700E7E7E700E7E7E700E7E7E700E7E7
-          E700E7E7E700E7E7E700E7E7E700E7E7E700E9E7E7005D5858003D3636003D36
-          360064605F0054514E0054514E0054514E0066666500FFFFFFFFFFFFFFFFFFFF
-          FFFF7F7E7C00585451005854510058545100837E7D00E8E5E500F6F4F400F6F4
-          F400F6F4F400F6F4F400F6F4F400F6F4F400F6F4F400F6F4F400F6F4F400F6F4
-          F400F6F4F400F6F4F400F6F4F400F6F4F400F7F4F400716A6A00594F4F00594F
-          4F00746E6D005854510058545100585451006E6C6B00FFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFF838181005757570073737300737373007F7B7B00837D7C00837D
-          7C00837D7C00837D7C00837D7C00837D7C00837D7C00847D7D00847D7D00847D
-          7D00847D7D00847D7C00847E7D00847E7D00847E7D00848383007A7878007A78
-          7800828280006C6B6900716F6C00777775006F6F6E00FFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-        Layout = blGlyphTop
-      end
-      object SpeedButton6: TSpeedButton
-        Left = 81
-        Top = 4
-        Width = 56
-        Height = 51
-        Action = Ac_Cancelar
-        Flat = True
-        Layout = blGlyphTop
-      end
-    end
-    object gbNavegacao: TcxGroupBox
-      Left = 582
-      Top = 3
-      PanelStyle.Active = True
-      PanelStyle.BorderWidth = 10
-      TabOrder = 2
-      Transparent = True
-      Height = 59
-      Width = 263
-      object SpeedButton12: TSpeedButton
-        Left = 197
-        Top = 4
-        Width = 56
-        Height = 51
-        Action = Ac_Ultimo
-        Flat = True
-        Layout = blGlyphTop
-      end
-      object SpeedButton11: TSpeedButton
-        Left = 132
-        Top = 4
-        Width = 56
-        Height = 51
-        Action = Ac_Proximo
-        Flat = True
-        Layout = blGlyphTop
-      end
-      object SpeedButton10: TSpeedButton
-        Left = 71
-        Top = 4
-        Width = 56
-        Height = 51
-        Action = Ac_Anterior
-        Flat = True
-        Layout = blGlyphTop
-      end
-      object SpeedButton9: TSpeedButton
-        Left = 10
-        Top = 4
-        Width = 56
-        Height = 51
-        Action = Ac_Primeiro
-        Flat = True
-        Layout = blGlyphTop
-      end
-    end
-    object cxGroupBox4: TcxGroupBox
-      Left = 952
-      Top = 3
-      Anchors = [akTop, akRight]
-      PanelStyle.Active = True
-      PanelStyle.BorderWidth = 10
-      TabOrder = 3
-      Transparent = True
-      Height = 59
-      Width = 67
-      object SpeedButton8: TSpeedButton
-        Left = 6
-        Top = 4
-        Width = 56
-        Height = 51
-        Action = Ac_Fechar
-        Flat = True
-        Layout = blGlyphTop
-      end
+  inherited PnTools: TPanel
+    ExplicitLeft = 0
+    ExplicitTop = 41
+    ExplicitWidth = 1033
+    inherited cxGroupBox4: TcxGroupBox
+      ExplicitLeft = 943
     end
   end
-  object imgNormal: TImageList
-    Height = 32
-    Width = 32
-    Left = 100
-    Top = 468
+  inherited imgNormal: TImageList
     Bitmap = {
-      494C0101110050008C0120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010111005000880120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000A000000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3071,124 +2724,12 @@ object FPadraoManut: TFPadraoManut
       FFFFFFFFFFFFFF83FFFFFFFFFFFFFFFF00000000000000000000000000000000
       000000000000}
   end
-  object Acoes: TActionList
-    Images = imgFlat
-    Left = 176
-    Top = 468
-    object Ac_Incluir: TAction
-      Category = 'CRUD'
-      Caption = 'Incluir'
-      ImageIndex = 0
-      ShortCut = 113
-      OnExecute = Ac_IncluirExecute
-    end
-    object Ac_Cancelar: TAction
-      Category = 'CRUD'
-      Caption = 'Cancelar'
-      Enabled = False
-      ImageIndex = 5
-      ShortCut = 114
-      OnExecute = Ac_CancelarExecute
-    end
-    object Ac_Editar: TAction
-      Category = 'CRUD'
-      Caption = 'Editar'
-      ImageIndex = 1
-      ShortCut = 115
-      OnExecute = Ac_EditarExecute
-    end
-    object Ac_Visualizar: TAction
-      Category = 'CRUD'
-      Caption = 'Visualizar'
-      ImageIndex = 3
-      ShortCut = 116
-    end
-    object Ac_Imprimir: TAction
-      Category = 'CRUD'
-      Caption = 'Imprimir'
-      ShortCut = 117
-    end
-    object Ac_Excluir: TAction
-      Category = 'CRUD'
-      Caption = 'Excluir'
-      ImageIndex = 2
-    end
-    object Ac_Salvar: TAction
-      Category = 'CRUD'
-      Caption = 'Salvar'
-      ImageIndex = 21
-      OnExecute = Ac_SalvarExecute
-    end
-    object Ac_Fechar: TAction
-      Caption = 'Fechar'
-      ImageIndex = 10
-      OnExecute = Ac_FecharExecute
-    end
-    object Ac_Anterior: TAction
-      Category = 'Navega'#231#227'o'
-      Caption = 'Anterior'
-      ImageIndex = 7
-      OnExecute = Ac_AnteriorExecute
-    end
-    object Ac_Primeiro: TAction
-      Category = 'Navega'#231#227'o'
-      Caption = 'Primeiro'
-      ImageIndex = 6
-      OnExecute = Ac_PrimeiroExecute
-    end
-    object Ac_Proximo: TAction
-      Category = 'Navega'#231#227'o'
-      Caption = 'Pr'#243'ximo'
-      ImageIndex = 8
-      OnExecute = Ac_ProximoExecute
-    end
-    object Ac_Ultimo: TAction
-      Category = 'Navega'#231#227'o'
-      Caption = #218'ltimo'
-      ImageIndex = 9
-      OnExecute = Ac_UltimoExecute
-    end
-    object ac_Consultas: TAction
-      Category = 'CRUD'
-      Caption = 'Consulta'
-      ImageIndex = 17
-      OnExecute = ac_ConsultasExecute
-    end
-    object ac_Refresh: TAction
-      Caption = 'Recarregar'
-      ImageIndex = 20
-      OnExecute = ac_RefreshExecute
-    end
-    object ac_AjustarGrid: TAction
-      Caption = 'Ajustar tamanho das Colunas'
-      OnExecute = ac_AjustarGridExecute
-    end
+  inherited cdsPadrao: TClientDataSet
+    Active = True
   end
-  object cdsPadrao: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'dspPadrao'
-    Left = 104
-    Top = 412
-  end
-  object dspPadrao: TDataSetProvider
-    DataSet = QryPadrao
-    UpdateMode = upWhereChanged
-    Left = 176
-    Top = 412
-  end
-  object dsPadrao: TDataSource
-    DataSet = cdsPadrao
-    Left = 40
-    Top = 412
-  end
-  object imgFlat: TImageList
-    Height = 32
-    Width = 32
-    Left = 32
-    Top = 468
+  inherited imgFlat: TImageList
     Bitmap = {
-      494C010116001800D80020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010116001800D40020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000C000000001002000000000000080
       010000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00A9A9
@@ -6363,35 +5904,12 @@ object FPadraoManut: TFPadraoManut
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000}
   end
-  object cxStyleRepo: TcxStyleRepository
-    Left = 244
-    Top = 468
+  inherited cxStyleRepo: TcxStyleRepository
     PixelsPerInch = 96
-    object StyleAzul: TcxStyle
-      AssignedValues = [svColor]
-      Color = clGradientInactiveCaption
-    end
-    object StyleVerde: TcxStyle
-      AssignedValues = [svColor]
-      Color = clMoneyGreen
-    end
-    object cxStyleOver: TcxStyle
-      AssignedValues = [svColor]
-      Color = 14680021
-    end
   end
-  object QryPadrao: TSQLQuery
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = DmPrinc.sqlCon
-    Left = 244
-    Top = 411
-  end
-  object PopupMenu1: TPopupMenu
-    Left = 768
-    Top = 336
-    object asdsadas1: TMenuItem
-      Action = ac_AjustarGrid
-    end
+  inherited QryPadrao: TSQLQuery
+    Active = True
+    SQL.Strings = (
+      'SELECT * FROM ESPECIES')
   end
 end

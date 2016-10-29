@@ -14,7 +14,6 @@ type
   TFMenuBase = class(TForm)
     acmMenu: TActionManager;
     aclMenu: TActionList;
-    ac_Fechar: TAction;
     acEspecies: TAction;
     MainMenu1: TMainMenu;
     Action11: TMenuItem;
@@ -30,7 +29,6 @@ type
     acRacas: TAction;
     Timer: TTimer;
     StatusBar1: TStatusBar;
-    ac_Pessoas: TAction;
     Action1: TAction;
     Pessoas1: TMenuItem;
     ac_CadPessoas: TAction;
@@ -39,17 +37,15 @@ type
     PnCaption: TPanel;
     Image2: TImage;
     XPColorMap1: TXPColorMap;
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
-    BitBtn4: TBitBtn;
-    BitBtn5: TBitBtn;
-    BitBtn6: TBitBtn;
     ImageList1: TImageList;
+    ac_CadEspecie: TAction;
+    ac_Fechar: TAction;
+    ac_CfgGeral: TAction;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ac_FecharExecute(Sender: TObject);
     procedure TimerTimer(Sender: TObject);
+    procedure ac_CadEspecieExecute(Sender: TObject);
   private
     { Private declarations }
     procedure ConectaBanco;
@@ -78,7 +74,15 @@ uses
   , uAlterarSenha
   , BibStr
   , BibGeral
-  , BibConsultas;
+  , BibConsultas
+  , uCadastroEspecies;
+
+procedure TFMenuBase.ac_CadEspecieExecute(Sender: TObject);
+begin
+   if Application.FindComponent('FCadEspecie') = nil then
+    Application.CreateForm(TFCadEspecie, FCadEspecie);
+  FCadEspecie.Show;
+end;
 
 procedure TFMenuBase.ac_FecharExecute(Sender: TObject);
 begin

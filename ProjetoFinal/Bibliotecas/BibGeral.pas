@@ -12,6 +12,8 @@ function RespOkCancel(sTit, sMsg: String) : Integer; overload;
 function RespOkCancel(sMsg: String) : Integer; overload;
 function GetVersaoAtual: String;
 
+const
+  _RaizPadrao = 'Software/Programa';
 
 implementation
 

@@ -12,9 +12,6 @@ type
     sqlCon: TSQLConnection;
     dsp: TDataSetProvider;
     cds: TClientDataSet;
-    cdsCD_PESSOA: TFMTBCDField;
-    cdsNM_PESSOA: TWideStringField;
-    cdsTP_PESSOA: TFMTBCDField;
     sql: TSQLQuery;
     procedure DataModuleDestroy(Sender: TObject);
   private

@@ -17,7 +17,9 @@ uses
   FormPadrao in 'Bibliotecas\FormPadrao.pas' {FPadraoManut},
   BibConsultas in 'Bibliotecas\BibConsultas.pas',
   uUsuario in 'Bibliotecas\uUsuario.pas',
-  uAlterarSenha in 'uAlterarSenha.pas' {FAlterarSenha};
+  uAlterarSenha in 'uAlterarSenha.pas' {FAlterarSenha},
+  uCadastroEspecies in 'uCadastroEspecies.pas' {FCadEspecie},
+  uCfgGerais in 'uCfgGerais.pas' {FCfgGerais};
 
 {$R *.res}
 
