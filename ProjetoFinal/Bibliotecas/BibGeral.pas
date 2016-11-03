@@ -10,12 +10,18 @@ uses
 
 function RespOkCancel(sTit, sMsg: String) : Integer; overload;
 function RespOkCancel(sMsg: String) : Integer; overload;
+function RespSN(sMsg : String) : Boolean; overload;
 function GetVersaoAtual: String;
 
 const
-  _RaizPadrao = 'Software/Programa';
+  _RaizPadrao = 'software/programa';
 
 implementation
+
+function RespSN(sMsg : String) : Boolean;
+begin
+  Result := Application.MessageBox(PChar(sMsg), 'Atenção!', MB_YESNO + MB_ICONWARNING) = IDYES;
+end;
 
 function RespOkCancel(sTit, sMsg: String) : Integer;
 begin

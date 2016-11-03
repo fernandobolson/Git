@@ -13,13 +13,12 @@ uses
   BibStr in 'Bibliotecas\BibStr.pas',
   BibGeral in 'Bibliotecas\BibGeral.pas',
   uEsqueciSenha in 'uEsqueciSenha.pas' {FEsqueciSenha},
-  steste in 'steste.pas' {Form1},
   FormPadrao in 'Bibliotecas\FormPadrao.pas' {FPadraoManut},
   BibConsultas in 'Bibliotecas\BibConsultas.pas',
   uUsuario in 'Bibliotecas\uUsuario.pas',
   uAlterarSenha in 'uAlterarSenha.pas' {FAlterarSenha},
   uCadastroEspecies in 'uCadastroEspecies.pas' {FCadEspecie},
-  uCfgGerais in 'uCfgGerais.pas' {FCfgGerais};
+  uCadastroRacas in 'uCadastroRacas.pas' {FCadRacas};
 
 {$R *.res}
 
@@ -29,5 +28,6 @@ begin
   Application.CreateForm(TDmPrinc, DmPrinc);
   Application.CreateForm(TFMenuBase, FMenuBase);
   Application.CreateForm(TFLogin, FLogin);
+  Application.CreateForm(TFCadRacas, FCadRacas);
   Application.Run;
 end.

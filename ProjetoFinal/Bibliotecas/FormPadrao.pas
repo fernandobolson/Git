@@ -11,31 +11,32 @@ uses
   cxLookAndFeelPainters, cxContainer, cxEdit, cxGroupBox, cxStyles,
   cxCustomData, cxFilter, cxData, cxDataStorage, cxNavigator, cxDBData,
   cxGridLevel, cxClasses, cxGridCustomView, cxGridCustomTableView,
-  cxGridTableView, cxGridDBTableView, cxGrid, Vcl.Menus, Registry;
+  cxGridTableView, cxGridDBTableView, cxGrid, Vcl.Menus, Registry,
+  dxBarBuiltInMenu, cxPC, cxButtons;
 
 type
 
   TEstado = (tIncluir, tAlterar, tExcluir, tCancelar, TVisualizando);
 
-  TRotina = class
+  TObjCrud = class
   private
     FTabelaBanco: String;
     FCampoChave: String;
+    FNome: string;
     procedure SetCampoChave(const Value: String);
     procedure SetTabelaBanco(const Value: String);
-  //
+    procedure SetNome(const Value: string);
   protected
-  //
   public
     property CampoChave : String read FCampoChave write SetCampoChave;
     property TabelaBanco : String read FTabelaBanco write SetTabelaBanco;
+    property Nome : string read FNome write SetNome;
   end;
 
 
   TFPadraoManut = class(TForm)
     PnCaption: TPanel;
-    Image1: TImage;
-    Label1: TLabel;
+    lbNameCrud: TLabel;
     imgNormal: TImageList;
     Acoes: TActionList;
     Ac_Incluir: TAction;
@@ -50,18 +51,10 @@ type
     Ac_Primeiro: TAction;
     Ac_Proximo: TAction;
     Ac_Ultimo: TAction;
-    StatusBar1: TStatusBar;
     cdsPadrao: TClientDataSet;
     dspPadrao: TDataSetProvider;
     dsPadrao: TDataSource;
     imgFlat: TImageList;
-    PC: TPageControl;
-    tbCadastro: TTabSheet;
-    pnFundoCadastro: TPanel;
-    tbConsulta: TTabSheet;
-    cxGrid: TcxGrid;
-    cxTableView: TcxGridDBTableView;
-    cxGridLevel: TcxGridLevel;
     cxStyleRepo: TcxStyleRepository;
     StyleAzul: TcxStyle;
     StyleVerde: TcxStyle;
@@ -71,11 +64,8 @@ type
     SpeedButton5: TSpeedButton;
     GbComandosPadrao: TcxGroupBox;
     SpeedButton1: TSpeedButton;
-    SpeedButton2: TSpeedButton;
     SpeedButton3: TSpeedButton;
-    SpeedButton4: TSpeedButton;
     gbSaveCancel: TcxGroupBox;
-    SpeedButton7: TSpeedButton;
     SpeedButton6: TSpeedButton;
     gbNavegacao: TcxGroupBox;
     SpeedButton12: TSpeedButton;
@@ -89,15 +79,23 @@ type
     PopupMenu1: TPopupMenu;
     asdsadas1: TMenuItem;
     ac_AjustarGrid: TAction;
+    cxButton1: TcxButton;
+    Label2: TLabel;
+    PC: TcxPageControl;
+    tbCadastro: TcxTabSheet;
+    tbConsulta: TcxTabSheet;
+    cxGridTableView: TcxGridDBTableView;
+    cxGridLevel: TcxGridLevel;
+    cxGrid: TcxGrid;
+    SpeedButton4: TSpeedButton;
     procedure Ac_IncluirExecute(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure Ac_SalvarExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure cxTableViewDblClick(Sender: TObject);
+    procedure cxGridTableViewDblClick(Sender: TObject);
     procedure ac_RefreshExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ac_ConsultasExecute(Sender: TObject);
-    procedure PCChange(Sender: TObject);
     procedure Ac_EditarExecute(Sender: TObject);
     procedure Ac_CancelarExecute(Sender: TObject);
     procedure Ac_PrimeiroExecute(Sender: TObject);
@@ -108,29 +106,26 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure ac_AjustarGridExecute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure FormDestroy(Sender: TObject);
+    procedure Ac_ExcluirExecute(Sender: TObject);
   private
     FEstado: TEstado;
-    oRotina : TRotina;
     procedure SetEstado(const Value: TEstado);
-    function BuscaDadosPadrao(Campos, Tabela : String; cWhere :String = '(0=0)' ) : OleVariant;
     procedure MudaPaginaParaCadastro;
-    procedure RealizaConsultaRegistrosCadastro;
-
     procedure MudaPaginaParaConsulta;
     procedure RealizaConsultaQuery;
-    function GetProxCodigo : Integer;
     function ConfirmaNavegacao: Boolean;
     procedure GravaInfoRegedit;
   public
     { Public declarations }
     property Estado :TEstado read FEstado write SetEstado;
   protected
-    CampoChave,
-    TabelaBanco : String;
     Registro : TRegistry;
+    ObjCrud : TObjCrud;
     procedure SetNomeRotina; virtual; abstract;
     procedure SetObjRotina; virtual; abstract;
     function CheckDadosFinal: Boolean; virtual; abstract;
+    procedure CriaObjetoCrud; virtual; abstract;
   end;
 
 
@@ -148,35 +143,18 @@ uses
   , BibStr
   , BibGeral
   , uUsuario
-  , uClientDataSetHelper;
+  , uClientDataSetHelper, uMenuBase;
 
 {$R *.dfm}
 
 { TForm2 }
 
-function TFPadraoManut.BuscaDadosPadrao(Campos, Tabela : String; cWhere :String = '(0=0)' ) : OleVariant;
-var
-  qryLocal :TSQLQuery;
-begin
-  try
-    qryLocal := TSQLQuery.Create(nil);
-    qryLocal.SQLConnection := DmPrinc.sqlCon;
-    if (Campos <> EmptyStr) and (Tabela <> EmptyStr) then
-      begin
-      qryLocal.SQL.Add('SELECT '+Campos+' FROM '+Tabela+ ' WHERE '+cWhere);
-      qryLocal.Open;
-    end;
 
-    Result := dspPadrao.Data;
-  except
-
-  end;
-end;
 
 procedure TFPadraoManut.ac_AjustarGridExecute(Sender: TObject);
 begin
   if cdsPadrao.RecordCount > 0 then
-    cxTableView.ApplyBestFit();
+    cxGridTableView.ApplyBestFit();
 end;
 
 procedure TFPadraoManut.Ac_AnteriorExecute(Sender: TObject);
@@ -187,45 +165,69 @@ end;
 
 procedure TFPadraoManut.Ac_CancelarExecute(Sender: TObject);
 begin
-  Estado := tCancelar;
-  cdsPadrao.Cancel;
+  if RespSN('Realmente deseja Cancelar? Toda os dados não salvos serão perdidos!') then
+    begin
+    Estado := tCancelar;
+    cdsPadrao.Cancel;
+  end;
+
 end;
 
 procedure TFPadraoManut.ac_ConsultasExecute(Sender: TObject);
 begin
-  if not ConfirmaNavegacao then
-    Exit;
-
+  ConfirmaNavegacao;
   Estado := TVisualizando;
   MudaPaginaParaConsulta;
 end;
 
 procedure TFPadraoManut.Ac_EditarExecute(Sender: TObject);
 begin
-//
   Estado := tAlterar;
-  cdsPadrao.Edit;
+  if PC.ActivePageIndex = _PageConsulta then
+    MudaPaginaParaCadastro
+  else
+    cdsPadrao.Edit;
+end;
+
+procedure TFPadraoManut.Ac_ExcluirExecute(Sender: TObject);
+var
+  lReadOnly: Boolean;
+begin
+  try
+    if CdsPadrao.RecordCount <= 0 then
+      Exit;
+
+    lReadOnly := CdsPadrao.ReadOnly;
+    if RespSN('Você realmente deseja excluir esse registro?') then
+      begin
+      if lReadOnly then
+        cdsPadrao.ReadOnly := False;
+      CdsPadrao.Delete;
+      try
+        cdsPadrao.ApplyUpdates(0);
+      except
+        On e: Exception do
+          raise Exception.Create('Erro ao excluir o registro: '+E.Message);
+      end;
+    end;
+  finally
+    if lReadOnly then
+      cdsPadrao.ReadOnly := True;
+  end;
 end;
 
 procedure TFPadraoManut.Ac_FecharExecute(Sender: TObject);
 begin
-  case MessageDlg('Você realmente deseja fechar essa tela?',  mtInformation,
-    [mbYes, mbNo], 0) of
-    mrYes:  Close;
-    mrNo: Exit;
-  end;
+  GravaInfoRegedit;
+  Close;
 end;
 
 procedure TFPadraoManut.Ac_IncluirExecute(Sender: TObject);
-var
-  cds :TClientDataSet;
 begin
   Estado := tIncluir;
+  MudaPaginaParaCadastro;
   cdsPadrao.Append;
   SelectFirst;
-  cdsPadrao.FieldByName(CampoChave).AsInteger := GetProxCodigo;
-
-  MudaPaginaParaCadastro;
 end;
 
 procedure TFPadraoManut.Ac_PrimeiroExecute(Sender: TObject);
@@ -237,16 +239,12 @@ end;
 function TFPadraoManut.ConfirmaNavegacao : Boolean;
 begin
   Result := True;
-  if Estado in [tIncluir, tAlterar] then
+  if DsPadrao.State in [dsInsert, dsEdit] then
     begin
-    case
-      Application.MessageBox('Toda alteração não salva será perdida, tem certeza que deseja fazer isso?',
-      'Atenção', MB_YESNO + MB_ICONWARNING) of
-      //IDYES:
-      IDNO:
-        begin
-          Result := False;
-        end;
+    if RespSN('Toda alteração não salva será perdida, tem certeza que deseja fazer isso?') then
+      begin
+      Result := False;
+      cdsPadrao.Delete;
     end;
   end;
 end;
@@ -257,43 +255,27 @@ begin
     cdsPadrao.Next;
 end;
 
-function TFPadraoManut.GetProxCodigo : Integer;
-var
-  qryLocal : TSQLQuery;
-begin
-  Result := 999;
-  qryLocal := TSQLQuery.Create(Self);
-  qryLocal.SQLConnection := DmPrinc.sqlCon;
-  qryLocal.Close;
-  qryLocal.SQL.Add('SELECT MAX('+CampoChave+') FROM '+TabelaBanco);
-  qryLocal.Open;
-  if qryLocal.RecordCount = 0 then
-    Result := 1
-  else
-    Result := qryLocal.FieldByName(CampoChave).AsInteger;
-
-end;
-
-
 procedure TFPadraoManut.SetEstado(const Value: TEstado);
 begin
   FEstado := Value;
 
+  if FEstado in [tAlterar, tIncluir] then
+    cdsPadrao.ReadOnly := False;
+
+
   Ac_Incluir.Enabled  := (FEstado in [tCancelar, tExcluir, TVisualizando]);
   Ac_Editar.Enabled   := (FEstado in [tCancelar, tExcluir, TVisualizando]);
-  Ac_Excluir.Enabled  := (FEstado = tCancelar);
-  Ac_Salvar.Enabled   := (FEstado in [tCancelar, TIncluir]);
-  Ac_Cancelar.Enabled := (FEstado in [tCancelar, TIncluir]);
-  ac_Consultas.Enabled:= (FEstado <> TVisualizando);
+  Ac_Excluir.Enabled  := True;
 
-  //Ajusta o caption do formulário
-  if Pos(' - [', Caption) > 0 then
-    Caption := Copy(Caption, 1, Pos(' - [', Caption) - 1);
+  Ac_Salvar.Enabled   := (FEstado in [tCancelar, TIncluir, TAlterar]) and not(FEstado = TVisualizando);
+  Ac_Cancelar.Enabled := (FEstado in [tCancelar, TIncluir]) and not(FEstado = TVisualizando);
 
+  lbNameCrud.Caption := ObjCrud.Nome;
   case FEstado of
-    TIncluir: Caption := Caption + ' - [Inclusão]';
-    TAlterar: Caption := Caption + ' - [Alteração]';
-    TExcluir: Caption := Caption + ' - [Exclusão]';
+    TIncluir: lbNameCrud.Caption := lbNameCrud.Caption + ' - [Inclusão]';
+    TAlterar: lbNameCrud.Caption := lbNameCrud.Caption + ' - [Alteração]';
+    TExcluir: lbNameCrud.Caption := lbNameCrud.Caption + ' - [Exclusão]';
+    TVisualizando : lbNameCrud.Caption := lbNameCrud.Caption + ' - [Consultando Dados]'
   end;
 end;
 
@@ -306,11 +288,14 @@ procedure TFPadraoManut.Ac_SalvarExecute(Sender: TObject);
 begin
   if CheckDadosFinal then
     begin
-
+    //Campo Chave sera incrementado a partir de uma trigger no banco de dados
     cdsPadrao.Post;
     try
       cdsPadrao.ApplyUpdates(0);
-      Estado := tCancelar;
+      Estado := TVisualizando;
+
+      cdsPadrao.Refresh;
+      cdsPadrao.ReadOnly := True;
     except
       on E: Exception do
         RespOkCancel('Houve um erro ao gravar aos dados, Msg: '+E.Message);
@@ -325,10 +310,13 @@ begin
     cdsPadrao.Last;
 end;
 
-procedure TFPadraoManut.cxTableViewDblClick(Sender: TObject);
+procedure TFPadraoManut.cxGridTableViewDblClick(Sender: TObject);
 begin
   if cdsPadrao.RecordCount > 0 then
+  begin
     MudaPaginaParaCadastro;
+    CdsPadrao.ReadOnly:=True;
+  end;
 end;
 
 procedure TFPadraoManut.MudaPaginaParaCadastro;
@@ -336,6 +324,7 @@ begin
   PC.ActivePageIndex := _PageCadastro;
   tbConsulta.TabVisible := False;
   tbCadastro.TabVisible := True;
+//  CdsPadrao.ReadOnly := True; //Somente tira o ReadOnly ao clicar em Editar
 end;
 
 procedure TFPadraoManut.MudaPaginaParaConsulta;
@@ -343,47 +332,41 @@ begin
   PC.ActivePageIndex := _PageConsulta;
   tbConsulta.TabVisible := True;
   tbCadastro.TabVisible := False;
-  //Estado := TVisualizando;
-end;
-
-procedure TFPadraoManut.PCChange(Sender: TObject);
-begin
-//  if PC.ActivePageIndex = _PageConsulta then
-//    Estado := TVisualizando;
-end;
-
-procedure TFPadraoManut.RealizaConsultaRegistrosCadastro;
-begin
- //
+  Estado := TVisualizando;
 end;
 
 procedure TFPadraoManut.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
-  GravaInfoRegedit;
-
-  Action := caFree; //Destrói o form
-  self := nil; //Tira referência na memória
+  Action := caFree;
+  self := nil;
 end;
 
 procedure TFPadraoManut.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
 begin
-  CanClose := MessageDlg('Você realmente deseja sair?', mtConfirmation, [mbYes, mbNo], 0) = mrYes;
+  CanClose := RespSN('Você realmente deseja sair?');
 end;
 
 procedure TFPadraoManut.FormCreate(Sender: TObject);
 begin
+  CriaObjetoCrud;
   Estado := TVisualizando;
   MudaPaginaParaConsulta;
   RealizaConsultaQuery;
+  Registro := TRegistry.Create;
+end;
+
+procedure TFPadraoManut.FormDestroy(Sender: TObject);
+begin
+  ObjCrud.Free;
 end;
 
 procedure TFPadraoManut.RealizaConsultaQuery;
 begin
   try
     QryPadrao.Close;
-    QryPadrao.SQL.Text := 'SELECT * FROM '+TabelaBanco;
+    QryPadrao.SQL.Text := 'SELECT * FROM '+ObjCrud.TabelaBanco;
     QryPadrao.Open;
     cdsPadrao.Open;
   except
@@ -418,10 +401,13 @@ end;
 procedure TFPadraoManut.FormKeyPress(Sender: TObject; var Key: Char);
 begin
   // Muda os campos clicando Tab ou Enter
-  if (Key = #13) or (Key = #10) then
+  if Estado = tAlterar then
     begin
-    Key := #0;
-    Perform(WM_NEXTDLGCTL, 0, 0);
+    if (Key = #13) or (Key = #10) then
+      begin
+      Key := #0;
+      Perform(WM_NEXTDLGCTL, 0, 0);
+    end;
   end;
 end;
 
@@ -432,12 +418,17 @@ end;
 
 { TRotina }
 
-procedure TRotina.SetCampoChave(const Value: String);
+procedure TObjCrud.SetCampoChave(const Value: String);
 begin
   FCampoChave := Value;
 end;
 
-procedure TRotina.SetTabelaBanco(const Value: String);
+procedure TObjCrud.SetNome(const Value: string);
+begin
+  FNome := Value;
+end;
+
+procedure TObjCrud.SetTabelaBanco(const Value: String);
 begin
   FTabelaBanco := Value;
 end;

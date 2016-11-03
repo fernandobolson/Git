@@ -35,8 +35,6 @@ type
     procedure acConectarExecute(Sender: TObject);
     procedure acFecharExecute(Sender: TObject);
   private
-    cUsuario : String;
-
     procedure ValidaLoginSenha;
   public
     lUsuarioAutorizado : Boolean;
@@ -120,14 +118,14 @@ var
   sVersao : String;
 begin
   sVersao := GetVersaoAtual;
-  Self.Caption := 'Acesso ao sistema VetShop '+ sVersao;
+  Self.Caption := 'Acesso ao Sistema'+ sVersao;
   lbVersao.Caption := 'Versão: ' + sVersao;
   lUsuarioAutorizado := False;
 end;
 
 procedure TFLogin.FormKeyPress(Sender: TObject; var Key: Char);
 begin
-  if (Key = #13) then
+  if (Key = #13) or (Key = #10) then     //Tecla Tab ou Enter
     begin
     key := #0;
     Perform(WM_NEXTDLGCTL, 0, 0);

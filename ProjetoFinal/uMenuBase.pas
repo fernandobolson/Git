@@ -164,7 +164,7 @@ end;
 procedure TFMenuBase.TimerTimer(Sender: TObject);
 begin
   StatusBar1.Panels[0].Text := 'Usuário: ' + oUsuario.Login;
-  StatusBar1.panels[1].Text := DateToStr(Date) + TimeToStr(Time);
+  StatusBar1.panels[1].Text := DateToStr(Date) + ' - ' + TimeToStr(Time);
 end;
 
 end.
