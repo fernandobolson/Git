@@ -18,7 +18,8 @@ uses
   uUsuario in 'Bibliotecas\uUsuario.pas',
   uAlterarSenha in 'uAlterarSenha.pas' {FAlterarSenha},
   uCadastroEspecies in 'uCadastroEspecies.pas' {FCadEspecie},
-  uCadastroRacas in 'uCadastroRacas.pas' {FCadRacas};
+  uCadastroRacas in 'uCadastroRacas.pas' {FCadRacas},
+  uCadCidade in 'uCadCidade.pas' {FCadCidade};
 
 {$R *.res}
 
@@ -28,6 +29,5 @@ begin
   Application.CreateForm(TDmPrinc, DmPrinc);
   Application.CreateForm(TFMenuBase, FMenuBase);
   Application.CreateForm(TFLogin, FLogin);
-  Application.CreateForm(TFCadRacas, FCadRacas);
   Application.Run;
 end.

@@ -41,11 +41,13 @@ type
     ac_CadEspecie: TAction;
     ac_Fechar: TAction;
     ac_CfgGeral: TAction;
+    ac_CadCidade: TAction;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ac_FecharExecute(Sender: TObject);
     procedure TimerTimer(Sender: TObject);
     procedure ac_CadEspecieExecute(Sender: TObject);
+    procedure ac_CadCidadeExecute(Sender: TObject);
   private
     { Private declarations }
     procedure ConectaBanco;
@@ -75,7 +77,15 @@ uses
   , BibStr
   , BibGeral
   , BibConsultas
-  , uCadastroEspecies;
+  , uCadastroEspecies
+  , uCadCidade;
+
+procedure TFMenuBase.ac_CadCidadeExecute(Sender: TObject);
+begin
+   if Application.FindComponent('FCadCidade') = nil then
+    Application.CreateForm(TFCadCidade, FCadCidade);
+  FCadEspecie.Show;
+end;
 
 procedure TFMenuBase.ac_CadEspecieExecute(Sender: TObject);
 begin

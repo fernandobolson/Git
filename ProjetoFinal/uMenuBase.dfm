@@ -4468,6 +4468,10 @@ object FMenuBase: TFMenuBase
     object ac_CfgGeral: TAction
       Caption = 'ac_CfgGeral'
     end
+    object ac_CadCidade: TAction
+      Caption = 'Cadastro de Cidades'
+      OnExecute = ac_CadCidadeExecute
+    end
   end
   object MainMenu1: TMainMenu
     Left = 32
@@ -4496,7 +4500,7 @@ object FMenuBase: TFMenuBase
         Caption = '-'
       end
       object CadastrodeCidades1: TMenuItem
-        Caption = 'Cadastro de Cidades'
+        Action = ac_CadCidade
       end
       object CadastrodePessoas1: TMenuItem
         Caption = 'Cadastro de Pessoas'
@@ -4526,7 +4530,7 @@ object FMenuBase: TFMenuBase
     Left = 32
     Top = 96
     Bitmap = {
-      494C010101000800200010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000800280010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000A3000000FF000000FF000000FF000000FF000000A30000
