@@ -1,13 +1,14 @@
 inherited FCadEspecie: TFCadEspecie
   Caption = 'FCadEspecie'
-  ClientHeight = 559
-  ClientWidth = 986
-  ExplicitWidth = 992
-  ExplicitHeight = 588
+  ClientHeight = 548
+  ClientWidth = 868
+  ExplicitTop = -38
+  ExplicitWidth = 874
+  ExplicitHeight = 577
   PixelsPerInch = 96
   TextHeight = 13
   inherited PnCaption: TPanel
-    Width = 986
+    Width = 868
     ExplicitWidth = 986
     inherited lbNameCrud: TLabel
       Width = 203
@@ -16,21 +17,20 @@ inherited FCadEspecie: TFCadEspecie
     end
   end
   inherited PnTools: TPanel
-    Width = 986
+    Width = 868
     ExplicitWidth = 986
     inherited cxGroupBox4: TcxGroupBox
-      Left = 905
+      Left = 787
       ExplicitLeft = 905
     end
   end
   inherited PC: TcxPageControl
-    Width = 986
-    Height = 455
-    Properties.ActivePage = tbCadastro
+    Width = 868
+    Height = 444
     ExplicitWidth = 986
     ExplicitHeight = 455
-    ClientRectBottom = 451
-    ClientRectRight = 982
+    ClientRectBottom = 440
+    ClientRectRight = 864
     inherited tbCadastro: TcxTabSheet
       ExplicitWidth = 978
       ExplicitHeight = 410
@@ -83,16 +83,18 @@ inherited FCadEspecie: TFCadEspecie
       ExplicitWidth = 978
       ExplicitHeight = 410
       inherited cxGrid: TcxGrid
-        Width = 978
-        Height = 410
+        Width = 860
+        Height = 399
         ExplicitWidth = 978
         ExplicitHeight = 410
         inherited cxGridTableView: TcxGridDBTableView
           object cxGridTableViewID: TcxGridDBColumn
+            Caption = 'C'#243'd Id'
             DataBinding.FieldName = 'ID'
             Width = 71
           end
           object cxGridTableViewDESCRICAO: TcxGridDBColumn
+            Caption = 'Descri'#231#227'o'
             DataBinding.FieldName = 'DESCRICAO'
             Width = 793
           end
@@ -102,7 +104,7 @@ inherited FCadEspecie: TFCadEspecie
   end
   inherited imgNormal: TImageList
     Bitmap = {
-      494C010111005000B80120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010111005000BC0120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000A000000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2762,7 +2764,7 @@ inherited FCadEspecie: TFCadEspecie
   end
   inherited imgFlat: TImageList
     Bitmap = {
-      494C010118000002340120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010118000002380120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

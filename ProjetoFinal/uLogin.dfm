@@ -2,7 +2,7 @@ object FLogin: TFLogin
   Left = 0
   Top = 0
   BorderStyle = bsDialog
-  ClientHeight = 353
+  ClientHeight = 330
   ClientWidth = 297
   Color = clWindow
   Font.Charset = DEFAULT_CHARSET
@@ -20,7 +20,7 @@ object FLogin: TFLogin
   TextHeight = 13
   object Label1: TLabel
     Left = 42
-    Top = 151
+    Top = 140
     Width = 48
     Height = 16
     Caption = 'Usu'#225'rio:'
@@ -33,7 +33,7 @@ object FLogin: TFLogin
   end
   object Senha: TLabel
     Left = 42
-    Top = 197
+    Top = 186
     Width = 41
     Height = 16
     Caption = 'Senha:'
@@ -46,7 +46,7 @@ object FLogin: TFLogin
   end
   object lbEsqueciSenha: TLabel
     Left = 70
-    Top = 273
+    Top = 262
     Width = 158
     Height = 13
     Caption = 'Esqueceu sua senha? Clique aqui'
@@ -58,34 +58,21 @@ object FLogin: TFLogin
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 70
-    Top = 29
-    Width = 138
-    Height = 40
+    Left = 80
+    Top = 26
+    Width = 148
+    Height = 42
     Caption = 'VetShop'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -33
-    Font.Name = 'Lucida Sans Unicode'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
-  object lbVersao: TLabel
-    Left = 98
-    Top = 83
-    Width = 80
-    Height = 13
-    Caption = 'lbVersao 1.0.0.1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
+    Font.Height = -35
     Font.Name = 'Tahoma'
-    Font.Style = []
+    Font.Style = [fsBold]
     ParentFont = False
   end
   object ebSenha: TMaskEdit
     Left = 42
-    Top = 216
+    Top = 205
     Width = 214
     Height = 21
     PasswordChar = '*'
@@ -95,7 +82,7 @@ object FLogin: TFLogin
   end
   object btEntrar: TcxButton
     Left = 54
-    Top = 243
+    Top = 232
     Width = 88
     Height = 24
     Action = acConectar
@@ -103,7 +90,7 @@ object FLogin: TFLogin
   end
   object ebUser: TMaskEdit
     Left = 42
-    Top = 170
+    Top = 159
     Width = 214
     Height = 21
     TabOrder = 1
@@ -112,7 +99,7 @@ object FLogin: TFLogin
   end
   object Panel1: TPanel
     Left = -12
-    Top = 102
+    Top = 88
     Width = 328
     Height = 29
     Color = clGradientActiveCaption
@@ -134,7 +121,7 @@ object FLogin: TFLogin
   end
   object btFechar: TcxButton
     Left = 157
-    Top = 243
+    Top = 232
     Width = 88
     Height = 24
     Action = acFechar
@@ -142,13 +129,14 @@ object FLogin: TFLogin
   end
   object Panel2: TPanel
     Left = 0
-    Top = 322
+    Top = 299
     Width = 297
     Height = 31
     Align = alBottom
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 5
+    ExplicitTop = 322
     object lbDesenv: TLabel
       Left = 38
       Top = 9
@@ -171,8 +159,8 @@ object FLogin: TFLogin
     Top = 12
   end
   object acLogin: TActionList
-    Left = 8
-    Top = 13
+    Left = 14
+    Top = 11
     object acConectar: TAction
       Caption = 'Conectar'
       OnExecute = acConectarExecute

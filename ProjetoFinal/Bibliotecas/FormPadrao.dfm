@@ -14,6 +14,7 @@ object FPadraoManut: TFPadraoManut
   FormStyle = fsMDIChild
   KeyPreview = True
   OldCreateOrder = False
+  Position = poDesigned
   Visible = True
   WindowState = wsMaximized
   OnClose = FormClose
@@ -33,7 +34,6 @@ object FPadraoManut: TFPadraoManut
     Color = 9328397
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 1033
     object lbNameCrud: TLabel
       AlignWithMargins = True
       Left = 26
@@ -59,7 +59,6 @@ object FPadraoManut: TFPadraoManut
     Color = clWhite
     ParentBackground = False
     TabOrder = 1
-    ExplicitWidth = 1033
     DesignSize = (
       1043
       63)
@@ -199,7 +198,6 @@ object FPadraoManut: TFPadraoManut
       PanelStyle.BorderWidth = 10
       TabOrder = 3
       Transparent = True
-      ExplicitLeft = 812
       Height = 59
       Width = 67
       object SpeedButton8: TSpeedButton
@@ -228,8 +226,6 @@ object FPadraoManut: TFPadraoManut
     Properties.CustomButtons.TabImages = imgFlat
     Properties.Images = imgFlat
     Properties.Style = 1
-    ExplicitWidth = 1033
-    ExplicitHeight = 432
     ClientRectBottom = 438
     ClientRectLeft = 4
     ClientRectRight = 1039
@@ -237,14 +233,10 @@ object FPadraoManut: TFPadraoManut
     object tbCadastro: TcxTabSheet
       Caption = 'Cadastro'
       ImageIndex = 23
-      ExplicitWidth = 1025
-      ExplicitHeight = 387
     end
     object tbConsulta: TcxTabSheet
       Caption = 'Consulta Dados'
       ImageIndex = 22
-      ExplicitWidth = 1025
-      ExplicitHeight = 387
       object cxGrid: TcxGrid
         Left = 0
         Top = 0
@@ -254,8 +246,6 @@ object FPadraoManut: TFPadraoManut
         TabOrder = 0
         LookAndFeel.Kind = lfUltraFlat
         LookAndFeel.NativeStyle = True
-        ExplicitWidth = 1025
-        ExplicitHeight = 387
         object cxGridTableView: TcxGridDBTableView
           OnDblClick = cxGridTableViewDblClick
           Navigator.Buttons.CustomButtons = <>
@@ -287,7 +277,7 @@ object FPadraoManut: TFPadraoManut
     Left = 100
     Top = 468
     Bitmap = {
-      494C010111005000B40120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010111005000B80120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000A000000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3050,7 +3040,7 @@ object FPadraoManut: TFPadraoManut
     Left = 32
     Top = 468
     Bitmap = {
-      494C010118000002300120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010118000002340120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

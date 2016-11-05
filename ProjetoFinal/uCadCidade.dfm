@@ -1,11 +1,8 @@
 inherited FCadCidade: TFCadCidade
   Caption = 'FCadCidade'
-  ExplicitWidth = 1049
-  ExplicitHeight = 575
   PixelsPerInch = 96
   TextHeight = 13
   inherited PnCaption: TPanel
-    ExplicitWidth = 1043
     inherited lbNameCrud: TLabel
       Width = 196
       Caption = 'Cadastro de Cidades'
@@ -13,13 +10,9 @@ inherited FCadCidade: TFCadCidade
     end
   end
   inherited PC: TcxPageControl
-    ExplicitWidth = 1043
-    ExplicitHeight = 442
     inherited tbCadastro: TcxTabSheet
       ExplicitLeft = 3
       ExplicitTop = 42
-      ExplicitWidth = 1035
-      ExplicitHeight = 397
       object Label4: TLabel
         Left = 23
         Top = 35
@@ -66,13 +59,7 @@ inherited FCadCidade: TFCadCidade
       end
     end
     inherited tbConsulta: TcxTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 41
-      ExplicitWidth = 1035
-      ExplicitHeight = 397
       inherited cxGrid: TcxGrid
-        ExplicitWidth = 1035
-        ExplicitHeight = 397
         inherited cxGridTableView: TcxGridDBTableView
           object cxGridTableViewCD_CIDADE: TcxGridDBColumn
             Caption = 'C'#243'd Cidade'
@@ -90,7 +77,7 @@ inherited FCadCidade: TFCadCidade
   end
   inherited imgNormal: TImageList
     Bitmap = {
-      494C010111005000BC0120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010111005000C00120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000A000000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2739,7 +2726,7 @@ inherited FCadCidade: TFCadCidade
   end
   inherited imgFlat: TImageList
     Bitmap = {
-      494C010118000002380120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101180000023C0120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

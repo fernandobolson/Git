@@ -1,9 +1,9 @@
 object FMenuBase: TFMenuBase
   Left = 0
   Top = 0
-  Caption = 'VetSoft 1.0.0.1'
-  ClientHeight = 493
-  ClientWidth = 850
+  Caption = 'VetSoft'
+  ClientHeight = 404
+  ClientWidth = 668
   Color = clBtnHighlight
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,16 +17,16 @@ object FMenuBase: TFMenuBase
   OnCreate = FormCreate
   OnShow = FormShow
   DesignSize = (
-    850
-    493)
+    668
+    404)
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage
     AlignWithMargins = True
     Left = 178
     Top = 91
-    Width = 528
-    Height = 338
+    Width = 346
+    Height = 249
     Anchors = [akLeft, akTop, akRight, akBottom]
     Picture.Data = {
       0B546478504E47496D61676589504E470D0A1A0A0000000D4948445200000780
@@ -4397,25 +4397,30 @@ object FMenuBase: TFMenuBase
       00000049454E44AE426082}
     Proportional = True
     Stretch = True
+    ExplicitWidth = 528
+    ExplicitHeight = 338
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 474
-    Width = 850
+    Top = 385
+    Width = 668
     Height = 19
     Panels = <
       item
-        Text = 'Desenvolvido por Fernando Bolson Dias'
-        Width = 280
+        Text = 'User'
+        Width = 300
       end
       item
-        Width = 150
+        Width = 200
+      end
+      item
+        Width = 100
       end>
   end
   object PnCaption: TPanel
     Left = 0
     Top = 0
-    Width = 850
+    Width = 668
     Height = 49
     Align = alTop
     Color = 16047044
@@ -4530,7 +4535,7 @@ object FMenuBase: TFMenuBase
     Left = 32
     Top = 96
     Bitmap = {
-      494C010101000800280010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000800300010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000A3000000FF000000FF000000FF000000FF000000A30000

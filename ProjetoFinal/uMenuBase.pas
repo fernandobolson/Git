@@ -8,7 +8,7 @@ uses
   Vcl.PlatformDefaultStyleActnCtrls, System.Actions, Vcl.ActnMan, Vcl.Menus,
   Vcl.ToolWin, Vcl.ActnCtrls, Vcl.ActnMenus, Vcl.ExtCtrls, dxGDIPlusClasses,
   Vcl.ComCtrls, Vcl.Buttons, Data.FMTBcd, Data.DB, Data.SqlExpr, uUsuario,
-  Vcl.StdCtrls, Vcl.ActnColorMaps, System.ImageList, Vcl.ImgList;
+  Vcl.StdCtrls, Vcl.ActnColorMaps, System.ImageList, Vcl.ImgList, System.DateUtils;
 
 type
   TFMenuBase = class(TForm)
@@ -55,6 +55,7 @@ type
     procedure VerificaPrimeiroAcessoPedindoAlterarSenha;
     procedure CriaObjetoUsuario;
     procedure ConfiguraCaptionForm;
+    function MontaMsgBoasVindasStatusBar : String;
   public
     { Public declarations }
     nCodUsuario : SmallInt;
@@ -110,13 +111,12 @@ begin
     On e: Exception do
     raise Exception.Create('Não foi possivel carregar o arquivo Conexao.ini, por favor, verifique se os dados estão corretos'+
                           sLineBreak + E.Message);
-
   end; 
 end;
 
 procedure TFMenuBase.ConfiguraCaptionForm;
 begin
-  Self.Caption := 'VetSoft -  '+GetVersaoAtual;     
+  Self.Caption := 'VetSoft -  '+GetVersaoAtual;
 end;
 
 procedure TFMenuBase.FormCreate(Sender: TObject);
@@ -158,23 +158,33 @@ end;
 
 procedure TFMenuBase.MostraTelaLogin;
 begin
-  Application.ShowMainForm := False;
+  try
+    Application.ShowMainForm := False;
 
-  if Application.FindComponent('FLogin') = nil then
-    Application.CreateForm(TFLogin, FLogin);
-  FLogin.ShowModal;
+    if Application.FindComponent('FLogin') = nil then
+      Application.CreateForm(TFLogin, FLogin);
+    FLogin.ShowModal;
 
-  if (Assigned(FLogin)) then
-    FreeAndNil(FLogin);
+    if (Assigned(FLogin)) then
+      FreeAndNil(FLogin);
 
-  Application.ShowMainForm := True;
+    Application.ShowMainForm := True;
+  except
+    on E: Exception do
+      Raise Exception.Create('Houve um erro ao criar a tela de Login, Erro: '+E.Message);
+  end;
 end;
-
 
 procedure TFMenuBase.TimerTimer(Sender: TObject);
 begin
   StatusBar1.Panels[0].Text := 'Usuário: ' + oUsuario.Login;
-  StatusBar1.panels[1].Text := DateToStr(Date) + ' - ' + TimeToStr(Time);
+  StatusBar1.panels[1].Text := MontaMsgBoasVindasStatusBar;
+  StatusBar1.panels[2].Text := TimeToStr(Time);
+end;
+
+function TFMenuBase.MontaMsgBoasVindasStatusBar :String;
+begin
+  Result := GetSaudacaoConformeHorario + 'Hoje é dia '+ IntToStr(DayOf(Date)) + ' de ' + GetMesAtual;
 end;
 
 end.

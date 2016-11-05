@@ -22,7 +22,6 @@ type
     Panel1: TPanel;
     Label3: TLabel;
     Label4: TLabel;
-    lbVersao: TLabel;
     btFechar: TcxButton;
     Panel2: TPanel;
     lbDesenv: TLabel;
@@ -119,7 +118,7 @@ var
 begin
   sVersao := GetVersaoAtual;
   Self.Caption := 'Acesso ao Sistema'+ sVersao;
-  lbVersao.Caption := 'Versão: ' + sVersao;
+
   lUsuarioAutorizado := False;
 end;
 

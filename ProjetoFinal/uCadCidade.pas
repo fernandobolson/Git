@@ -22,10 +22,10 @@ type
     EB_ID: TcxDBTextEdit;
     EB_DESCRICAO: TcxDBTextEdit;
     Label3: TLabel;
-  private
     procedure Ac_IncluirExecute(Sender: TObject);
-    function CheckDadosFinal: Boolean;
-    procedure CriaObjetoCrud;
+  private
+    function CheckDadosFinal: Boolean; override;
+    procedure CriaObjetoCrud; override;
     { Private declarations }
   public
     { Public declarations }
