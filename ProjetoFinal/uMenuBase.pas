@@ -35,7 +35,6 @@ type
     Action21: TMenuItem;
     Image1: TImage;
     PnCaption: TPanel;
-    Image2: TImage;
     XPColorMap1: TXPColorMap;
     ImageList1: TImageList;
     ac_CadEspecie: TAction;
@@ -48,6 +47,7 @@ type
     procedure TimerTimer(Sender: TObject);
     procedure ac_CadEspecieExecute(Sender: TObject);
     procedure ac_CadCidadeExecute(Sender: TObject);
+    procedure acRacasExecute(Sender: TObject);
   private
     { Private declarations }
     procedure ConectaBanco;
@@ -79,13 +79,21 @@ uses
   , BibGeral
   , BibConsultas
   , uCadastroEspecies
-  , uCadCidade;
+  , uCadCidade
+  , uCadastroRacas;
+
+procedure TFMenuBase.acRacasExecute(Sender: TObject);
+begin
+  if Application.FindComponent('FCadRaca') = nil then
+    Application.CreateForm(TFCadRacas, FCadRacas);
+  FCadRacas.Show;
+end;
 
 procedure TFMenuBase.ac_CadCidadeExecute(Sender: TObject);
 begin
-   if Application.FindComponent('FCadCidade') = nil then
+  if Application.FindComponent('FCadCidade') = nil then
     Application.CreateForm(TFCadCidade, FCadCidade);
-  FCadEspecie.Show;
+  FCadCidade.Show;
 end;
 
 procedure TFMenuBase.ac_CadEspecieExecute(Sender: TObject);
@@ -184,7 +192,9 @@ end;
 
 function TFMenuBase.MontaMsgBoasVindasStatusBar :String;
 begin
-  Result := GetSaudacaoConformeHorario + 'Hoje é dia '+ IntToStr(DayOf(Date)) + ' de ' + GetMesAtual;
+  Result := GetSaudacaoConformeHorario + 'Hoje é ' + GetDiaSemana + ', '+
+            IntToStr(DayOf(Date)) + ' de ' + GetMesAtual +
+            ' de '+GetAnoAtual;
 end;
 
 end.

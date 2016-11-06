@@ -23,11 +23,12 @@ object FMenuBase: TFMenuBase
   TextHeight = 13
   object Image1: TImage
     AlignWithMargins = True
-    Left = 178
-    Top = 91
+    Left = 161
+    Top = 78
     Width = 346
     Height = 249
     Anchors = [akLeft, akTop, akRight, akBottom]
+    Center = True
     Picture.Data = {
       0B546478504E47496D61676589504E470D0A1A0A0000000D4948445200000780
       00000438080200000067B156140000000467414D410000B18E7CFB5193000000
@@ -4397,8 +4398,6 @@ object FMenuBase: TFMenuBase
       00000049454E44AE426082}
     Proportional = True
     Stretch = True
-    ExplicitWidth = 528
-    ExplicitHeight = 338
   end
   object StatusBar1: TStatusBar
     Left = 0
@@ -4411,10 +4410,10 @@ object FMenuBase: TFMenuBase
         Width = 300
       end
       item
-        Width = 200
+        Width = 400
       end
       item
-        Width = 100
+        Width = 80
       end>
   end
   object PnCaption: TPanel
@@ -4426,13 +4425,6 @@ object FMenuBase: TFMenuBase
     Color = 16047044
     ParentBackground = False
     TabOrder = 0
-    object Image2: TImage
-      Left = 1
-      Top = 1
-      Width = 80
-      Height = 47
-      Align = alLeft
-    end
   end
   object acmMenu: TActionManager
     ActionBars = <
@@ -4451,6 +4443,7 @@ object FMenuBase: TFMenuBase
     end
     object acRacas: TAction
       Caption = 'Cadastro de Ra'#231'as'
+      OnExecute = acRacasExecute
     end
     object Action1: TAction
       Caption = 'Cadastro de Pessoas'
@@ -4535,7 +4528,7 @@ object FMenuBase: TFMenuBase
     Left = 32
     Top = 96
     Bitmap = {
-      494C010101000800300010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101010008003C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000A3000000FF000000FF000000FF000000FF000000A30000

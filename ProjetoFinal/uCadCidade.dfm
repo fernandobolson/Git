@@ -1,24 +1,25 @@
 inherited FCadCidade: TFCadCidade
   Caption = 'FCadCidade'
+  Position = poDefault
   PixelsPerInch = 96
   TextHeight = 13
-  inherited PnCaption: TPanel
-    inherited lbNameCrud: TLabel
-      Width = 196
-      Caption = 'Cadastro de Cidades'
-      ExplicitWidth = 196
+  inherited PnTools: TPanel
+    inherited GbComandosPadrao: TcxGroupBox
+      inherited SpeedButton1: TSpeedButton
+        Left = 18
+        ExplicitLeft = 18
+      end
     end
   end
   inherited PC: TcxPageControl
+    Properties.ActivePage = tbCadastro
     inherited tbCadastro: TcxTabSheet
-      ExplicitLeft = 3
-      ExplicitTop = 42
-      object Label4: TLabel
-        Left = 23
-        Top = 35
-        Width = 127
+      object Label5: TLabel
+        Left = 22
+        Top = 63
+        Width = 162
         Height = 18
-        Caption = 'N'#186' Identificador.....'
+        Caption = 'N'#186' Identificador............'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -15
@@ -26,12 +27,12 @@ inherited FCadCidade: TFCadCidade
         Font.Style = []
         ParentFont = False
       end
-      object Label3: TLabel
-        Left = 23
-        Top = 72
-        Width = 153
+      object Label1: TLabel
+        Left = 22
+        Top = 101
+        Width = 143
         Height = 18
-        Caption = 'Nome da Cidade.........'
+        Caption = 'Nome da Cidade.......'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -15
@@ -39,37 +40,57 @@ inherited FCadCidade: TFCadCidade
         Font.Style = []
         ParentFont = False
       end
-      object EB_ID: TcxDBTextEdit
-        Left = 149
-        Top = 32
-        DataBinding.DataField = 'CD_CIDADE'
+      object Label6: TLabel
+        Left = 22
+        Top = 139
+        Width = 162
+        Height = 18
+        Caption = 'C'#243'digo Estado..............'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object cxDBTextEdit1: TcxDBTextEdit
+        Left = 152
+        Top = 98
+        DataBinding.DataField = 'NM_CIDADE'
+        DataBinding.DataSource = dsPadrao
+        TabOrder = 1
+        Width = 121
+      end
+      object cxDBSpinEdit2: TcxDBSpinEdit
+        Left = 152
+        Top = 136
+        DataBinding.DataField = 'CD_ESTADO'
+        DataBinding.DataSource = dsPadrao
+        TabOrder = 2
+        Width = 121
+      end
+      object cxDBTextEdit2: TcxDBTextEdit
+        Left = 152
+        Top = 60
+        DataBinding.DataField = 'CD_ESTADO'
         DataBinding.DataSource = dsPadrao
         Properties.ReadOnly = True
         TabOrder = 0
-        Width = 124
-      end
-      object EB_DESCRICAO: TcxDBTextEdit
-        Left = 149
-        Top = 69
-        DataBinding.DataField = 'NM_CIDADE'
-        DataBinding.DataSource = dsPadrao
-        Style.BorderStyle = ebsUltraFlat
-        TabOrder = 1
-        Width = 352
+        Width = 121
       end
     end
     inherited tbConsulta: TcxTabSheet
       inherited cxGrid: TcxGrid
         inherited cxGridTableView: TcxGridDBTableView
           object cxGridTableViewCD_CIDADE: TcxGridDBColumn
-            Caption = 'C'#243'd Cidade'
+            Caption = 'C'#243'd Cid.'
             DataBinding.FieldName = 'CD_CIDADE'
-            Width = 83
+            Width = 77
           end
           object cxGridTableViewNM_CIDADE: TcxGridDBColumn
             Caption = 'Nome Cidade'
             DataBinding.FieldName = 'NM_CIDADE'
-            Width = 619
+            Width = 675
           end
         end
       end
@@ -2723,6 +2744,19 @@ inherited FCadCidade: TFCadCidade
       FF0000FFFFFFFE00C0000003003FFF00FFE007FFFFFFFF01F000001FC0FFFFC0
       FFFFFFFFFFFFFF83FFFFFFFFFFFFFFFF00000000000000000000000000000000
       000000000000}
+  end
+  inherited cdsPadrao: TClientDataSet
+    object cdsPadraoCD_CIDADE: TIntegerField
+      FieldName = 'CD_CIDADE'
+      Required = True
+    end
+    object cdsPadraoNM_CIDADE: TStringField
+      FieldName = 'NM_CIDADE'
+      Size = 140
+    end
+    object cdsPadraoCD_ESTADO: TIntegerField
+      FieldName = 'CD_ESTADO'
+    end
   end
   inherited imgFlat: TImageList
     Bitmap = {

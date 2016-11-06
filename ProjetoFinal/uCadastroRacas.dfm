@@ -1,23 +1,196 @@
 inherited FCadRacas: TFCadRacas
   Caption = 'FCadRacas'
+  ClientHeight = 684
+  ClientWidth = 1086
+  ExplicitWidth = 1092
+  ExplicitHeight = 713
   PixelsPerInch = 96
   TextHeight = 13
+  inherited PnCaption: TPanel
+    Width = 1086
+  end
   inherited PnTools: TPanel
-    ExplicitWidth = 1043
+    Width = 1086
     inherited cxGroupBox4: TcxGroupBox
-      ExplicitLeft = 822
+      Left = 865
     end
   end
   inherited PC: TcxPageControl
-    Properties.ActivePage = tbCadastro
+    Width = 1086
+    Height = 580
+    ClientRectBottom = 576
+    ClientRectRight = 1082
     inherited tbCadastro: TcxTabSheet
-      ExplicitWidth = 1035
-      ExplicitHeight = 397
+      ExplicitLeft = 3
+      ExplicitTop = 42
+      object cxDBImage1: TcxDBImage [0]
+        Left = 560
+        Top = 16
+        DataBinding.DataField = 'FOTO'
+        DataBinding.DataSource = dsPadrao
+        TabOrder = 1
+        Height = 249
+        Width = 281
+      end
+      inherited GB1: TcxGroupBox
+        Left = 3
+        Top = 16
+        Visible = True
+        ExplicitLeft = 3
+        ExplicitTop = 16
+        ExplicitWidth = 542
+        ExplicitHeight = 249
+        Height = 249
+        Width = 542
+        object Label1: TLabel
+          Left = 11
+          Top = 24
+          Width = 151
+          Height = 18
+          Caption = 'C'#243'digo da Ra'#231'a..........'
+          FocusControl = cxDBTextEdit1
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label9: TLabel
+          Left = 11
+          Top = 57
+          Width = 177
+          Height = 18
+          Caption = 'Nome da Ra'#231'a................'
+          FocusControl = cxDBTextEdit5
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label8: TLabel
+          Left = 11
+          Top = 90
+          Width = 131
+          Height = 18
+          Caption = 'C'#243'digo Esp'#233'cie.......'
+          FocusControl = cxDBTextEdit4
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object cxDBTextEdit1: TcxDBTextEdit
+          Left = 144
+          Top = 21
+          DataBinding.DataField = 'CD_RACA'
+          DataBinding.DataSource = dsPadrao
+          Properties.ReadOnly = True
+          TabOrder = 0
+          Width = 57
+        end
+        object cxDBTextEdit5: TcxDBTextEdit
+          Left = 144
+          Top = 54
+          DataBinding.DataField = 'NM_RACA'
+          DataBinding.DataSource = dsPadrao
+          TabOrder = 1
+          Width = 361
+        end
+        object cxDBTextEdit4: TcxDBTextEdit
+          Left = 144
+          Top = 87
+          DataBinding.DataField = 'CD_ESPECIE'
+          DataBinding.DataSource = dsPadrao
+          TabOrder = 2
+          Width = 27
+        end
+        object cxButton2: TcxButton
+          Left = 177
+          Top = 87
+          Width = 27
+          Height = 21
+          TabOrder = 3
+        end
+        object cxTextEdit1: TcxTextEdit
+          Left = 210
+          Top = 87
+          Properties.ReadOnly = True
+          TabOrder = 4
+          Width = 271
+        end
+        object cxDBRadioGroup1: TcxDBRadioGroup
+          Left = 11
+          Top = 114
+          Caption = 'Porte'
+          DataBinding.DataField = 'PORTE'
+          DataBinding.DataSource = dsPadrao
+          ParentFont = False
+          Properties.Columns = 3
+          Properties.Items = <
+            item
+              Caption = 'Pequeno'
+            end
+            item
+              Caption = 'M'#233'dio'
+            end
+            item
+              Caption = 'Grande'
+            end>
+          Style.Font.Charset = DEFAULT_CHARSET
+          Style.Font.Color = clWindowText
+          Style.Font.Height = -15
+          Style.Font.Name = 'Tahoma'
+          Style.Font.Style = []
+          Style.IsFontAssigned = True
+          TabOrder = 5
+          Height = 47
+          Width = 372
+        end
+      end
+      inherited GB2: TcxGroupBox
+        TabOrder = 2
+      end
+      inherited GB3: TcxGroupBox
+        TabOrder = 3
+      end
+    end
+    inherited tbConsulta: TcxTabSheet
+      inherited cxGrid: TcxGrid
+        Width = 1078
+        Height = 535
+        inherited cxGridTableView: TcxGridDBTableView
+          object cxGridTableViewCD_RACA: TcxGridDBColumn
+            Caption = 'C'#243'digo Ra'#231'a'
+            DataBinding.FieldName = 'CD_RACA'
+            Width = 79
+          end
+          object cxGridTableViewCD_ESPECIE: TcxGridDBColumn
+            Caption = 'C'#243'd. Esp'#233'cie'
+            DataBinding.FieldName = 'CD_ESPECIE'
+            Width = 77
+          end
+          object cxGridTableViewNM_RACA: TcxGridDBColumn
+            Caption = 'Nome Ra'#231'a'
+            DataBinding.FieldName = 'NM_RACA'
+          end
+          object cxGridTableViewPORTE: TcxGridDBColumn
+            Caption = 'Porte'
+            DataBinding.FieldName = 'PORTE'
+            OnGetDisplayText = cxGridTableViewPORTEGetDisplayText
+            Width = 61
+          end
+        end
+      end
     end
   end
   inherited imgNormal: TImageList
     Bitmap = {
-      494C010111005000B80120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010111005000BC0120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000A000000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2664,9 +2837,33 @@ inherited FCadRacas: TFCadRacas
       FFFFFFFFFFFFFF83FFFFFFFFFFFFFFFF00000000000000000000000000000000
       000000000000}
   end
+  inherited cdsPadrao: TClientDataSet
+    Active = True
+    object cdsPadraoCD_RACA: TIntegerField
+      FieldName = 'CD_RACA'
+      Required = True
+    end
+    object cdsPadraoCD_ESPECIE: TIntegerField
+      FieldName = 'CD_ESPECIE'
+      Required = True
+    end
+    object cdsPadraoNM_RACA: TStringField
+      FieldName = 'NM_RACA'
+      Size = 100
+    end
+    object cdsPadraoPORTE: TStringField
+      FieldName = 'PORTE'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsPadraoFOTO: TBlobField
+      FieldName = 'FOTO'
+      Size = 1
+    end
+  end
   inherited imgFlat: TImageList
     Bitmap = {
-      494C010118000002340120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010118000002380120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -6371,5 +6568,11 @@ inherited FCadRacas: TFCadRacas
   end
   inherited cxStyleRepo: TcxStyleRepository
     PixelsPerInch = 96
+  end
+  inherited QryPadrao: TSQLQuery
+    Active = True
+    MaxBlobSize = 1
+    SQL.Strings = (
+      'SELECT * FROM RACA')
   end
 end

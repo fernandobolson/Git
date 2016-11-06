@@ -19,7 +19,8 @@ uses
   uAlterarSenha in 'uAlterarSenha.pas' {FAlterarSenha},
   uCadastroEspecies in 'uCadastroEspecies.pas' {FCadEspecie},
   uCadastroRacas in 'uCadastroRacas.pas' {FCadRacas},
-  uCadCidade in 'uCadCidade.pas' {FCadCidade};
+  uCadCidade in 'uCadCidade.pas' {FCadCidade},
+  uSelPadrao in 'Bibliotecas\uSelPadrao.pas' {FSelPadrao};
 
 {$R *.res}
 

@@ -12,21 +12,26 @@ uses
   Vcl.ActnList, System.ImageList, Vcl.ImgList, cxGridLevel,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, Vcl.StdCtrls, cxButtons, cxGroupBox,
-  Vcl.Buttons, Vcl.ExtCtrls, cxTextEdit, cxDBEdit;
+  Vcl.Buttons, Vcl.ExtCtrls, cxMaskEdit, cxSpinEdit, cxDBEdit, cxTextEdit;
 
 type
   TFCadCidade = class(TFPadraoManut)
     cxGridTableViewCD_CIDADE: TcxGridDBColumn;
     cxGridTableViewNM_CIDADE: TcxGridDBColumn;
-    Label4: TLabel;
-    EB_ID: TcxDBTextEdit;
-    EB_DESCRICAO: TcxDBTextEdit;
-    Label3: TLabel;
+    cdsPadraoCD_CIDADE: TIntegerField;
+    cdsPadraoNM_CIDADE: TStringField;
+    cdsPadraoCD_ESTADO: TIntegerField;
+    cxDBTextEdit1: TcxDBTextEdit;
+    cxDBSpinEdit2: TcxDBSpinEdit;
+    Label5: TLabel;
+    Label1: TLabel;
+    Label6: TLabel;
+    cxDBTextEdit2: TcxDBTextEdit;
     procedure Ac_IncluirExecute(Sender: TObject);
   private
-    function CheckDadosFinal: Boolean; override;
-    procedure CriaObjetoCrud; override;
     { Private declarations }
+        procedure CriaObjetoCrud; override;
+    function CheckDadosFinal: Boolean; override;
   public
     { Public declarations }
   end;
@@ -45,27 +50,19 @@ begin
   cdsPadrao.FieldByName(ObjCrud.CampoChave).AsInteger := -1; //Sera incrementado a partir de uma trigger no BD
 end;
 
+
 function TFCadCidade.CheckDadosFinal: Boolean;
 begin
   Result := True;
-  if Trim(EB_DESCRICAO.Text) = EmptyStr then
-    begin
-    raise Exception.Create('Informe uma Descrição Válida');
-    Result := False;
-  end;
-
 end;
 
 procedure TFCadCidade.CriaObjetoCrud;
 begin
   inherited;
   ObjCrud := TObjCrud.Create;
-  With ObjCrud do
-  begin
-    Nome := 'Cadastro de Cidades';
-    TabelaBanco := 'CIDADE';
-    CampoChave := 'CD_CIDADE';
-  end;
+  ObjCrud.Nome := 'Cadastro de Cidades';
+  ObjCrud.CampoChave := 'CD_CIDADE';
+  ObjCrud.TabelaBanco := 'CIDADE';
 end;
 
 end.

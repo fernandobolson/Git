@@ -14,6 +14,8 @@ function RespSN(sMsg : String) : Boolean; overload;
 function GetVersaoAtual: String;
 function GetMesAtual : String;
 function GetSaudacaoConformeHorario : String;
+function GetDiaSemana : String;
+function GetAnoAtual :String;
 
 const
   _RaizPadrao = 'software/programa';
@@ -48,6 +50,30 @@ begin
     Result := 'Boa Noite! ';
   end;
 end;
+
+function GetDiaSemana : String;
+var
+  n : SmallInt;
+begin
+  n := DayOfTheWeek(Date);
+  Result := '';
+  case n of
+    1 : Result := 'Domingo';
+    2 : Result := 'Segunda-Feira';
+    3 : Result := 'Terça-Feira';
+    4 : Result := 'Quarta-Feira';
+    5 : Result := 'Quinta-Feira';
+    6 : Result := 'Sexta-Feira';
+    7 : Result := 'Sabádo';
+  end;
+
+end;
+
+function GetAnoAtual :String;
+begin
+  Result := IntToStr(YearOf(Date));
+end;
+
 
 function GetVersaoAtual: String;
 type

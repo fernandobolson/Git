@@ -67,9 +67,12 @@ object FPadraoManut: TFPadraoManut
       Top = 5
       Width = 58
       Height = 51
+      CustomHint = BalloonHint1
       Action = ac_Consultas
       Flat = True
       Layout = blGlyphTop
+      ParentShowHint = False
+      ShowHint = True
     end
     object GbComandosPadrao: TcxGroupBox
       Left = 81
@@ -85,27 +88,36 @@ object FPadraoManut: TFPadraoManut
         Top = 5
         Width = 63
         Height = 51
+        CustomHint = BalloonHint1
         Action = Ac_Incluir
         Flat = True
         Layout = blGlyphTop
+        ParentShowHint = False
+        ShowHint = True
       end
       object SpeedButton3: TSpeedButton
         Left = 87
         Top = 5
         Width = 63
         Height = 51
+        CustomHint = BalloonHint1
         Action = Ac_Editar
         Flat = True
         Layout = blGlyphTop
+        ParentShowHint = False
+        ShowHint = True
       end
       object SpeedButton4: TSpeedButton
         Left = 158
         Top = 5
         Width = 63
         Height = 51
+        CustomHint = BalloonHint1
         Action = Ac_Excluir
         Flat = True
         Layout = blGlyphTop
+        ParentShowHint = False
+        ShowHint = True
       end
     end
     object gbSaveCancel: TcxGroupBox
@@ -122,9 +134,12 @@ object FPadraoManut: TFPadraoManut
         Top = 5
         Width = 63
         Height = 51
+        CustomHint = BalloonHint1
         Action = Ac_Cancelar
         Flat = True
         Layout = blGlyphTop
+        ParentShowHint = False
+        ShowHint = True
       end
       object Label2: TLabel
         Left = 27
@@ -138,7 +153,10 @@ object FPadraoManut: TFPadraoManut
         Top = 6
         Width = 51
         Height = 39
+        CustomHint = BalloonHint1
         Action = Ac_Salvar
+        ParentShowHint = False
+        ShowHint = True
         SpeedButtonOptions.CanBeFocused = False
         SpeedButtonOptions.Flat = True
         TabOrder = 0
@@ -158,36 +176,48 @@ object FPadraoManut: TFPadraoManut
         Top = 5
         Width = 63
         Height = 51
+        CustomHint = BalloonHint1
         Action = Ac_Ultimo
         Flat = True
         Layout = blGlyphTop
+        ParentShowHint = False
+        ShowHint = True
       end
       object SpeedButton11: TSpeedButton
         Left = 132
         Top = 5
         Width = 63
         Height = 51
+        CustomHint = BalloonHint1
         Action = Ac_Proximo
         Flat = True
         Layout = blGlyphTop
+        ParentShowHint = False
+        ShowHint = True
       end
       object SpeedButton10: TSpeedButton
         Left = 71
         Top = 5
         Width = 63
         Height = 51
+        CustomHint = BalloonHint1
         Action = Ac_Anterior
         Flat = True
         Layout = blGlyphTop
+        ParentShowHint = False
+        ShowHint = True
       end
       object SpeedButton9: TSpeedButton
         Left = 10
         Top = 5
         Width = 63
         Height = 51
+        CustomHint = BalloonHint1
         Action = Ac_Primeiro
         Flat = True
         Layout = blGlyphTop
+        ParentShowHint = False
+        ShowHint = True
       end
     end
     object cxGroupBox4: TcxGroupBox
@@ -205,9 +235,13 @@ object FPadraoManut: TFPadraoManut
         Top = 5
         Width = 55
         Height = 51
+        Hint = 'Clique para Fechar a tela de Manuten'#231#227'o Atual. (Ctrl +F4)'
+        CustomHint = BalloonHint1
         Action = Ac_Fechar
         Flat = True
         Layout = blGlyphTop
+        ParentShowHint = False
+        ShowHint = True
       end
     end
   end
@@ -221,7 +255,7 @@ object FPadraoManut: TFPadraoManut
     ParentBackground = False
     ParentColor = False
     TabOrder = 2
-    Properties.ActivePage = tbConsulta
+    Properties.ActivePage = tbCadastro
     Properties.CustomButtons.Buttons = <>
     Properties.CustomButtons.TabImages = imgFlat
     Properties.Images = imgFlat
@@ -233,6 +267,35 @@ object FPadraoManut: TFPadraoManut
     object tbCadastro: TcxTabSheet
       Caption = 'Cadastro'
       ImageIndex = 23
+      ExplicitLeft = 26
+      ExplicitTop = 65
+      object GB1: TcxGroupBox
+        Left = 960
+        Top = 3
+        PanelStyle.Active = True
+        TabOrder = 0
+        Visible = False
+        Height = 33
+        Width = 41
+      end
+      object GB2: TcxGroupBox
+        Left = 960
+        Top = 42
+        PanelStyle.Active = True
+        TabOrder = 1
+        Visible = False
+        Height = 33
+        Width = 41
+      end
+      object GB3: TcxGroupBox
+        Left = 960
+        Top = 81
+        PanelStyle.Active = True
+        TabOrder = 2
+        Visible = False
+        Height = 33
+        Width = 41
+      end
     end
     object tbConsulta: TcxTabSheet
       Caption = 'Consulta Dados'
@@ -277,7 +340,7 @@ object FPadraoManut: TFPadraoManut
     Left = 100
     Top = 468
     Bitmap = {
-      494C010111005000B80120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010111005000C40120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000A000000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2931,6 +2994,7 @@ object FPadraoManut: TFPadraoManut
     object Ac_Incluir: TAction
       Category = 'CRUD'
       Caption = 'Incluir'
+      Hint = 'Inclus'#227'o|Clique para Incluir um novo Registro. (Ctrl + F2)'
       ImageIndex = 0
       ShortCut = 16497
       OnExecute = Ac_IncluirExecute
@@ -2938,13 +3002,16 @@ object FPadraoManut: TFPadraoManut
     object Ac_Cancelar: TAction
       Category = 'CRUD'
       Caption = 'Cancelar'
+      Hint = 'Cancelar|Clique para cancelar a Edi'#231#227'o ou Inclus'#227'o.'
       ImageIndex = 5
       OnExecute = Ac_CancelarExecute
     end
     object Ac_Editar: TAction
       Category = 'CRUD'
       Caption = 'Editar'
+      Hint = 'Edi'#231#227'o|Clique para habilitar a edi'#231#227'o dos registros. (Ctrl+ F3)'
       ImageIndex = 1
+      ShortCut = 16498
       OnExecute = Ac_EditarExecute
     end
     object Ac_Visualizar: TAction
@@ -2961,19 +3028,27 @@ object FPadraoManut: TFPadraoManut
     object Ac_Excluir: TAction
       Category = 'CRUD'
       Caption = 'Excluir'
+      Hint = 
+        'Exclus'#227'o|Clique para Excluir o registro que est'#225' sendo visualiza' +
+        'do. (Ctrl + Del)'
       ImageIndex = 2
       ShortCut = 16430
       OnExecute = Ac_ExcluirExecute
     end
     object Ac_Salvar: TAction
       Category = 'CRUD'
+      Hint = 
+        'Salvar|Clique para Salvar o registro que est'#225' sendo inclu'#237'do ou ' +
+        'alterado. (Ctrl + S)'
       ImageIndex = 21
       ShortCut = 16467
       OnExecute = Ac_SalvarExecute
     end
     object Ac_Fechar: TAction
       Caption = 'Fechar'
+      Hint = 'Clique para Fechar a tela de Manuten'#231#227'o Atual.'
       ImageIndex = 10
+      ShortCut = 16499
       OnExecute = Ac_FecharExecute
     end
     object Ac_Anterior: TAction
@@ -3003,6 +3078,7 @@ object FPadraoManut: TFPadraoManut
     object ac_Consultas: TAction
       Category = 'CRUD'
       Caption = 'Consultar'
+      Hint = 'Consultar|Clique para visualizar os Registros j'#225' salvos'
       ImageIndex = 17
       OnExecute = ac_ConsultasExecute
     end
@@ -3040,7 +3116,7 @@ object FPadraoManut: TFPadraoManut
     Left = 32
     Top = 468
     Bitmap = {
-      494C010118000002340120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010118000002400120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -6773,5 +6849,12 @@ object FPadraoManut: TFPadraoManut
     object asdsadas1: TMenuItem
       Action = ac_AjustarGrid
     end
+  end
+  object BalloonHint1: TBalloonHint
+    Images = imgFlat
+    Delay = 600
+    HideAfter = 200
+    Left = 316
+    Top = 409
   end
 end

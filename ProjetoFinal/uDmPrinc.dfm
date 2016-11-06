@@ -30,7 +30,7 @@ object DmPrinc: TDmPrinc
       'VendorLib=GDS32.DLL'
       'VendorLibWin64=ibclient64.dll'
       'VendorLibOsx=libgds.dylib'
-      'Database=C:\Users\Fernando\Dropbox\VETSHOP.fdb'
+      'Database=C:\Users\ferna\Dropbox\VETSHOP.fdb'
       'User_Name=SYSDBA'
       'Password=masterkey'
       'Role=RoleName'
