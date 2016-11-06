@@ -255,7 +255,7 @@ object FPadraoManut: TFPadraoManut
     ParentBackground = False
     ParentColor = False
     TabOrder = 2
-    Properties.ActivePage = tbCadastro
+    Properties.ActivePage = tbConsulta
     Properties.CustomButtons.Buttons = <>
     Properties.CustomButtons.TabImages = imgFlat
     Properties.Images = imgFlat
@@ -267,20 +267,18 @@ object FPadraoManut: TFPadraoManut
     object tbCadastro: TcxTabSheet
       Caption = 'Cadastro'
       ImageIndex = 23
-      ExplicitLeft = 26
-      ExplicitTop = 65
       object GB1: TcxGroupBox
-        Left = 960
-        Top = 3
+        Left = 383
+        Top = 339
         PanelStyle.Active = True
-        TabOrder = 0
+        TabOrder = 2
         Visible = False
         Height = 33
         Width = 41
       end
       object GB2: TcxGroupBox
-        Left = 960
-        Top = 42
+        Left = 430
+        Top = 338
         PanelStyle.Active = True
         TabOrder = 1
         Visible = False
@@ -288,10 +286,10 @@ object FPadraoManut: TFPadraoManut
         Width = 41
       end
       object GB3: TcxGroupBox
-        Left = 960
-        Top = 81
+        Left = 477
+        Top = 337
         PanelStyle.Active = True
-        TabOrder = 2
+        TabOrder = 0
         Visible = False
         Height = 33
         Width = 41
@@ -324,6 +322,8 @@ object FPadraoManut: TFPadraoManut
           OptionsData.DeletingConfirmation = False
           OptionsData.Editing = False
           OptionsData.Inserting = False
+          OptionsSelection.CellSelect = False
+          OptionsSelection.InvertSelect = False
           OptionsView.NoDataToDisplayInfoText = '<N'#227'o h'#225' informa'#231#245'es para exibi'#231#227'o>'
           OptionsView.GroupByBox = False
           Styles.ContentEven = StyleAzul
@@ -340,7 +340,7 @@ object FPadraoManut: TFPadraoManut
     Left = 100
     Top = 468
     Bitmap = {
-      494C010111005000C40120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010111005000CC0120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000A000000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3116,7 +3116,7 @@ object FPadraoManut: TFPadraoManut
     Left = 32
     Top = 468
     Bitmap = {
-      494C010118000002400120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010118000002480120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -6837,6 +6837,7 @@ object FPadraoManut: TFPadraoManut
     end
   end
   object QryPadrao: TSQLQuery
+    GetMetadata = True
     MaxBlobSize = -1
     Params = <>
     SQLConnection = DmPrinc.sqlCon
@@ -6853,7 +6854,7 @@ object FPadraoManut: TFPadraoManut
   object BalloonHint1: TBalloonHint
     Images = imgFlat
     Delay = 600
-    HideAfter = 200
+    HideAfter = 3000
     Left = 316
     Top = 409
   end

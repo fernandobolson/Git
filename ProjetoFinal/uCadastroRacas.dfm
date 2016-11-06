@@ -8,24 +8,30 @@ inherited FCadRacas: TFCadRacas
   TextHeight = 13
   inherited PnCaption: TPanel
     Width = 1086
+    ExplicitWidth = 1086
   end
   inherited PnTools: TPanel
     Width = 1086
+    ExplicitWidth = 1086
     inherited cxGroupBox4: TcxGroupBox
       Left = 865
+      ExplicitLeft = 865
     end
   end
   inherited PC: TcxPageControl
     Width = 1086
     Height = 580
+    Properties.ActivePage = tbCadastro
+    ExplicitWidth = 1086
+    ExplicitHeight = 580
     ClientRectBottom = 576
     ClientRectRight = 1082
     inherited tbCadastro: TcxTabSheet
-      ExplicitLeft = 3
-      ExplicitTop = 42
+      ExplicitWidth = 1078
+      ExplicitHeight = 535
       object cxDBImage1: TcxDBImage [0]
-        Left = 560
-        Top = 16
+        Left = 573
+        Top = 20
         DataBinding.DataField = 'FOTO'
         DataBinding.DataSource = dsPadrao
         TabOrder = 1
@@ -33,11 +39,12 @@ inherited FCadRacas: TFCadRacas
         Width = 281
       end
       inherited GB1: TcxGroupBox
-        Left = 3
-        Top = 16
+        Left = 13
+        Top = 20
+        TabOrder = 0
         Visible = True
-        ExplicitLeft = 3
-        ExplicitTop = 16
+        ExplicitLeft = 13
+        ExplicitTop = 20
         ExplicitWidth = 542
         ExplicitHeight = 249
         Height = 249
@@ -58,7 +65,7 @@ inherited FCadRacas: TFCadRacas
         end
         object Label9: TLabel
           Left = 11
-          Top = 57
+          Top = 62
           Width = 177
           Height = 18
           Caption = 'Nome da Ra'#231'a................'
@@ -72,7 +79,7 @@ inherited FCadRacas: TFCadRacas
         end
         object Label8: TLabel
           Left = 11
-          Top = 90
+          Top = 100
           Width = 131
           Height = 18
           Caption = 'C'#243'digo Esp'#233'cie.......'
@@ -95,7 +102,7 @@ inherited FCadRacas: TFCadRacas
         end
         object cxDBTextEdit5: TcxDBTextEdit
           Left = 144
-          Top = 54
+          Top = 59
           DataBinding.DataField = 'NM_RACA'
           DataBinding.DataSource = dsPadrao
           TabOrder = 1
@@ -103,7 +110,7 @@ inherited FCadRacas: TFCadRacas
         end
         object cxDBTextEdit4: TcxDBTextEdit
           Left = 144
-          Top = 87
+          Top = 97
           DataBinding.DataField = 'CD_ESPECIE'
           DataBinding.DataSource = dsPadrao
           TabOrder = 2
@@ -111,58 +118,59 @@ inherited FCadRacas: TFCadRacas
         end
         object cxButton2: TcxButton
           Left = 177
-          Top = 87
+          Top = 97
           Width = 27
           Height = 21
           TabOrder = 3
         end
         object cxTextEdit1: TcxTextEdit
           Left = 210
-          Top = 87
+          Top = 97
           Properties.ReadOnly = True
           TabOrder = 4
           Width = 271
         end
-        object cxDBRadioGroup1: TcxDBRadioGroup
-          Left = 11
-          Top = 114
+        object DBRadioGroup1: TDBRadioGroup
+          Left = 14
+          Top = 124
+          Width = 379
+          Height = 53
           Caption = 'Porte'
-          DataBinding.DataField = 'PORTE'
-          DataBinding.DataSource = dsPadrao
+          Columns = 3
+          DataField = 'PORTE'
+          DataSource = dsPadrao
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Items.Strings = (
+            'Pequeno'
+            'M'#233'dio'
+            'Grande')
           ParentFont = False
-          Properties.Columns = 3
-          Properties.Items = <
-            item
-              Caption = 'Pequeno'
-            end
-            item
-              Caption = 'M'#233'dio'
-            end
-            item
-              Caption = 'Grande'
-            end>
-          Style.Font.Charset = DEFAULT_CHARSET
-          Style.Font.Color = clWindowText
-          Style.Font.Height = -15
-          Style.Font.Name = 'Tahoma'
-          Style.Font.Style = []
-          Style.IsFontAssigned = True
           TabOrder = 5
-          Height = 47
-          Width = 372
+          Values.Strings = (
+            'P'
+            'M'
+            'G')
         end
       end
       inherited GB2: TcxGroupBox
-        TabOrder = 2
+        TabOrder = 3
       end
       inherited GB3: TcxGroupBox
-        TabOrder = 3
+        TabOrder = 2
       end
     end
     inherited tbConsulta: TcxTabSheet
+      ExplicitWidth = 1078
+      ExplicitHeight = 535
       inherited cxGrid: TcxGrid
         Width = 1078
         Height = 535
+        ExplicitWidth = 1078
+        ExplicitHeight = 535
         inherited cxGridTableView: TcxGridDBTableView
           object cxGridTableViewCD_RACA: TcxGridDBColumn
             Caption = 'C'#243'digo Ra'#231'a'
@@ -190,7 +198,7 @@ inherited FCadRacas: TFCadRacas
   end
   inherited imgNormal: TImageList
     Bitmap = {
-      494C010111005000BC0120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010111005000C40120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000A000000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2863,7 +2871,7 @@ inherited FCadRacas: TFCadRacas
   end
   inherited imgFlat: TImageList
     Bitmap = {
-      494C010118000002380120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010118000002400120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

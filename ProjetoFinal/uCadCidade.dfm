@@ -14,72 +14,93 @@ inherited FCadCidade: TFCadCidade
   inherited PC: TcxPageControl
     Properties.ActivePage = tbCadastro
     inherited tbCadastro: TcxTabSheet
-      object Label5: TLabel
-        Left = 22
-        Top = 63
-        Width = 162
-        Height = 18
-        Caption = 'N'#186' Identificador............'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -15
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label1: TLabel
-        Left = 22
-        Top = 101
-        Width = 143
-        Height = 18
-        Caption = 'Nome da Cidade.......'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -15
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label6: TLabel
-        Left = 22
-        Top = 139
-        Width = 162
-        Height = 18
-        Caption = 'C'#243'digo Estado..............'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -15
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object cxDBTextEdit1: TcxDBTextEdit
-        Left = 152
-        Top = 98
-        DataBinding.DataField = 'NM_CIDADE'
-        DataBinding.DataSource = dsPadrao
-        TabOrder = 1
-        Width = 121
-      end
-      object cxDBSpinEdit2: TcxDBSpinEdit
-        Left = 152
-        Top = 136
-        DataBinding.DataField = 'CD_ESTADO'
-        DataBinding.DataSource = dsPadrao
-        TabOrder = 2
-        Width = 121
-      end
-      object cxDBTextEdit2: TcxDBTextEdit
-        Left = 152
-        Top = 60
-        DataBinding.DataField = 'CD_ESTADO'
-        DataBinding.DataSource = dsPadrao
-        Properties.ReadOnly = True
+      inherited GB1: TcxGroupBox
+        Left = 13
+        Top = 16
         TabOrder = 0
-        Width = 121
+        Visible = True
+        ExplicitLeft = 13
+        ExplicitTop = 16
+        ExplicitWidth = 588
+        ExplicitHeight = 161
+        Height = 161
+        Width = 588
+        object Label5: TLabel
+          Left = 21
+          Top = 31
+          Width = 162
+          Height = 18
+          Caption = 'N'#186' Identificador............'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label1: TLabel
+          Left = 21
+          Top = 69
+          Width = 143
+          Height = 18
+          Caption = 'Nome da Cidade.......'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label6: TLabel
+          Left = 21
+          Top = 107
+          Width = 162
+          Height = 18
+          Caption = 'C'#243'digo Estado..............'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object cxDBTextEdit2: TcxDBTextEdit
+          Left = 151
+          Top = 28
+          DataBinding.DataField = 'CD_CIDADE'
+          DataBinding.DataSource = dsPadrao
+          Properties.ReadOnly = True
+          TabOrder = 0
+          Width = 121
+        end
+        object cxDBTextEdit1: TcxDBTextEdit
+          Left = 151
+          Top = 66
+          DataBinding.DataField = 'NM_CIDADE'
+          DataBinding.DataSource = dsPadrao
+          TabOrder = 1
+          Width = 416
+        end
+        object cxDBSpinEdit2: TcxDBSpinEdit
+          Left = 151
+          Top = 104
+          DataBinding.DataField = 'CD_ESTADO'
+          DataBinding.DataSource = dsPadrao
+          TabOrder = 2
+          Width = 121
+        end
+      end
+      inherited GB2: TcxGroupBox
+        TabOrder = 2
+      end
+      inherited GB3: TcxGroupBox
+        TabOrder = 1
       end
     end
     inherited tbConsulta: TcxTabSheet
+      ExplicitTop = 3
+      ExplicitWidth = 0
+      ExplicitHeight = 435
       inherited cxGrid: TcxGrid
         inherited cxGridTableView: TcxGridDBTableView
           object cxGridTableViewCD_CIDADE: TcxGridDBColumn
@@ -98,7 +119,7 @@ inherited FCadCidade: TFCadCidade
   end
   inherited imgNormal: TImageList
     Bitmap = {
-      494C010111005000C00120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010111005000CC0120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000A000000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2760,7 +2781,7 @@ inherited FCadCidade: TFCadCidade
   end
   inherited imgFlat: TImageList
     Bitmap = {
-      494C0101180000023C0120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010118000002480120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

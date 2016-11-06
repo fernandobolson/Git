@@ -12,7 +12,8 @@ uses
   Vcl.ActnList, System.ImageList, Vcl.ImgList, cxGridLevel,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, Vcl.StdCtrls, cxButtons, cxGroupBox,
-  Vcl.Buttons, Vcl.ExtCtrls, cxTextEdit, cxDBEdit, cxImage, cxRadioGroup;
+  Vcl.Buttons, Vcl.ExtCtrls, cxTextEdit, cxDBEdit, cxImage, cxRadioGroup,
+  Vcl.DBCtrls, uClientDataSetHelper;
 
 type
   TFCadRacas = class(TFPadraoManut)
@@ -34,7 +35,7 @@ type
     cxDBTextEdit4: TcxDBTextEdit;
     cxButton2: TcxButton;
     cxTextEdit1: TcxTextEdit;
-    cxDBRadioGroup1: TcxDBRadioGroup;
+    DBRadioGroup1: TDBRadioGroup;
     procedure cxGridTableViewPORTEGetDisplayText(
       Sender: TcxCustomGridTableItem; ARecord: TcxCustomGridRecord;
       var AText: string);
@@ -64,6 +65,13 @@ end;
 function TFCadRacas.CheckDadosFinal: Boolean;
 begin
   Result := True;
+  if (Trim(CdsPadrao.AsStr('NM_RACA')) = EmptyStr)then
+    begin
+    Result := False;
+    raise Exception.Create('Informe o nome da Raça.');
+  end;
+
+
 end;
 
 procedure TFCadRacas.CriaObjetoCrud;
@@ -85,7 +93,12 @@ procedure TFCadRacas.cxGridTableViewPORTEGetDisplayText(
   var AText: string);
 begin
   inherited;
-  //
+  if AText = 'P' then
+    AText := 'Pequeno'
+  else if AText = 'M' then
+    AText := 'Médio'
+  else if AText = 'G' then
+    AText := 'Grande';
 end;
 
 end.

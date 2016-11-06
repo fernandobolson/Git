@@ -7,14 +7,15 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.Actions, Vcl.ActnList,
   System.ImageList, Vcl.ImgList, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Buttons,
   Vcl.ComCtrls, Data.FMTBcd, Data.DB, Datasnap.Provider, Data.SqlExpr,
-  Datasnap.DBClient, Vcl.Menus, Registry,
+  Datasnap.DBClient, Vcl.Menus, Registry, uClientDataSetHelper,
   //Uses dos componentes DevXpress
   cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxGroupBox, cxStyles,
   cxCustomData, cxFilter, cxData, cxDataStorage, cxNavigator,
   cxGridLevel, cxClasses, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGrid,
-  dxBarBuiltInMenu, cxPC, cxButtons, cxDBEdit, cxDBData;
+  dxBarBuiltInMenu, cxPC, cxButtons, cxDBEdit, cxDBData, Vcl.DBCtrls,
+  cxGridCustomPopupMenu, cxGridPopupMenu;
 
 type
 
@@ -124,6 +125,8 @@ type
     procedure GravaInfoRegedit;
     procedure DesabilitaCampos;
     procedure HabilitaCampos;
+    function ComponenteEstaDentroPageControl(i: SmallInt): Boolean;
+    procedure AtualizaClientPadrao;
   public
     { Public declarations }
     property Estado :TEstado read FEstado write SetEstado;
@@ -151,7 +154,7 @@ uses
   , BibStr
   , BibGeral
   , uUsuario
-  , uClientDataSetHelper, uMenuBase;
+  , uMenuBase;
 
 {$R *.dfm}
 
@@ -178,7 +181,8 @@ begin
     Estado := tCancelar;
     cdsPadrao.Cancel;
     CdsPadrao.ReadOnly := True;
-    CdsPadrao.Refresh;
+    //CdsPadrao.Refresh;
+    AtualizaClientPadrao;
   end;
 
 end;
@@ -299,18 +303,6 @@ begin
 end;
 
 procedure TFPadraoManut.DesabilitaCampos;
-
-  function ComponenteEstaDentroPageControl(i : SmallInt) : Boolean;
-  var
-    CompParent : TComponent;
-  begin
-    CompParent := Components[i].GetParentComponent;
-    Result := (CompParent = tbCadastro) or
-              (CompParent = GB1) or
-              (CompParent = GB2) or
-              (CompParent = GB3);
-  end;
-
 var
   i : Integer;
   CompParent : TComponent;
@@ -340,10 +332,10 @@ begin
         if ComponenteEstaDentroPageControl(i) then
           TcxDBMaskEdit(Components[i]).Enabled := False;
       end
-      else if Components[i] is TcxDBRadioGroup then
+      else if Components[i] is TDBRadioGroup then
         begin
         if ComponenteEstaDentroPageControl(i) then
-          TcxDBRadioGroup(Components[i]).Enabled := False;
+          TDBRadioGroup(Components[i]).Enabled := False;
       end;
     end;
 
@@ -353,24 +345,20 @@ begin
   end;
 end;
 
-
-
+function TFPadraoManut.ComponenteEstaDentroPageControl(i : SmallInt) : Boolean;
+var
+  CompParent : TComponent;
+begin
+  CompParent := Components[i].GetParentComponent;
+  //Se estiver dentro do TbCadastro ou dentro de algums dos groupBox
+  //disponiveis no FormPadrao, entao desbilita os campos em questão
+  Result := (CompParent = tbCadastro) or
+            (CompParent = GB1) or
+            (CompParent = GB2) or
+            (CompParent = GB3);
+end;
 
 procedure TFPadraoManut.HabilitaCampos;
-
-  function ComponenteEstaDentroPageControl(i : SmallInt) : Boolean;
-  var
-    CompParent : TComponent;
-  begin
-    CompParent := Components[i].GetParentComponent;
-    //Se estiver dentro do TbCadastro ou dentro de algums dos groupBox
-    //disponiveis no FormPadrao, entao desbilita os campos em questão
-    Result := (CompParent = tbCadastro) or
-              (CompParent = GB1) or
-              (CompParent = GB2) or
-              (CompParent = GB3);
-  end;
-
 var
   i : Integer;
 begin
@@ -380,7 +368,6 @@ begin
 
     for I := 0 to ComponentCount-1 do
       begin
-
       if Components[i] is TLabel then
         begin
         if ComponenteEstaDentroPageControl(i) then
@@ -401,10 +388,10 @@ begin
           if ComponenteEstaDentroPageControl(i) then
           TcxDBMaskEdit(Components[i]).Enabled := True;
       end
-      else if Components[i] is TcxDBRadioGroup then
+      else if Components[i] is TDBRadioGroup then
         begin
         if ComponenteEstaDentroPageControl(i) then
-          TcxDBRadioGroup(Components[i]).Enabled := True;
+          TDBRadioGroup(Components[i]).Enabled := True;
       end;
     end;
 
@@ -426,18 +413,28 @@ begin
     //Campo Chave sera incrementado a partir de uma trigger no banco de dados
     cdsPadrao.Post;
     try
-      cdsPadrao.ApplyUpdates(0);
+      cdsPadrao.ApplyUpdates(-1);
       Estado := TVisualizando;
 
       cdsPadrao.Refresh;
+      //AtualizaClientPadrao;
       cdsPadrao.ReadOnly := True;
     except
       on E: Exception do
-        RespOkCancel('Houve um erro ao gravar aos dados, Msg: '+E.Message);
+        RespOkCancel('Houve um erro ao gravar aos dados.'+sLineBreak+
+                    'Msg Erro: '+E.Message);
     end;
   end;
 
 end;
+
+procedure TFPadraoManut.AtualizaClientPadrao;
+begin
+  if CdsPadrao.Active then
+    CdsPadrao.Close;
+  CdsPadrao.Open;
+end;
+
 
 procedure TFPadraoManut.Ac_UltimoExecute(Sender: TObject);
 begin

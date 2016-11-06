@@ -12,7 +12,8 @@ uses
   Vcl.ActnList, System.ImageList, Vcl.ImgList, cxGridLevel,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, Vcl.StdCtrls, cxButtons, cxGroupBox,
-  Vcl.Buttons, Vcl.ExtCtrls, cxMaskEdit, cxSpinEdit, cxDBEdit, cxTextEdit;
+  Vcl.Buttons, Vcl.ExtCtrls, cxMaskEdit, cxSpinEdit, cxDBEdit, cxTextEdit,
+  Vcl.DBCtrls, cxGridCustomPopupMenu, cxGridPopupMenu;
 
 type
   TFCadCidade = class(TFPadraoManut)
@@ -21,12 +22,12 @@ type
     cdsPadraoCD_CIDADE: TIntegerField;
     cdsPadraoNM_CIDADE: TStringField;
     cdsPadraoCD_ESTADO: TIntegerField;
-    cxDBTextEdit1: TcxDBTextEdit;
-    cxDBSpinEdit2: TcxDBSpinEdit;
     Label5: TLabel;
+    cxDBTextEdit2: TcxDBTextEdit;
+    cxDBTextEdit1: TcxDBTextEdit;
     Label1: TLabel;
     Label6: TLabel;
-    cxDBTextEdit2: TcxDBTextEdit;
+    cxDBSpinEdit2: TcxDBSpinEdit;
     procedure Ac_IncluirExecute(Sender: TObject);
   private
     { Private declarations }

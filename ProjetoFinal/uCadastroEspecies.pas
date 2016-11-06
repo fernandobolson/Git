@@ -12,18 +12,19 @@ uses
   Vcl.ActnList, System.ImageList, Vcl.ImgList, cxGridLevel,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, Vcl.StdCtrls, cxButtons, cxGroupBox,
-  Vcl.Buttons, Vcl.ComCtrls, Vcl.ExtCtrls, cxTextEdit, cxDBEdit;
+  Vcl.Buttons, Vcl.ComCtrls, Vcl.ExtCtrls, cxTextEdit, cxDBEdit,
+  Vcl.DBCtrls;
 
 type
   TFCadEspecie = class(TFPadraoManut)
     cxGridTableViewID: TcxGridDBColumn;
     cxGridTableViewDESCRICAO: TcxGridDBColumn;
-    Label3: TLabel;
     cdsPadraoID: TIntegerField;
     cdsPadraoDESCRICAO: TStringField;
-    EB_DESCRICAO: TcxDBTextEdit;
-    EB_ID: TcxDBTextEdit;
     Label4: TLabel;
+    EB_ID: TcxDBTextEdit;
+    Label3: TLabel;
+    EB_DESCRICAO: TcxDBTextEdit;
     procedure Ac_IncluirExecute(Sender: TObject);
   private
     { Private declarations }
@@ -57,6 +58,7 @@ begin
     raise Exception.Create('Informe uma Descrição Válida');
     Result := False;
   end;
+
 
 end;
 
