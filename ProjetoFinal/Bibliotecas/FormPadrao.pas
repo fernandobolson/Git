@@ -45,7 +45,7 @@ type
     Ac_Incluir: TAction;
     Ac_Cancelar: TAction;
     Ac_Editar: TAction;
-    Ac_Visualizar: TAction;
+    ac_Pesquisa: TAction;
     Ac_Imprimir: TAction;
     Ac_Excluir: TAction;
     Ac_Salvar: TAction;
@@ -181,8 +181,8 @@ begin
     Estado := tCancelar;
     cdsPadrao.Cancel;
     CdsPadrao.ReadOnly := True;
-    //CdsPadrao.Refresh;
-    AtualizaClientPadrao;
+    CdsPadrao.Refresh;
+    //AtualizaClientPadrao;
   end;
 
 end;

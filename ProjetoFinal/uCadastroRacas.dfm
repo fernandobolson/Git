@@ -1,31 +1,31 @@
 inherited FCadRacas: TFCadRacas
   Caption = 'FCadRacas'
-  ClientHeight = 684
-  ClientWidth = 1086
-  ExplicitWidth = 1092
-  ExplicitHeight = 713
+  ClientHeight = 531
+  ClientWidth = 1020
+  ExplicitWidth = 1026
+  ExplicitHeight = 560
   PixelsPerInch = 96
   TextHeight = 13
   inherited PnCaption: TPanel
-    Width = 1086
+    Width = 1020
     ExplicitWidth = 1086
   end
   inherited PnTools: TPanel
-    Width = 1086
+    Width = 1020
     ExplicitWidth = 1086
     inherited cxGroupBox4: TcxGroupBox
-      Left = 865
+      Left = 799
       ExplicitLeft = 865
     end
   end
   inherited PC: TcxPageControl
-    Width = 1086
-    Height = 580
+    Width = 1020
+    Height = 427
     Properties.ActivePage = tbCadastro
     ExplicitWidth = 1086
     ExplicitHeight = 580
-    ClientRectBottom = 576
-    ClientRectRight = 1082
+    ClientRectBottom = 423
+    ClientRectRight = 1016
     inherited tbCadastro: TcxTabSheet
       ExplicitWidth = 1078
       ExplicitHeight = 535
@@ -55,7 +55,7 @@ inherited FCadRacas: TFCadRacas
           Width = 151
           Height = 18
           Caption = 'C'#243'digo da Ra'#231'a..........'
-          FocusControl = cxDBTextEdit1
+          FocusControl = EB_CDRACA
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -15
@@ -69,7 +69,7 @@ inherited FCadRacas: TFCadRacas
           Width = 177
           Height = 18
           Caption = 'Nome da Ra'#231'a................'
-          FocusControl = cxDBTextEdit5
+          FocusControl = EB_NOMERACA
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -15
@@ -83,7 +83,7 @@ inherited FCadRacas: TFCadRacas
           Width = 131
           Height = 18
           Caption = 'C'#243'digo Esp'#233'cie.......'
-          FocusControl = cxDBTextEdit4
+          FocusControl = EB_CDESPECIE
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -15
@@ -91,7 +91,7 @@ inherited FCadRacas: TFCadRacas
           Font.Style = []
           ParentFont = False
         end
-        object cxDBTextEdit1: TcxDBTextEdit
+        object EB_CDRACA: TcxDBTextEdit
           Left = 144
           Top = 21
           DataBinding.DataField = 'CD_RACA'
@@ -100,7 +100,7 @@ inherited FCadRacas: TFCadRacas
           TabOrder = 0
           Width = 57
         end
-        object cxDBTextEdit5: TcxDBTextEdit
+        object EB_NOMERACA: TcxDBTextEdit
           Left = 144
           Top = 59
           DataBinding.DataField = 'NM_RACA'
@@ -108,7 +108,7 @@ inherited FCadRacas: TFCadRacas
           TabOrder = 1
           Width = 361
         end
-        object cxDBTextEdit4: TcxDBTextEdit
+        object EB_CDESPECIE: TcxDBTextEdit
           Left = 144
           Top = 97
           DataBinding.DataField = 'CD_ESPECIE'
@@ -121,9 +121,10 @@ inherited FCadRacas: TFCadRacas
           Top = 97
           Width = 27
           Height = 21
+          Action = ac_Pesquisa
           TabOrder = 3
         end
-        object cxTextEdit1: TcxTextEdit
+        object EBR_CDESPECIE: TcxTextEdit
           Left = 210
           Top = 97
           Properties.ReadOnly = True
@@ -133,7 +134,7 @@ inherited FCadRacas: TFCadRacas
         object DBRadioGroup1: TDBRadioGroup
           Left = 14
           Top = 124
-          Width = 379
+          Width = 286
           Height = 53
           Caption = 'Porte'
           Columns = 3
@@ -157,20 +158,24 @@ inherited FCadRacas: TFCadRacas
         end
       end
       inherited GB2: TcxGroupBox
+        Top = 322
         TabOrder = 3
+        ExplicitTop = 322
       end
       inherited GB3: TcxGroupBox
+        Top = 321
         TabOrder = 2
+        ExplicitTop = 321
       end
     end
     inherited tbConsulta: TcxTabSheet
-      ExplicitWidth = 1078
-      ExplicitHeight = 535
+      ExplicitWidth = 942
+      ExplicitHeight = 419
       inherited cxGrid: TcxGrid
-        Width = 1078
-        Height = 535
-        ExplicitWidth = 1078
-        ExplicitHeight = 535
+        Width = 1012
+        Height = 382
+        ExplicitWidth = 942
+        ExplicitHeight = 419
         inherited cxGridTableView: TcxGridDBTableView
           object cxGridTableViewCD_RACA: TcxGridDBColumn
             Caption = 'C'#243'digo Ra'#231'a'
@@ -198,7 +203,7 @@ inherited FCadRacas: TFCadRacas
   end
   inherited imgNormal: TImageList
     Bitmap = {
-      494C010111005000C40120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010111005000C80120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000A000000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2845,10 +2850,16 @@ inherited FCadRacas: TFCadRacas
       FFFFFFFFFFFFFF83FFFFFFFFFFFFFFFF00000000000000000000000000000000
       000000000000}
   end
+  inherited Acoes: TActionList
+    inherited ac_Pesquisa: TAction
+      OnExecute = ac_PesquisaExecute
+    end
+  end
   inherited cdsPadrao: TClientDataSet
     Active = True
     object cdsPadraoCD_RACA: TIntegerField
       FieldName = 'CD_RACA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
     object cdsPadraoCD_ESPECIE: TIntegerField
@@ -2871,7 +2882,7 @@ inherited FCadRacas: TFCadRacas
   end
   inherited imgFlat: TImageList
     Bitmap = {
-      494C010118000002400120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010118000002440120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

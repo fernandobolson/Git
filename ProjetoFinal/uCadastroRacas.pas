@@ -28,18 +28,19 @@ type
     cdsPadraoFOTO: TBlobField;
     cxDBImage1: TcxDBImage;
     Label1: TLabel;
-    cxDBTextEdit1: TcxDBTextEdit;
+    EB_CDRACA: TcxDBTextEdit;
     Label9: TLabel;
-    cxDBTextEdit5: TcxDBTextEdit;
+    EB_NOMERACA: TcxDBTextEdit;
     Label8: TLabel;
-    cxDBTextEdit4: TcxDBTextEdit;
+    EB_CDESPECIE: TcxDBTextEdit;
     cxButton2: TcxButton;
-    cxTextEdit1: TcxTextEdit;
+    EBR_CDESPECIE: TcxTextEdit;
     DBRadioGroup1: TDBRadioGroup;
     procedure cxGridTableViewPORTEGetDisplayText(
       Sender: TcxCustomGridTableItem; ARecord: TcxCustomGridRecord;
       var AText: string);
     procedure Ac_IncluirExecute(Sender: TObject);
+    procedure ac_PesquisaExecute(Sender: TObject);
   private
     { Private declarations }
     procedure CriaObjetoCrud; override;
@@ -62,6 +63,13 @@ begin
   cdsPadrao.FieldByName(ObjCrud.CampoChave).AsInteger := -1; //Sera incrementado a partir de uma trigger no BD
 end;
 
+procedure TFCadRacas.ac_PesquisaExecute(Sender: TObject);
+begin
+  inherited;
+  if EB_CDESPECIE.Focused then
+
+end;
+
 function TFCadRacas.CheckDadosFinal: Boolean;
 begin
   Result := True;
@@ -70,7 +78,6 @@ begin
     Result := False;
     raise Exception.Create('Informe o nome da Raça.');
   end;
-
 
 end;
 
