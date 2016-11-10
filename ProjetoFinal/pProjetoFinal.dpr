@@ -18,9 +18,11 @@ uses
   uUsuario in 'Bibliotecas\uUsuario.pas',
   uAlterarSenha in 'uAlterarSenha.pas' {FAlterarSenha},
   uCadastroEspecies in 'uCadastroEspecies.pas' {FCadEspecie},
-  uCadastroRacas in 'uCadastroRacas.pas' {FCadRacas},
   uCadCidade in 'uCadCidade.pas' {FCadCidade},
-  uSelPadrao in 'Bibliotecas\uSelPadrao.pas' {FSelPadrao};
+  uSelPadrao in 'Bibliotecas\uSelPadrao.pas' {FSelPadrao},
+  uSelEspecies in 'uSelEspecies.pas' {FSelEspecies},
+  uCadRacas in 'uCadRacas.pas' {FCadRaca},
+  uCadUsuario in 'uCadUsuario.pas' {FPadraoManut1};
 
 {$R *.res}
 

@@ -50,12 +50,9 @@ object FSelPadrao: TFSelPadrao
     TabOrder = 0
     LookAndFeel.Kind = lfUltraFlat
     LookAndFeel.NativeStyle = True
-    ExplicitLeft = -400
-    ExplicitTop = -98
-    ExplicitWidth = 1035
-    ExplicitHeight = 397
     object cxGridTableView: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
+      OnCellDblClick = cxGridTableViewCellDblClick
       DataController.DataSource = dsSel
       DataController.Options = [dcoAssignGroupingValues, dcoAssignMasterDetailKeys, dcoSaveExpanding, dcoImmediatePost]
       DataController.Summary.DefaultGroupSummaryItems = <>

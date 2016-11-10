@@ -1,4 +1,4 @@
-unit uCadastroRacas;
+unit uCadRacas;
 
 interface
 
@@ -12,11 +12,10 @@ uses
   Vcl.ActnList, System.ImageList, Vcl.ImgList, cxGridLevel,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, Vcl.StdCtrls, cxButtons, cxGroupBox,
-  Vcl.Buttons, Vcl.ExtCtrls, cxTextEdit, cxDBEdit, cxImage, cxRadioGroup,
-  Vcl.DBCtrls, uClientDataSetHelper;
+  Vcl.Buttons, Vcl.ExtCtrls, cxDBEdit, cxTextEdit, Vcl.DBCtrls;
 
 type
-  TFCadRacas = class(TFPadraoManut)
+  TFCadRaca = class(TFPadraoManut)
     cxGridTableViewCD_RACA: TcxGridDBColumn;
     cxGridTableViewCD_ESPECIE: TcxGridDBColumn;
     cxGridTableViewNM_RACA: TcxGridDBColumn;
@@ -26,51 +25,70 @@ type
     cdsPadraoNM_RACA: TStringField;
     cdsPadraoPORTE: TStringField;
     cdsPadraoFOTO: TBlobField;
-    cxDBImage1: TcxDBImage;
-    Label1: TLabel;
-    EB_CDRACA: TcxDBTextEdit;
+    DBRadioGroup1: TDBRadioGroup;
+    EB_CDESPECIE: TcxDBTextEdit;
+    SpeedButton2: TSpeedButton;
+    Label8: TLabel;
     Label9: TLabel;
     EB_NOMERACA: TcxDBTextEdit;
-    Label8: TLabel;
-    EB_CDESPECIE: TcxDBTextEdit;
-    cxButton2: TcxButton;
-    EBR_CDESPECIE: TcxTextEdit;
-    DBRadioGroup1: TDBRadioGroup;
+    EB_CDRACA: TcxDBTextEdit;
+    Label1: TLabel;
+    cxDBTextEdit1: TcxDBTextEdit;
+    cdsPadraoNM_ESPECIE: TStringField;
+    SqlDSEspecie: TSQLDataSet;
+    procedure Ac_IncluirExecute(Sender: TObject);
+    procedure ac_PesquisarExecute(Sender: TObject);
+    procedure EB_CDESPECIEExit(Sender: TObject);
     procedure cxGridTableViewPORTEGetDisplayText(
       Sender: TcxCustomGridTableItem; ARecord: TcxCustomGridRecord;
       var AText: string);
-    procedure Ac_IncluirExecute(Sender: TObject);
-    procedure ac_PesquisaExecute(Sender: TObject);
   private
     { Private declarations }
     procedure CriaObjetoCrud; override;
     function CheckDadosFinal: Boolean; override;
+    function BuscaDescricaoEspecie: String;
   public
     { Public declarations }
   end;
 
 var
-  FCadRacas: TFCadRacas;
+  FCadRaca: TFCadRaca;
 
 implementation
 
+uses
+  uSelEspecies;
+
 {$R *.dfm}
 
-procedure TFCadRacas.Ac_IncluirExecute(Sender: TObject);
+
+procedure TFCadRaca.Ac_IncluirExecute(Sender: TObject);
 begin
   inherited;
   cdsPadrao.Edit;
   cdsPadrao.FieldByName(ObjCrud.CampoChave).AsInteger := -1; //Sera incrementado a partir de uma trigger no BD
 end;
 
-procedure TFCadRacas.ac_PesquisaExecute(Sender: TObject);
+procedure TFCadRaca.ac_PesquisarExecute(Sender: TObject);
+var
+  cDescricao :String;
+  nCod : Integer;
 begin
   inherited;
   if EB_CDESPECIE.Focused then
+    begin
+    if Application.FindComponent('FSelEspecies') = nil then
+      Application.CreateForm(TFSelEspecies, FSelEspecies);
+
+    FSelEspecies.RetornaCampos(nCod, cDescricao);
+
+    CdsPadrao.FieldByName('CD_ESPECIE').AsInteger  := nCod;
+    CdsPadrao.FieldByName('NM_ESPECIE').AsString  := cDescricao;
+  end;
 
 end;
 
-function TFCadRacas.CheckDadosFinal: Boolean;
+function TFCadRaca.CheckDadosFinal: Boolean;
 begin
   Result := True;
   if (Trim(CdsPadrao.AsStr('NM_RACA')) = EmptyStr)then
@@ -81,11 +99,11 @@ begin
 
 end;
 
-procedure TFCadRacas.CriaObjetoCrud;
+procedure TFCadRaca.CriaObjetoCrud;
 begin
   inherited;
-  ObjCrud := TObjCrud.Create;
 
+  ObjCrud := TObjCrud.Create;
   With ObjCrud do
     begin
     Nome := 'Cadastro de Raças';
@@ -95,7 +113,7 @@ begin
 
 end;
 
-procedure TFCadRacas.cxGridTableViewPORTEGetDisplayText(
+procedure TFCadRaca.cxGridTableViewPORTEGetDisplayText(
   Sender: TcxCustomGridTableItem; ARecord: TcxCustomGridRecord;
   var AText: string);
 begin
@@ -105,7 +123,27 @@ begin
   else if AText = 'M' then
     AText := 'Médio'
   else if AText = 'G' then
-    AText := 'Grande';
+    AText := 'Grande'
+  else
+    AText := 'Indefinido';
+end;
+
+procedure TFCadRaca.EB_CDESPECIEExit(Sender: TObject);
+begin
+  inherited;
+  cdsPadrao.FieldByName('NM_ESPECIE').AsString := BuscaDescricaoEspecie;
+end;
+
+function TFCadRaca.BuscaDescricaoEspecie : String;
+begin
+  Result := '';
+  try
+    SqlDSEspecie.Close;
+    SqlDSEspecie.ParamByName('ID').Value := CdsPadrao.AsInt('CD_ESPECIE');
+    SqlDSEspecie.Open;
+    Result := SqlDSEspecie.FieldByName('DESCRICAO').AsString;
+  except
+  end;
 end;
 
 end.

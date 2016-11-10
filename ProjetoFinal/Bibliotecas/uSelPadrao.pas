@@ -29,14 +29,15 @@ type
     procedure btCancelarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure cxGridTableViewCellDblClick(Sender: TcxCustomGridTableView;
+      ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+      AShift: TShiftState; var AHandled: Boolean);
   private
     { Private declarations }
   public
     { Public declarations }
-    lCancelou : Boolean;
   protected
-
-
+    lRetornaDados : Boolean;
   end;
 
 var
@@ -48,12 +49,22 @@ implementation
 
 procedure TFSelPadrao.btCancelarClick(Sender: TObject);
 begin
-  lCancelou:=True;
+  lRetornaDados := False;
   Self.Close;
 end;
 
 procedure TFSelPadrao.btSelRegClick(Sender: TObject);
 begin
+  lRetornaDados := (not CdsSel.IsEmpty);
+  Self.Close;
+end;
+
+procedure TFSelPadrao.cxGridTableViewCellDblClick(
+  Sender: TcxCustomGridTableView;
+  ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+  AShift: TShiftState; var AHandled: Boolean);
+begin
+  lRetornaDados:= (not CdsSel.IsEmpty);
   Self.Close;
 end;
 
@@ -64,7 +75,7 @@ end;
 
 procedure TFSelPadrao.FormCreate(Sender: TObject);
 begin
-  lCancelou := False;
+  lRetornaDados := False;
 end;
 
 end.

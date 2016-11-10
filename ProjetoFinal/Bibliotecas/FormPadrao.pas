@@ -45,7 +45,6 @@ type
     Ac_Incluir: TAction;
     Ac_Cancelar: TAction;
     Ac_Editar: TAction;
-    ac_Pesquisa: TAction;
     Ac_Imprimir: TAction;
     Ac_Excluir: TAction;
     Ac_Salvar: TAction;
@@ -95,6 +94,9 @@ type
     GB1: TcxGroupBox;
     GB2: TcxGroupBox;
     GB3: TcxGroupBox;
+    img1616: TImageList;
+    acPesquisa: TActionList;
+    ac_Pesquisar: TAction;
     procedure Ac_IncluirExecute(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure Ac_SalvarExecute(Sender: TObject);

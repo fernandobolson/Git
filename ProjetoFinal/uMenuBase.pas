@@ -80,13 +80,13 @@ uses
   , BibConsultas
   , uCadastroEspecies
   , uCadCidade
-  , uCadastroRacas;
+  , uCadRacas;
 
 procedure TFMenuBase.acRacasExecute(Sender: TObject);
 begin
   if Application.FindComponent('FCadRaca') = nil then
-    Application.CreateForm(TFCadRacas, FCadRacas);
-  FCadRacas.Show;
+    Application.CreateForm(TFCadRaca, FCadRaca);
+  FCadRaca.Show;
 end;
 
 procedure TFMenuBase.ac_CadCidadeExecute(Sender: TObject);

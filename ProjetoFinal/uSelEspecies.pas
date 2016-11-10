@@ -13,20 +13,48 @@ uses
   cxGridDBTableView, cxGrid;
 
 type
-  TFSelPadrao1 = class(TFSelPadrao)
+  TFSelEspecies = class(TFSelPadrao)
     cxGridTableViewID: TcxGridDBColumn;
     cxGridTableViewDESCRICAO: TcxGridDBColumn;
+    cdsSelID: TIntegerField;
+    cdsSelDESCRICAO: TStringField;
   private
     { Private declarations }
   public
     { Public declarations }
+    procedure RetornaCampos(var nCod : integer;var cDesc : String);
   end;
 
 var
-  FSelPadrao1: TFSelPadrao1;
+  FSelEspecies: TFSelEspecies;
 
 implementation
 
 {$R *.dfm}
+
+{ TFSelEspecies }
+
+procedure TFSelEspecies.RetornaCampos(var nCod: integer;
+  var cDesc: String);
+begin
+  try
+    cdsSel.Open;
+    Self.ShowModal;
+
+    if lRetornaDados then
+      begin
+      nCod  := CdsSel.FieldByName('ID').AsInteger;
+      cDesc := CdsSel.FieldByName('DESCRICAO').AsString;
+    end;
+
+  except
+    on E: Exception do
+      begin
+      ShowMessage('Erro ao retornar os Dados: ' + E.Message);
+      Self.Close;
+    end;
+  end;
+
+end;
 
 end.
