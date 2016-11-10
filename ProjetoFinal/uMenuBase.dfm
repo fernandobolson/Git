@@ -15,6 +15,7 @@ object FMenuBase: TFMenuBase
   OldCreateOrder = False
   WindowState = wsMaximized
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnShow = FormShow
   DesignSize = (
     668
@@ -4470,6 +4471,10 @@ object FMenuBase: TFMenuBase
       Caption = 'Cadastro de Cidades'
       OnExecute = ac_CadCidadeExecute
     end
+    object ac_CadAnimal: TAction
+      Caption = 'Cadastro de Animais'
+      OnExecute = ac_CadAnimalExecute
+    end
   end
   object MainMenu1: TMainMenu
     Left = 32
@@ -4503,6 +4508,9 @@ object FMenuBase: TFMenuBase
       object CadastrodePessoas1: TMenuItem
         Caption = 'Cadastro de Pessoas'
       end
+      object CadastrodeAnimais1: TMenuItem
+        Action = ac_CadAnimal
+      end
     end
     object Pessoas1: TMenuItem
       Caption = 'Pessoas'
@@ -4528,7 +4536,7 @@ object FMenuBase: TFMenuBase
     Left = 32
     Top = 96
     Bitmap = {
-      494C010101000800440010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000800480010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000A3000000FF000000FF000000FF000000FF000000A30000

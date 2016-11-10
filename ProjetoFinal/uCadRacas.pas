@@ -97,6 +97,18 @@ begin
     raise Exception.Create('Informe o nome da Raça.');
   end;
 
+  if Trim(cdsPadrao.AsStr('CD_ESPECIE')) = EmptyStr then
+    begin
+    Result := False;
+    raise Exception.Create('Informe a Espécie do Animal.');
+  end;
+
+  if Trim(cdsPadrao.AsStr('PORTE')) = EmptyStr then
+    begin
+    Result := False;
+    raise Exception.Create('Informe o Porte do Animal.');
+  end;
+
 end;
 
 procedure TFCadRaca.CriaObjetoCrud;

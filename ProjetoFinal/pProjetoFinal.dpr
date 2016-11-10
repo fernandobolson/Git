@@ -22,7 +22,8 @@ uses
   uSelPadrao in 'Bibliotecas\uSelPadrao.pas' {FSelPadrao},
   uSelEspecies in 'uSelEspecies.pas' {FSelEspecies},
   uCadRacas in 'uCadRacas.pas' {FCadRaca},
-  uCadUsuario in 'uCadUsuario.pas' {FPadraoManut1};
+  uCadUsuario in 'uCadUsuario.pas' {FPadraoManut1},
+  uCadAnimal in 'uCadAnimal.pas' {FCadAnimal};
 
 {$R *.res}
 

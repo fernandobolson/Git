@@ -41,6 +41,8 @@ type
     ac_Fechar: TAction;
     ac_CfgGeral: TAction;
     ac_CadCidade: TAction;
+    ac_CadAnimal: TAction;
+    CadastrodeAnimais1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ac_FecharExecute(Sender: TObject);
@@ -48,6 +50,8 @@ type
     procedure ac_CadEspecieExecute(Sender: TObject);
     procedure ac_CadCidadeExecute(Sender: TObject);
     procedure acRacasExecute(Sender: TObject);
+    procedure ac_CadAnimalExecute(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
     procedure ConectaBanco;
@@ -80,13 +84,21 @@ uses
   , BibConsultas
   , uCadastroEspecies
   , uCadCidade
-  , uCadRacas;
+  , uCadRacas
+  , uCadAnimal;
 
 procedure TFMenuBase.acRacasExecute(Sender: TObject);
 begin
   if Application.FindComponent('FCadRaca') = nil then
     Application.CreateForm(TFCadRaca, FCadRaca);
   FCadRaca.Show;
+end;
+
+procedure TFMenuBase.ac_CadAnimalExecute(Sender: TObject);
+begin
+    if Application.FindComponent('FCadAnimal') = nil then
+    Application.CreateForm(TFCadAnimal, FCadAnimal);
+  FCadAnimal.Show;
 end;
 
 procedure TFMenuBase.ac_CadCidadeExecute(Sender: TObject);
@@ -141,6 +153,11 @@ begin
                    'verifique se o arquivo Conexão.ini está correto.' +
                    #13#10 + E.Message);
   end;
+end;
+
+procedure TFMenuBase.FormDestroy(Sender: TObject);
+begin
+//
 end;
 
 procedure TFMenuBase.CriaObjetoUsuario;
