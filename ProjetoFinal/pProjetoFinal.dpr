@@ -23,7 +23,8 @@ uses
   uSelEspecies in 'uSelEspecies.pas' {FSelEspecies},
   uCadRacas in 'uCadRacas.pas' {FCadRaca},
   uCadUsuario in 'uCadUsuario.pas' {FPadraoManut1},
-  uCadAnimal in 'uCadAnimal.pas' {FCadAnimal};
+  uCadAnimal in 'uCadAnimal.pas' {FCadAnimal},
+  uReconcileError in 'Bibliotecas\uReconcileError.pas' {ReconcileErrorForm};
 
 {$R *.res}
 

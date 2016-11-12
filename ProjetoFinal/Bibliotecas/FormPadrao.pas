@@ -117,6 +117,9 @@ type
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormDestroy(Sender: TObject);
     procedure Ac_ExcluirExecute(Sender: TObject);
+    procedure cdsPadraoReconcileError(DataSet: TCustomClientDataSet;
+      E: EReconcileError; UpdateKind: TUpdateKind;
+      var Action: TReconcileAction);
   private
     FEstado: TEstado;
     procedure SetEstado(const Value: TEstado);
@@ -156,7 +159,8 @@ uses
   , BibStr
   , BibGeral
   , uUsuario
-  , uMenuBase;
+  , uMenuBase
+  , uReconcileError;
 
 {$R *.dfm}
 
@@ -437,6 +441,13 @@ begin
   CdsPadrao.Open;
 end;
 
+
+procedure TFPadraoManut.cdsPadraoReconcileError(
+  DataSet: TCustomClientDataSet; E: EReconcileError;
+  UpdateKind: TUpdateKind; var Action: TReconcileAction);
+begin
+  Action := HandleReconcileError(DataSet, UpdateKind, E);
+end;
 
 procedure TFPadraoManut.Ac_UltimoExecute(Sender: TObject);
 begin
