@@ -24,7 +24,9 @@ uses
   uCadRacas in 'uCadRacas.pas' {FCadRaca},
   uCadUsuario in 'uCadUsuario.pas' {FPadraoManut1},
   uCadAnimal in 'uCadAnimal.pas' {FCadAnimal},
-  uReconcileError in 'Bibliotecas\uReconcileError.pas' {ReconcileErrorForm};
+  uReconcileError in 'Bibliotecas\uReconcileError.pas' {ReconcileErrorForm},
+  uSelRacas in 'uSelRacas.pas' {FSelRacas},
+  uCadPessoa in 'uCadPessoa.pas' {FCadPessoa};
 
 {$R *.res}
 
@@ -34,5 +36,6 @@ begin
   Application.CreateForm(TDmPrinc, DmPrinc);
   Application.CreateForm(TFMenuBase, FMenuBase);
   Application.CreateForm(TFLogin, FLogin);
+  Application.CreateForm(TFCadPessoa, FCadPessoa);
   Application.Run;
 end.

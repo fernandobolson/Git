@@ -2,8 +2,8 @@ object FSelPadrao: TFSelPadrao
   Left = 0
   Top = 0
   Caption = 'FSelPadrao'
-  ClientHeight = 299
-  ClientWidth = 635
+  ClientHeight = 322
+  ClientWidth = 652
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,8 +17,8 @@ object FSelPadrao: TFSelPadrao
   TextHeight = 13
   object Panel1: TPanel
     Left = 0
-    Top = 264
-    Width = 635
+    Top = 287
+    Width = 652
     Height = 35
     Align = alBottom
     TabOrder = 1
@@ -44,8 +44,8 @@ object FSelPadrao: TFSelPadrao
   object cxGrid: TcxGrid
     Left = 0
     Top = 0
-    Width = 635
-    Height = 264
+    Width = 652
+    Height = 287
     Align = alClient
     TabOrder = 0
     LookAndFeel.Kind = lfUltraFlat
@@ -69,13 +69,13 @@ object FSelPadrao: TFSelPadrao
       OptionsSelection.InvertSelect = False
       OptionsView.NoDataToDisplayInfoText = '<N'#227'o h'#225' informa'#231#245'es para exibi'#231#227'o>'
       OptionsView.GroupByBox = False
+      Styles.ContentEven = StyleAzul
     end
     object cxGridLevel: TcxGridLevel
       GridView = cxGridTableView
     end
   end
   object cdsSel: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspSel'
@@ -88,27 +88,34 @@ object FSelPadrao: TFSelPadrao
     Top = 200
   end
   object qrySel: TSQLQuery
-    Active = True
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
-      'SELECT * FROM ESPECIES')
+      '')
     SQLConnection = DmPrinc.sqlCon
     Left = 32
     Top = 24
-    object qrySelID: TIntegerField
-      FieldName = 'ID'
-      Required = True
-    end
-    object qrySelDESCRICAO: TStringField
-      FieldName = 'DESCRICAO'
-      Required = True
-      Size = 200
-    end
   end
   object dspSel: TDataSetProvider
     DataSet = qrySel
     Left = 32
     Top = 80
+  end
+  object cxStyleRepo: TcxStyleRepository
+    Left = 260
+    Top = 86
+    PixelsPerInch = 96
+    object StyleAzul: TcxStyle
+      AssignedValues = [svColor]
+      Color = clGradientInactiveCaption
+    end
+    object StyleVerde: TcxStyle
+      AssignedValues = [svColor]
+      Color = clMoneyGreen
+    end
+    object cxStyleOver: TcxStyle
+      AssignedValues = [svColor]
+      Color = 14680021
+    end
   end
 end

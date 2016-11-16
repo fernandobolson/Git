@@ -30,6 +30,7 @@ type
     { Private declarations }
     procedure CriaObjetoCrud; override;
     function CheckDadosFinal: Boolean; override;
+    function CheckDadosExclusao: Boolean; override;
   public
     { Public declarations }
   end;
@@ -41,6 +42,51 @@ implementation
 
 {$R *.dfm}
 
+uses
+  uDmPrinc,
+  BibGeral;
+
+
+
+function TFCadEspecie.CheckDadosExclusao: Boolean;
+
+var
+  qry :TSQLQuery;
+begin
+  try
+    Result := True;
+    qry := TSQLQuery.Create(Self);
+    qry.SQLConnection := DmPrinc.sqlCon;
+
+    //Verifica Dependencias de Animais
+    qry.SQL.Add('SELECT COUNT(*) FROM ANIMAL WHERE CD_ESPECIE =' + QuotedStr(cdsPadrao.FieldByName('ID').AsString));
+    qry.Open;
+
+    if qry.RecordCount > 0 then
+      begin
+      Result := False;
+      raise Exception.Create('Não é possível realizar a exclusão! '+sLineBreak +
+                             'Existem animais cadastradas com essa Espécie!');
+    end;
+
+    qry.Close;
+    qry.SQL.Clear;
+
+    //Verifica Dependencias de Raças
+    qry.SQL.Add('SELECT COUNT(*) FROM RACA WHERE CD_ESPECIE =' + QuotedStr(cdsPadrao.FieldByName('ID').AsString));
+    qry.Open;
+    if qry.RecordCount > 0 then
+      begin
+      Result := False;
+      raise Exception.Create('Não é possível realizar a exclusão! '+sLineBreak +
+                             'Existem Raças cadastradas com essa Espécie!');
+    end;
+
+  finally
+    FreeAndNil(qry);
+  end;
+
+end;
 
 
 procedure TFCadEspecie.Ac_IncluirExecute(Sender: TObject);

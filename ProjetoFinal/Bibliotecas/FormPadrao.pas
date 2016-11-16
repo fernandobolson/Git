@@ -141,7 +141,9 @@ type
     procedure SetNomeRotina; virtual; abstract;
     procedure SetObjRotina; virtual; abstract;
     function CheckDadosFinal: Boolean; virtual; abstract;
+    function CheckDadosExclusao: Boolean; virtual;
     procedure CriaObjetoCrud; virtual; abstract;
+    function PodeRealizarBuscaF3 : Boolean;
   end;
 
 
@@ -209,11 +211,16 @@ begin
     cdsPadrao.Edit;
 end;
 
+
+
 procedure TFPadraoManut.Ac_ExcluirExecute(Sender: TObject);
 var
   lReadOnly: Boolean;
 begin
   try
+    if not CheckDadosExclusao then
+      Exit;
+
     if CdsPadrao.RecordCount <= 0 then
       Exit;
 
@@ -238,7 +245,7 @@ end;
 
 procedure TFPadraoManut.Ac_FecharExecute(Sender: TObject);
 begin
-  GravaInfoRegedit;
+//  GravaInfoRegedit;
   Close;
 end;
 
@@ -351,6 +358,11 @@ begin
   end;
 end;
 
+function TFPadraoManut.CheckDadosExclusao: Boolean;
+begin
+  Result:=True;
+end;
+
 function TFPadraoManut.ComponenteEstaDentroPageControl(i : SmallInt) : Boolean;
 var
   CompParent : TComponent;
@@ -458,7 +470,7 @@ end;
 procedure TFPadraoManut.cxGridTableViewDblClick(Sender: TObject);
 begin
   if cdsPadrao.RecordCount > 0 then
-  begin
+    begin
     MudaPaginaParaCadastro;
     CdsPadrao.ReadOnly:=True;
   end;
@@ -480,6 +492,11 @@ begin
   Estado := TVisualizando;
 end;
 
+function TFPadraoManut.PodeRealizarBuscaF3: Boolean;
+begin
+  Result := Ac_Salvar.Enabled;
+end;
+
 procedure TFPadraoManut.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -499,7 +516,7 @@ begin
   Estado := TVisualizando;
   MudaPaginaParaConsulta;
   RealizaConsultaQuery;
-  Registro := TRegistry.Create;
+  //Registro := TRegistry.Create;
 end;
 
 procedure TFPadraoManut.FormDestroy(Sender: TObject);
@@ -526,6 +543,7 @@ var
   i : Integer;
 begin
 
+  //Não implementado ainda
   for I := 0 to ComponentCount -1 do
     begin
     Registro.OpenKey(_RaizPadrao, True);

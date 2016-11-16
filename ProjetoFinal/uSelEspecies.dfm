@@ -16,7 +16,6 @@ inherited FSelEspecies: TFSelEspecies
     end
   end
   inherited cdsSel: TClientDataSet
-    Active = False
     object cdsSelID: TIntegerField
       FieldName = 'ID'
       Required = True
@@ -26,5 +25,13 @@ inherited FSelEspecies: TFSelEspecies
       Required = True
       Size = 200
     end
+  end
+  inherited qrySel: TSQLQuery
+    Active = True
+    SQL.Strings = (
+      'SELECT * FROM ESPECIES')
+  end
+  inherited cxStyleRepo: TcxStyleRepository
+    PixelsPerInch = 96
   end
 end

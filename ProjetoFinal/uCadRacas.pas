@@ -42,11 +42,15 @@ type
     procedure cxGridTableViewPORTEGetDisplayText(
       Sender: TcxCustomGridTableItem; ARecord: TcxCustomGridRecord;
       var AText: string);
+    procedure SpeedButton2Click(Sender: TObject);
   private
     { Private declarations }
     procedure CriaObjetoCrud; override;
     function CheckDadosFinal: Boolean; override;
     function BuscaDescricaoEspecie: String;
+    procedure RealizaBuscaRacas;
+    function CheckDadosExclusao: Boolean; override;
+    function EspecieInformadaExiste: Boolean;
   public
     { Public declarations }
   end;
@@ -57,7 +61,9 @@ var
 implementation
 
 uses
-  uSelEspecies;
+  uSelEspecies,
+  uDmPrinc,
+  BibGeral;
 
 {$R *.dfm}
 
@@ -70,20 +76,53 @@ begin
 end;
 
 procedure TFCadRaca.ac_PesquisarExecute(Sender: TObject);
+begin
+  inherited;
+  if EB_CDESPECIE.Focused and PodeRealizarBuscaF3 then
+    RealizaBuscaRacas;
+end;
+
+procedure TFCadRaca.RealizaBuscaRacas;
 var
   cDescricao :String;
   nCod : Integer;
 begin
+  if Application.FindComponent('FSelEspecies') = nil then
+    Application.CreateForm(TFSelEspecies, FSelEspecies);
+
+  FSelEspecies.RetornaCampos(nCod, cDescricao);
+
+  CdsPadrao.FieldByName('CD_ESPECIE').AsInteger  := nCod;
+  CdsPadrao.FieldByName('NM_ESPECIE').AsString  := cDescricao;
+end;
+
+procedure TFCadRaca.SpeedButton2Click(Sender: TObject);
+begin
   inherited;
-  if EB_CDESPECIE.Focused then
-    begin
-    if Application.FindComponent('FSelEspecies') = nil then
-      Application.CreateForm(TFSelEspecies, FSelEspecies);
+  if PodeRealizarBuscaF3 then
+    RealizaBuscaRacas;
+end;
 
-    FSelEspecies.RetornaCampos(nCod, cDescricao);
+function TFCadRaca.CheckDadosExclusao: Boolean;
+var
+  qry :TSQLQuery;
+begin
+  try
+    Result := True;
+    qry := TSQLQuery.Create(Self);
+    qry.SQLConnection := DmPrinc.sqlCon;
+    qry.SQL.Add('SELECT COUNT(*) FROM ANIMAL WHERE CD_RACA =' + QuotedStr(cdsPadrao.FieldByName('CD_RACA').AsString));
+    qry.Open;
 
-    CdsPadrao.FieldByName('CD_ESPECIE').AsInteger  := nCod;
-    CdsPadrao.FieldByName('NM_ESPECIE').AsString  := cDescricao;
+    if qry.RecordCount > 0 then
+      begin
+      Result := False;
+      raise Exception.Create('Não é possível realizar a exclusão! '+sLineBreak +
+                             'Existem animais cadastradas com essa Raça!');
+    end;
+
+  finally
+    FreeAndNil(qry);
   end;
 
 end;
@@ -103,10 +142,33 @@ begin
     raise Exception.Create('Informe a Espécie do Animal.');
   end;
 
-  if Trim(cdsPadrao.AsStr('PORTE')) = EmptyStr then
+  if not EspecieInformadaExiste then
     begin
     Result := False;
-    raise Exception.Create('Informe o Porte do Animal.');
+    raise Exception.Create('Informe uma Espécie válida para o Animal.');
+  end;
+
+end;
+
+function TFCadRaca.EspecieInformadaExiste : Boolean;
+var
+  qry : TSQLQuery;
+begin
+  try
+    Result := True;
+    qry := TSQLQuery.Create(Self);
+    qry.SQLConnection := DmPrinc.sqlCon;
+
+    //Verifica Dependencias de Animais
+    qry.SQL.Add('SELECT COUNT(*) FROM ESPECIES WHERE ID =' + QuotedStr(cdsPadrao.FieldByName('CD_ESPECIE').AsString));
+    qry.Open;
+
+    if qry.RecordCount <= 0 then
+      Result := False;
+
+
+  finally
+    FreeAndNil(qry);
   end;
 
 end;
@@ -157,5 +219,7 @@ begin
   except
   end;
 end;
+
+
 
 end.

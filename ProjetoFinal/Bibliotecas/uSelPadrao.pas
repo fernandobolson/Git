@@ -20,11 +20,13 @@ type
     Panel1: TPanel;
     btSelReg: TButton;
     btCancelar: TButton;
-    qrySelID: TIntegerField;
-    qrySelDESCRICAO: TStringField;
     cxGrid: TcxGrid;
     cxGridTableView: TcxGridDBTableView;
     cxGridLevel: TcxGridLevel;
+    cxStyleRepo: TcxStyleRepository;
+    StyleAzul: TcxStyle;
+    StyleVerde: TcxStyle;
+    cxStyleOver: TcxStyle;
     procedure btSelRegClick(Sender: TObject);
     procedure btCancelarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
