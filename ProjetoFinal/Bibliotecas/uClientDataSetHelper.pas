@@ -14,7 +14,6 @@ type
     public
       { public declarations }
       procedure AppendOrEdit;
-      procedure ClearFilter;
       procedure EditAndPostField(AFieldName: String; AValue: Variant);
       procedure SetFilter(AFilter: String);
       function AsBoolean(const FieldName: String): boolean;
@@ -22,7 +21,6 @@ type
       function AsFloat(const FieldName: String): Double;
       function AsInt(const FieldName: String): integer;
       function AsStr(const FieldName: String): string;
-
     published
       { published declarations }
     end;
@@ -33,19 +31,9 @@ implementation
 procedure TClientDataSetHelper.AppendOrEdit;
 begin
   if (Self.IsEmpty) then
-    begin
-    Self.Append;
-  end
+    Self.Append
   else
-    begin
     Self.Edit;
-  end;
-end;
-
-procedure TClientDataSetHelper.ClearFilter;
-begin
-  Self.Filtered := False;
-  Self.Filter   := EmptyStr;
 end;
 
 procedure TClientDataSetHelper.EditAndPostField(AFieldName: String;

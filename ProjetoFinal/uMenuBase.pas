@@ -7,8 +7,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ActnList,
   Vcl.PlatformDefaultStyleActnCtrls, System.Actions, Vcl.ActnMan, Vcl.Menus,
   Vcl.ToolWin, Vcl.ActnCtrls, Vcl.ActnMenus, Vcl.ExtCtrls, dxGDIPlusClasses,
-  Vcl.ComCtrls, Vcl.Buttons, Data.FMTBcd, Data.DB, Data.SqlExpr, uUsuario,
-  Vcl.StdCtrls, Vcl.ActnColorMaps, System.ImageList, Vcl.ImgList, System.DateUtils;
+  Vcl.ComCtrls, Vcl.Buttons, Data.FMTBcd, Data.DB, Data.SqlExpr,
+  Vcl.StdCtrls, Vcl.ActnColorMaps, System.ImageList, Vcl.ImgList, System.DateUtils , uUsuario;
 
 type
   TFMenuBase = class(TForm)
@@ -29,7 +29,6 @@ type
     acRacas: TAction;
     Timer: TTimer;
     StatusBar1: TStatusBar;
-    Action1: TAction;
     Pessoas1: TMenuItem;
     ac_CadPessoas: TAction;
     Action21: TMenuItem;
@@ -43,6 +42,8 @@ type
     ac_CadCidade: TAction;
     ac_CadAnimal: TAction;
     CadastrodeAnimais1: TMenuItem;
+    CadastrodeUsarios1: TMenuItem;
+    ac_CadUser: TAction;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ac_FecharExecute(Sender: TObject);
@@ -52,6 +53,7 @@ type
     procedure acRacasExecute(Sender: TObject);
     procedure ac_CadAnimalExecute(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure ac_CadUserExecute(Sender: TObject);
   private
     { Private declarations }
     procedure ConectaBanco;
@@ -85,7 +87,9 @@ uses
   , uCadastroEspecies
   , uCadCidade
   , uCadRacas
-  , uCadAnimal;
+  , uCadAnimal
+  , uCadUsuario
+ ;
 
 procedure TFMenuBase.acRacasExecute(Sender: TObject);
 begin
@@ -113,6 +117,13 @@ begin
    if Application.FindComponent('FCadEspecie') = nil then
     Application.CreateForm(TFCadEspecie, FCadEspecie);
   FCadEspecie.Show;
+end;
+
+procedure TFMenuBase.ac_CadUserExecute(Sender: TObject);
+begin
+   if Application.FindComponent('FCadUsuario') = nil then
+    Application.CreateForm(TFCadUsuario, FCadUsuario);
+  FCadUsuario.Show;
 end;
 
 procedure TFMenuBase.ac_FecharExecute(Sender: TObject);

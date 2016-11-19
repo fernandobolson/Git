@@ -14,6 +14,7 @@ type
     FNome: String;
     FSenhaDescript : String;
     FLoginDescript: string;
+    FIsSupervisor: Boolean;
     procedure SetDtInclusao(const Value: TDateTime);
     procedure SetSenha(const Value: String);
     procedure SetId(const Value: Integer);
@@ -22,6 +23,7 @@ type
     function EncriptaNome(pNome : String) : String;
     function GetSenhaDescript: string;
     function GetLoginDescript: string;
+    procedure SetIsSupervisor(const Value: Boolean);
   protected
   public
     Constructor Create(ID : Integer); overload;
@@ -31,10 +33,12 @@ type
     property DtInclusao : TDateTime read FDtInclusao write SetDtInclusao;
     property SenhaDescript : string read GetSenhaDescript write FSenhaDescript;
     property LoginDescript : string read GetLoginDescript write FLoginDescript;
-
+    property IsSupervisor : Boolean read FIsSupervisor write SetIsSupervisor;
   published
 
   end;
+
+
 
 implementation
 
@@ -70,6 +74,7 @@ begin
         Senha         := qry.FieldByName('SENHA').AsString;
         SenhaDescript := Descriptografa(qry.FieldByName('SENHA').AsString);
         DtInclusao    := qry.FieldByName('DTINCLUSAO').AsDateTime;
+        IsSupervisor  := (Trim(UpperCase(qry.FieldByName('DTINCLUSAO').AsString)) = 'S');
       end;
 
     except
@@ -121,6 +126,11 @@ end;
 procedure TUsuario.SetId(const Value: Integer);
 begin
   FId := Value;
+end;
+
+procedure TUsuario.SetIsSupervisor(const Value: Boolean);
+begin
+  FIsSupervisor := Value;
 end;
 
 end.

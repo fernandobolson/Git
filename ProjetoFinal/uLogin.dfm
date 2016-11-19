@@ -136,7 +136,6 @@ object FLogin: TFLogin
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 5
-    ExplicitTop = 322
     object lbDesenv: TLabel
       Left = 38
       Top = 9

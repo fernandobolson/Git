@@ -266,6 +266,7 @@ end;
 function TFPadraoManut.ConfirmaNavegacao : Boolean;
 begin
   Result := True;
+
   if DsPadrao.State in [dsInsert, dsEdit] then
     begin
     if RespSN('Toda alteração não salva será perdida, tem certeza que deseja fazer isso?') then
@@ -360,7 +361,7 @@ end;
 
 function TFPadraoManut.CheckDadosExclusao: Boolean;
 begin
-  Result:=True;
+  Result:=True; //Padrão True
 end;
 
 function TFPadraoManut.ComponenteEstaDentroPageControl(i : SmallInt) : Boolean;

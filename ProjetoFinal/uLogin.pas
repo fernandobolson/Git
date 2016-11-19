@@ -50,7 +50,8 @@ uses
   , uMenuBase
   , uUsuario
   , BibStr
-  , BibGeral;
+  , BibGeral
+ ;
 
 procedure TFLogin.ValidaLoginSenha;
 var

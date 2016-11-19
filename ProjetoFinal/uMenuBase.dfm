@@ -4446,11 +4446,12 @@ object FMenuBase: TFMenuBase
       Caption = 'Cadastro de Ra'#231'as'
       OnExecute = acRacasExecute
     end
-    object Action1: TAction
-      Caption = 'Cadastro de Pessoas'
-    end
     object ac_CadPessoas: TAction
       Caption = 'Cadastro de Pessoas'
+    end
+    object ac_CadUser: TAction
+      Caption = 'Cadastro de Us'#250'arios'
+      OnExecute = ac_CadUserExecute
     end
   end
   object aclMenu: TActionList
@@ -4485,7 +4486,10 @@ object FMenuBase: TFMenuBase
         Caption = 'Configura'#231#245'es Gerais'
       end
       object ConfiguraesdeUsuarios1: TMenuItem
-        Caption = 'Configura'#231#245'es de Usuarios'
+        Action = ac_CadUser
+      end
+      object CadastrodeUsarios1: TMenuItem
+        Caption = 'Cadastro de Us'#250'arios'
       end
     end
     object CadastrosGerais1: TMenuItem
@@ -4536,7 +4540,7 @@ object FMenuBase: TFMenuBase
     Left = 32
     Top = 96
     Bitmap = {
-      494C010101000800480010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000800500010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000A3000000FF000000FF000000FF000000FF000000A30000
