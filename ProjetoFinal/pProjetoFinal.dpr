@@ -22,7 +22,7 @@ uses
   uSelPadrao in 'Bibliotecas\uSelPadrao.pas' {FSelPadrao},
   uSelEspecies in 'uSelEspecies.pas' {FSelEspecies},
   uCadRacas in 'uCadRacas.pas' {FCadRaca},
-  uCadUsuario in 'uCadUsuario.pas' {FPadraoManut1},
+  uCadUsuario in 'uCadUsuario.pas' {FCadUsuario},
   uCadAnimal in 'uCadAnimal.pas' {FCadAnimal},
   uReconcileError in 'Bibliotecas\uReconcileError.pas' {ReconcileErrorForm},
   uSelRacas in 'uSelRacas.pas' {FSelRacas},
@@ -36,6 +36,5 @@ begin
   Application.CreateForm(TDmPrinc, DmPrinc);
   Application.CreateForm(TFMenuBase, FMenuBase);
   Application.CreateForm(TFLogin, FLogin);
-  Application.CreateForm(TFCadPessoa, FCadPessoa);
   Application.Run;
 end.
