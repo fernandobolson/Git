@@ -63,7 +63,8 @@ procedure TFSelRacas.RetornaCampos(var nCod: integer;
   var cDesc: String);
 begin
   try
-    qrySel.ParamByName('ESPECIE').AsInteger := nEspecie;
+    nCod := 0;
+    //qrySel.ParamByName('ESPECIE').AsInteger := nEspecie;
 
     cdsSel.Open;
     Self.ShowModal;

@@ -1,22 +1,332 @@
 inherited FCadPessoa: TFCadPessoa
-  Caption = 'FCadPessoa'
+  Left = 617
+  Top = 231
+  Caption = 'Cadastro de Pessoas'
+  ClientHeight = 538
+  ClientWidth = 973
+  Position = poDesigned
+  ExplicitWidth = 979
+  ExplicitHeight = 567
   PixelsPerInch = 96
   TextHeight = 13
+  inherited PnCaption: TPanel
+    Width = 973
+    ExplicitWidth = 1142
+  end
+  inherited PnTools: TPanel
+    Width = 973
+    ExplicitWidth = 1142
+  end
   inherited PC: TcxPageControl
-    Properties.ActivePage = tbConsulta
+    Width = 973
+    Height = 434
+    Properties.ActivePage = tbCadastro
+    ExplicitWidth = 1142
+    ExplicitHeight = 393
+    ClientRectBottom = 430
+    ClientRectRight = 969
     inherited tbCadastro: TcxTabSheet
-      ExplicitLeft = 3
-      ExplicitTop = 42
+      ExplicitWidth = 1134
+      ExplicitHeight = 348
+      inherited GB1: TcxGroupBox
+        Left = 13
+        Top = 16
+        TabOrder = 0
+        Visible = True
+        ExplicitLeft = 13
+        ExplicitTop = 16
+        ExplicitWidth = 628
+        ExplicitHeight = 311
+        Height = 311
+        Width = 628
+        object Label1: TLabel
+          Left = 16
+          Top = 16
+          Width = 229
+          Height = 18
+          Caption = 'C'#243'digo Pessoa...........................'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label3: TLabel
+          Left = 16
+          Top = 50
+          Width = 230
+          Height = 18
+          Caption = 'Nome Pessoa............................'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label4: TLabel
+          Left = 16
+          Top = 79
+          Width = 145
+          Height = 18
+          Caption = 'CPF .......................'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label6: TLabel
+          Left = 16
+          Top = 112
+          Width = 164
+          Height = 18
+          Caption = 'RG.............................'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label5: TLabel
+          Left = 16
+          Top = 143
+          Width = 137
+          Height = 18
+          Caption = 'Celular...................'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label8: TLabel
+          Left = 16
+          Top = 174
+          Width = 177
+          Height = 18
+          Caption = 'E-Mail............................'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label7: TLabel
+          Left = 275
+          Top = 19
+          Width = 190
+          Height = 18
+          Caption = 'Data de Cadastro...............'
+          Enabled = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object cxDBTextEdit1: TcxDBTextEdit
+          Left = 145
+          Top = 16
+          DataBinding.DataField = 'CD_CLIENTE'
+          DataBinding.DataSource = dsPadrao
+          Properties.ReadOnly = True
+          Properties.OnChange = cxDBTextEdit1PropertiesChange
+          TabOrder = 0
+          Width = 101
+        end
+        object cxDBTextEdit2: TcxDBTextEdit
+          Left = 145
+          Top = 47
+          DataBinding.DataField = 'NM_CLIENTE'
+          DataBinding.DataSource = dsPadrao
+          Properties.ReadOnly = False
+          TabOrder = 2
+          Width = 438
+        end
+        object cxDBMaskEdit1: TcxDBMaskEdit
+          Left = 145
+          Top = 76
+          DataBinding.DataField = 'CPF'
+          DataBinding.DataSource = dsPadrao
+          Properties.EditMask = '000\.000\.000\-00'
+          TabOrder = 4
+          Width = 121
+        end
+        object EB_CLIENTE: TcxDBTextEdit
+          Left = 145
+          Top = 109
+          DataBinding.DataField = 'RG'
+          DataBinding.DataSource = dsPadrao
+          Properties.ReadOnly = False
+          TabOrder = 5
+          Width = 121
+        end
+        object cxDBTextEdit3: TcxDBTextEdit
+          Left = 145
+          Top = 140
+          DataBinding.DataField = 'TELEFONE1'
+          DataBinding.DataSource = dsPadrao
+          Properties.ReadOnly = False
+          TabOrder = 6
+          Width = 121
+        end
+        object cxDBTextEdit4: TcxDBTextEdit
+          Left = 145
+          Top = 171
+          DataBinding.DataField = 'EMAIL'
+          DataBinding.DataSource = dsPadrao
+          Properties.ReadOnly = False
+          TabOrder = 7
+          Width = 438
+        end
+        object DBRadioGroup1: TDBRadioGroup
+          Left = 422
+          Top = 70
+          Width = 161
+          Height = 57
+          Caption = 'Sexo'
+          Columns = 2
+          DataField = 'SEXO'
+          DataSource = dsPadrao
+          Items.Strings = (
+            'Masculino'
+            'Feminino')
+          TabOrder = 3
+          Values.Strings = (
+            'M'
+            'F')
+        end
+        object cxDBDateEdit1: TcxDBDateEdit
+          Left = 462
+          Top = 16
+          DataBinding.DataField = 'DT_CADASTRO'
+          DataBinding.DataSource = dsPadrao
+          Enabled = False
+          TabOrder = 1
+          Width = 121
+        end
+      end
+      inherited GB2: TcxGroupBox
+        Left = 525
+        Top = 333
+        TabOrder = 2
+        ExplicitLeft = 525
+        ExplicitTop = 333
+        ExplicitWidth = 39
+        Width = 39
+      end
+      inherited GB3: TcxGroupBox
+        Left = 602
+        Top = 333
+        TabOrder = 3
+        ExplicitLeft = 602
+        ExplicitTop = 333
+      end
+      object cxGroupBox1: TcxGroupBox
+        Left = 647
+        Top = 16
+        Caption = 'Animais Vinculados'
+        TabOrder = 1
+        Height = 313
+        Width = 306
+        object cxAnimais: TcxGrid
+          Left = 2
+          Top = 18
+          Width = 302
+          Height = 293
+          Align = alClient
+          TabOrder = 0
+          LookAndFeel.Kind = lfUltraFlat
+          LookAndFeel.NativeStyle = True
+          ExplicitLeft = 43
+          ExplicitTop = -16
+          ExplicitWidth = 298
+          ExplicitHeight = 287
+          object TableViewAnimais: TcxGridDBTableView
+            Navigator.Buttons.CustomButtons = <>
+            DataController.DataSource = dsAnimais
+            DataController.Options = [dcoAssignGroupingValues, dcoAssignMasterDetailKeys, dcoSaveExpanding, dcoImmediatePost]
+            DataController.Summary.DefaultGroupSummaryItems = <>
+            DataController.Summary.FooterSummaryItems = <>
+            DataController.Summary.SummaryGroups = <>
+            FilterRow.InfoText = 'Clique aqui para definir um filtro'
+            OptionsData.CancelOnExit = False
+            OptionsData.Deleting = False
+            OptionsData.DeletingConfirmation = False
+            OptionsData.Editing = False
+            OptionsData.Inserting = False
+            OptionsSelection.CellSelect = False
+            OptionsSelection.InvertSelect = False
+            OptionsView.NoDataToDisplayInfoText = '<N'#227'o h'#225' informa'#231#245'es para exibi'#231#227'o>'
+            OptionsView.GroupByBox = False
+            Styles.ContentEven = StyleAzul
+            object TableViewAnimaisNM_ANIMAL: TcxGridDBColumn
+              Caption = 'Nome Animal'
+              DataBinding.FieldName = 'NM_ANIMAL'
+              Width = 190
+            end
+            object TableViewAnimaisNM_RACA: TcxGridDBColumn
+              Caption = 'Nome Ra'#231'a'
+              DataBinding.FieldName = 'NM_ANIMAL'
+              Width = 103
+            end
+            object TableViewAnimaisNM_ESPECIE: TcxGridDBColumn
+              Caption = 'Nome Esp'#233'cie'
+              DataBinding.FieldName = 'NM_ESPECIE'
+              Visible = False
+              Width = 225
+            end
+          end
+          object cxGridLevel1: TcxGridLevel
+            GridView = TableViewAnimais
+          end
+        end
+      end
     end
     inherited tbConsulta: TcxTabSheet
-      ExplicitTop = 3
-      ExplicitWidth = 0
-      ExplicitHeight = 435
+      ExplicitLeft = 4
+      ExplicitTop = 41
+      ExplicitWidth = 1134
+      ExplicitHeight = 348
+      inherited cxGrid: TcxGrid
+        Width = 965
+        Height = 389
+        ExplicitWidth = 1134
+        ExplicitHeight = 348
+        inherited cxGridTableView: TcxGridDBTableView
+          object cxGridTableViewCD_CLIENTE: TcxGridDBColumn
+            Caption = 'C'#243'd. Cliente'
+            DataBinding.FieldName = 'CD_CLIENTE'
+          end
+          object cxGridTableViewNM_CLIENTE: TcxGridDBColumn
+            Caption = 'Nome Cliente'
+            DataBinding.FieldName = 'NM_CLIENTE'
+            Width = 483
+          end
+          object cxGridTableViewDT_CADASTRO: TcxGridDBColumn
+            Caption = 'Dt. Cadastro'
+            DataBinding.FieldName = 'DT_CADASTRO'
+            Width = 111
+          end
+          object cxGridTableViewCELULAR: TcxGridDBColumn
+            Caption = 'Nro. Celular'
+            DataBinding.FieldName = 'CELULAR'
+            Width = 130
+          end
+        end
+      end
     end
   end
   inherited imgNormal: TImageList
     Bitmap = {
-      494C010111005000F00120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010111005000040220002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000A000000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2663,9 +2973,79 @@ inherited FCadPessoa: TFCadPessoa
       FFFFFFFFFFFFFF83FFFFFFFFFFFFFFFF00000000000000000000000000000000
       000000000000}
   end
+  inherited cdsPadrao: TClientDataSet
+    object cdsPadraoCD_CLIENTE: TIntegerField
+      FieldName = 'CD_CLIENTE'
+      Required = True
+    end
+    object cdsPadraoNM_CLIENTE: TStringField
+      FieldName = 'NM_CLIENTE'
+      Size = 200
+    end
+    object cdsPadraoCPF: TStringField
+      FieldName = 'CPF'
+      Size = 11
+    end
+    object cdsPadraoRG: TStringField
+      FieldName = 'RG'
+      Size = 9
+    end
+    object cdsPadraoSEXO: TStringField
+      FieldName = 'SEXO'
+      Size = 1
+    end
+    object cdsPadraoDT_CADASTRO: TDateField
+      FieldName = 'DT_CADASTRO'
+    end
+    object cdsPadraoCELULAR: TStringField
+      FieldName = 'CELULAR'
+      Size = 11
+    end
+    object cdsPadraoTELEFONE1: TStringField
+      FieldName = 'TELEFONE1'
+      Size = 11
+    end
+    object cdsPadraoTELEFONE2: TStringField
+      FieldName = 'TELEFONE2'
+      Size = 11
+    end
+    object cdsPadraoEMAIL: TStringField
+      FieldName = 'EMAIL'
+      Size = 100
+    end
+    object cdsPadraoCEP: TStringField
+      FieldName = 'CEP'
+      Size = 10
+    end
+    object cdsPadraoENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      Size = 150
+    end
+    object cdsPadraoNUMERO: TIntegerField
+      FieldName = 'NUMERO'
+    end
+    object cdsPadraoCOMPLEMENTO: TStringField
+      FieldName = 'COMPLEMENTO'
+      Size = 50
+    end
+    object cdsPadraoBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Size = 100
+    end
+    object cdsPadraoCD_CIDADE: TIntegerField
+      FieldName = 'CD_CIDADE'
+    end
+    object cdsPadraoOBS_GERAIS: TStringField
+      FieldName = 'OBS_GERAIS'
+      Size = 300
+    end
+    object cdsPadraoCD_GRUPO: TIntegerField
+      FieldName = 'CD_GRUPO'
+    end
+  end
   inherited imgFlat: TImageList
     Bitmap = {
-      494C0101190000028C0120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010119000002A00120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       010000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
@@ -6371,9 +6751,14 @@ inherited FCadPessoa: TFCadPessoa
   inherited cxStyleRepo: TcxStyleRepository
     PixelsPerInch = 96
   end
+  inherited QryPadrao: TSQLQuery
+    Active = True
+    SQL.Strings = (
+      'SELECT * FROM CLIENTE')
+  end
   inherited img1616: TImageList
     Bitmap = {
-      494C010101000800340010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000800480010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       000000000000000000000000000000000000838481003F3E3900D3D2CE00FFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
@@ -6511,5 +6896,28 @@ inherited FCadPessoa: TFCadPessoa
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000}
+  end
+  object qryAnimais: TSQLQuery
+    Active = True
+    MaxBlobSize = 1
+    Params = <>
+    SQL.Strings = (
+      'SELECT CD_ANIMAL, NM_ANIMAL, NM_RACA FROM ANIMAL')
+    SQLConnection = DmPrinc.sqlCon
+    Left = 778
+    Top = 299
+    object qryAnimaisCD_ANIMAL: TIntegerField
+      FieldName = 'CD_ANIMAL'
+      Required = True
+    end
+    object qryAnimaisNM_ANIMAL: TStringField
+      FieldName = 'NM_ANIMAL'
+      Size = 100
+    end
+  end
+  object dsAnimais: TDataSource
+    DataSet = qryAnimais
+    Left = 754
+    Top = 251
   end
 end

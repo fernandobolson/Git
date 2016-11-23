@@ -1,21 +1,44 @@
 inherited FCadUsuario: TFCadUsuario
   Caption = 'FCadUsuario'
-  ExplicitTop = -180
+  ClientHeight = 514
+  ClientWidth = 951
+  ExplicitWidth = 957
+  ExplicitHeight = 543
   PixelsPerInch = 96
   TextHeight = 13
+  inherited PnCaption: TPanel
+    Width = 951
+    ExplicitWidth = 951
+  end
+  inherited PnTools: TPanel
+    Width = 951
+    ExplicitWidth = 951
+    inherited cxGroupBox4: TcxGroupBox
+      Left = 757
+      ExplicitLeft = 757
+    end
+  end
   inherited PC: TcxPageControl
-    Properties.ActivePage = tbCadastro
+    Width = 951
+    Height = 410
+    ExplicitWidth = 951
+    ExplicitHeight = 410
+    ClientRectBottom = 406
+    ClientRectRight = 947
     inherited tbCadastro: TcxTabSheet
+      ExplicitWidth = 943
+      ExplicitHeight = 365
       inherited GB1: TcxGroupBox
-        Left = 22
-        Top = 15
+        Left = 9
+        Top = 13
+        TabOrder = 0
         Visible = True
-        ExplicitLeft = 22
-        ExplicitTop = 15
-        ExplicitWidth = 516
-        ExplicitHeight = 142
-        Height = 142
-        Width = 516
+        ExplicitLeft = 9
+        ExplicitTop = 13
+        ExplicitWidth = 483
+        ExplicitHeight = 242
+        Height = 242
+        Width = 483
         object Label4: TLabel
           Left = 23
           Top = 27
@@ -31,7 +54,7 @@ inherited FCadUsuario: TFCadUsuario
         end
         object Label3: TLabel
           Left = 23
-          Top = 58
+          Top = 67
           Width = 163
           Height = 18
           Caption = 'Login..........................'
@@ -44,7 +67,7 @@ inherited FCadUsuario: TFCadUsuario
         end
         object Label1: TLabel
           Left = 23
-          Top = 89
+          Top = 103
           Width = 170
           Height = 18
           Caption = 'Senha..........................'
@@ -55,6 +78,13 @@ inherited FCadUsuario: TFCadUsuario
           Font.Style = []
           ParentFont = False
         end
+        object Label7: TLabel
+          Left = 178
+          Top = 128
+          Width = 247
+          Height = 13
+          Caption = '(Senhas s'#227'o encriptografadas no Banco de Dados!)'
+        end
         object EB_ID: TcxDBTextEdit
           Left = 147
           Top = 28
@@ -64,57 +94,68 @@ inherited FCadUsuario: TFCadUsuario
           TabOrder = 0
           Width = 56
         end
-        object EB_DESCRICAO: TcxDBTextEdit
+        object EB_LOGIN: TcxDBTextEdit
           Left = 147
-          Top = 55
+          Top = 64
           DataBinding.DataField = 'LOGIN'
           DataBinding.DataSource = dsPadrao
           Style.BorderStyle = ebsUltraFlat
           TabOrder = 1
-          Width = 318
+          Width = 314
         end
-        object EB_SENHA: TcxDBMaskEdit
+        object RGSupervisor: TcxDBRadioGroup
+          Left = 23
+          Top = 153
+          Caption = 'Us'#250'ario '#233' Supervisor?'
+          DataBinding.DataField = 'SUPERVISOR'
+          DataBinding.DataSource = dsPadrao
+          ParentFont = False
+          Properties.Columns = 2
+          Properties.Items = <
+            item
+              Caption = 'Sim'
+              Value = 'S'
+            end
+            item
+              Caption = 'N'#227'o'
+              Value = 'N'
+            end>
+          Style.Font.Charset = DEFAULT_CHARSET
+          Style.Font.Color = clWindowText
+          Style.Font.Height = -15
+          Style.Font.Name = 'Tahoma'
+          Style.Font.Style = []
+          Style.IsFontAssigned = True
+          TabOrder = 3
+          Height = 59
+          Width = 170
+        end
+        object EB_SENHA: TcxDBTextEdit
           Left = 147
-          Top = 86
+          Top = 100
           DataBinding.DataField = 'SENHA'
           DataBinding.DataSource = dsPadrao
+          Properties.EchoMode = eemPassword
           Properties.PasswordChar = '*'
           Properties.ReadOnly = False
+          Style.BorderStyle = ebsUltraFlat
           TabOrder = 2
-          Width = 318
-        end
-        object DBCheckBox1: TDBCheckBox
-          Left = 377
-          Top = 28
-          Width = 97
-          Height = 17
-          Caption = 'Supervisor'
-          DataField = 'SUPERVISOR'
-          DataSource = dsPadrao
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -15
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 3
-          ValueChecked = 'S'
-          ValueUnchecked = 'N'
+          Width = 314
         end
       end
       inherited GB2: TcxGroupBox
-        Left = 22
-        Top = 181
+        Left = 498
+        Top = 13
         Visible = True
-        ExplicitLeft = 22
-        ExplicitTop = 181
-        ExplicitWidth = 516
-        ExplicitHeight = 145
-        Height = 145
-        Width = 516
+        ExplicitLeft = 498
+        ExplicitTop = 13
+        ExplicitWidth = 423
+        ExplicitHeight = 242
+        Height = 242
+        Width = 423
         object Label5: TLabel
-          Left = 23
-          Top = 8
+          Left = 15
+          Top = 25
           Width = 237
           Height = 18
           Caption = 'Pergunta p/ Recupera'#231#227'o de Senha:'
@@ -126,8 +167,8 @@ inherited FCadUsuario: TFCadUsuario
           ParentFont = False
         end
         object Label6: TLabel
-          Left = 23
-          Top = 63
+          Left = 15
+          Top = 80
           Width = 149
           Height = 18
           Caption = 'Resposta da Pergunta:'
@@ -139,29 +180,30 @@ inherited FCadUsuario: TFCadUsuario
           ParentFont = False
         end
         object EB_PERGUNTA: TcxDBTextEdit
-          Left = 23
-          Top = 30
+          Left = 15
+          Top = 47
           DataBinding.DataField = 'PERGUNTA'
           DataBinding.DataSource = dsPadrao
           Style.BorderStyle = ebsUltraFlat
           TabOrder = 0
-          Width = 352
+          Width = 386
         end
         object EB_RESPOSTA: TcxDBTextEdit
-          Left = 23
-          Top = 85
+          Left = 15
+          Top = 102
           DataBinding.DataField = 'RESPOSTAPERG'
           DataBinding.DataSource = dsPadrao
           Style.BorderStyle = ebsUltraFlat
           TabOrder = 1
-          Width = 352
+          Width = 386
         end
       end
       inherited GB3: TcxGroupBox
-        Left = 648
-        Top = 325
-        ExplicitLeft = 648
-        ExplicitTop = 325
+        Left = 579
+        Top = 293
+        TabOrder = 2
+        ExplicitLeft = 579
+        ExplicitTop = 293
         ExplicitWidth = 92
         ExplicitHeight = 49
         Height = 49
@@ -169,7 +211,15 @@ inherited FCadUsuario: TFCadUsuario
       end
     end
     inherited tbConsulta: TcxTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 41
+      ExplicitWidth = 943
+      ExplicitHeight = 365
       inherited cxGrid: TcxGrid
+        Width = 943
+        Height = 365
+        ExplicitWidth = 943
+        ExplicitHeight = 365
         inherited cxGridTableView: TcxGridDBTableView
           object cxGridTableViewID: TcxGridDBColumn
             DataBinding.FieldName = 'ID'
@@ -191,7 +241,7 @@ inherited FCadUsuario: TFCadUsuario
   end
   inherited imgNormal: TImageList
     Bitmap = {
-      494C010111005000F00120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010111005000FC0120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000A000000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2839,7 +2889,6 @@ inherited FCadUsuario: TFCadUsuario
       000000000000}
   end
   inherited cdsPadrao: TClientDataSet
-    Active = True
     Left = 105
     Top = 413
     object cdsPadraoID: TIntegerField
@@ -2876,7 +2925,7 @@ inherited FCadUsuario: TFCadUsuario
   end
   inherited imgFlat: TImageList
     Bitmap = {
-      494C0101190000028C0120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010119000002980120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       010000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
@@ -6590,7 +6639,7 @@ inherited FCadUsuario: TFCadUsuario
   end
   inherited img1616: TImageList
     Bitmap = {
-      494C010101000800340010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000800400010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       000000000000000000000000000000000000838481003F3E3900D3D2CE00FFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF

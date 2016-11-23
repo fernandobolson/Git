@@ -13,7 +13,8 @@ uses
   cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, Vcl.StdCtrls, cxButtons, cxGroupBox,
   Vcl.Buttons, Vcl.ExtCtrls, uUsuario, Vcl.DBCtrls, cxMaskEdit, cxDBEdit,
-  cxTextEdit;
+  cxTextEdit, cxRadioGroup, Vcl.Mask;
+
 
 type
   TFCadUsuario = class(TFPadraoManut)
@@ -30,18 +31,21 @@ type
     EB_ID: TcxDBTextEdit;
     Label4: TLabel;
     Label3: TLabel;
-    EB_DESCRICAO: TcxDBTextEdit;
+    EB_LOGIN: TcxDBTextEdit;
     Label1: TLabel;
-    EB_SENHA: TcxDBMaskEdit;
     Label5: TLabel;
     EB_PERGUNTA: TcxDBTextEdit;
     EB_RESPOSTA: TcxDBTextEdit;
     Label6: TLabel;
-    DBCheckBox1: TDBCheckBox;
+    RGSupervisor: TcxDBRadioGroup;
+    EB_SENHA: TcxDBTextEdit;
+    Label7: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure cxGridTableViewSUPERVISORGetDisplayText(
       Sender: TcxCustomGridTableItem; ARecord: TcxCustomGridRecord;
       var AText: string);
+    procedure Ac_IncluirExecute(Sender: TObject);
+    procedure Ac_ExcluirExecute(Sender: TObject);
   private
     { Private declarations }
     User : TUsuario;
@@ -49,6 +53,9 @@ type
     function CheckDadosFinal: Boolean; override;
     function CheckDadosExclusao: Boolean; override;
     procedure CriaObjetoUsuario;
+
+    procedure GravaSenhaEncriptografada;
+    procedure SetaSenhasDescriptografadasClient;
   public
     { Public declarations }
   end;
@@ -60,11 +67,31 @@ var
 implementation
 
 uses
- uMenuBase;
+   uMenuBase
+ , BibStr;
 
 {$R *.dfm}
 
 { TFPadraoManut1 }
+
+procedure TFCadUsuario.Ac_ExcluirExecute(Sender: TObject);
+begin
+  if not User.IsSupervisor then
+    raise Exception.Create('Somente usúarios Supervisores podem Excluir outros usuários');
+
+  inherited;
+end;
+
+procedure TFCadUsuario.Ac_IncluirExecute(Sender: TObject);
+begin
+
+  if not User.IsSupervisor then
+    raise Exception.Create('Somente usúarios Supervisores podem Incluir novos usuários');
+
+  inherited;
+  cdsPadrao.Edit;
+  CdsPadrao.FieldByName(ObjCrud.CampoChave).AsInteger := -1;
+end;
 
 function TFCadUsuario.CheckDadosExclusao: Boolean;
 begin
@@ -74,6 +101,29 @@ end;
 function TFCadUsuario.CheckDadosFinal: Boolean;
 begin
   Result := True;
+
+  if Trim(cdsPadrao.FieldByName('LOGIN').AsString) = EmptyStr then
+    begin
+    Result := False;
+    raise Exception.Create('Informe um Login para acesso ao sistema');
+  end;
+
+  EB_ID.SetFocus; //Forçar a sair dos campos
+
+  if Result then
+    GravaSenhaEncriptografada;
+end;
+
+procedure TFCadUsuario.GravaSenhaEncriptografada;
+begin
+  cdsPadrao.Edit;
+  cdsPadrao.FieldByName('SENHA').AsString := Criptografa(cdsPadrao.FieldByName('SENHA').AsString);
+  cdsPadrao.Post;
+end;
+
+procedure TFCadUsuario.SetaSenhasDescriptografadasClient;
+begin
+
 end;
 
 procedure TFCadUsuario.CriaObjetoCrud;
@@ -83,7 +133,7 @@ begin
   ObjCrud := TObjCrud.Create;
   With ObjCrud do
   begin
-    Nome := 'Cadastro de Usúarios';
+    Nome := 'Cadastro de Usuários';
     TabelaBanco := 'USUARIOS';
     CampoChave := 'ID';
   end;
@@ -104,9 +154,13 @@ begin
       QryPadrao.Sql.Text := EmptyStr;
       QryPadrao.SQL.Add('SELECT * FROM USUARIOS WHERE LOGIN = '+QuotedStr(Login));
       QryPadrao.Open;
+
+      cdsPadrao.Close;
+      cdsPadrao.Open;
+
+      RGSupervisor.Enabled := False;
     end;
   end;
-
 
 end;
 
@@ -114,7 +168,6 @@ procedure TFCadUsuario.CriaObjetoUsuario;
 begin
   User := TUsuario.Create(FMenuBase.nCodUsuario);
 end;
-
 
 procedure TFCadUsuario.cxGridTableViewSUPERVISORGetDisplayText(
   Sender: TcxCustomGridTableItem; ARecord: TcxCustomGridRecord;

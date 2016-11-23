@@ -40,6 +40,7 @@ begin
   try
     cdsSel.Open;
     Self.ShowModal;
+    nCod := 0;
 
     if lRetornaDados then
       begin

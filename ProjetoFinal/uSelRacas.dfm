@@ -2,13 +2,16 @@ inherited FSelRacas: TFSelRacas
   Caption = 'Sele'#231#227'o de Ra'#231'as'
   ClientWidth = 697
   ExplicitWidth = 713
+  ExplicitHeight = 361
   PixelsPerInch = 96
   TextHeight = 13
   inherited Panel1: TPanel
     Width = 697
+    ExplicitWidth = 697
   end
   inherited cxGrid: TcxGrid
     Width = 697
+    ExplicitWidth = 697
     inherited cxGridTableView: TcxGridDBTableView
       object cxGridTableViewCD_RACA: TcxGridDBColumn
         Caption = 'C'#243'd. Ra'#231'a'
@@ -58,14 +61,9 @@ inherited FSelRacas: TFSelRacas
     end
   end
   inherited qrySel: TSQLQuery
-    Params = <
-      item
-        DataType = ftInteger
-        Name = 'ESPECIE'
-        ParamType = ptInput
-      end>
+    MaxBlobSize = 1
     SQL.Strings = (
-      'SELECT * FROM RACA WHERE CD_ESPECIE =:ESPECIE')
+      'SELECT * FROM RACA')
   end
   inherited cxStyleRepo: TcxStyleRepository
     PixelsPerInch = 96

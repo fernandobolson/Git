@@ -20,7 +20,6 @@ type
     btEntrar: TcxButton;
     ebUser: TMaskEdit;
     Panel1: TPanel;
-    Label3: TLabel;
     Label4: TLabel;
     btFechar: TcxButton;
     Panel2: TPanel;
@@ -33,6 +32,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure acConectarExecute(Sender: TObject);
     procedure acFecharExecute(Sender: TObject);
+    procedure lbEsqueciSenhaClick(Sender: TObject);
   private
     procedure ValidaLoginSenha;
   public
@@ -130,6 +130,11 @@ begin
     key := #0;
     Perform(WM_NEXTDLGCTL, 0, 0);
   end;
+end;
+
+procedure TFLogin.lbEsqueciSenhaClick(Sender: TObject);
+begin
+  ShowMessage('Função ainda não implementada.')
 end;
 
 end.

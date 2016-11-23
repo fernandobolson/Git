@@ -58,18 +58,6 @@ begin
     qry := TSQLQuery.Create(Self);
     qry.SQLConnection := DmPrinc.sqlCon;
 
-    //Verifica Dependencias de Animais
-    qry.SQL.Add('SELECT COUNT(*) FROM ANIMAL WHERE CD_ESPECIE =' + QuotedStr(cdsPadrao.FieldByName('ID').AsString));
-    qry.Open;
-
-    if qry.RecordCount > 0 then
-      begin
-      Result := False;
-      raise Exception.Create('Não é possível realizar a exclusão! '+sLineBreak +
-                             'Existem animais cadastradas com essa Espécie!');
-    end;
-
-    qry.Close;
     qry.SQL.Clear;
 
     //Verifica Dependencias de Raças

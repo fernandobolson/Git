@@ -1,11 +1,31 @@
 inherited FCadRaca: TFCadRaca
-  Caption = 'FCadRaca'
+  Caption = 'Cadastro de Ra'#231'as'
+  ClientHeight = 613
+  ClientWidth = 957
+  ExplicitWidth = 963
+  ExplicitHeight = 642
   PixelsPerInch = 96
   TextHeight = 13
+  inherited PnCaption: TPanel
+    Width = 957
+    ExplicitWidth = 957
+  end
+  inherited PnTools: TPanel
+    Width = 957
+    ExplicitWidth = 957
+  end
   inherited PC: TcxPageControl
+    Width = 957
+    Height = 509
     Properties.ActivePage = tbCadastro
+    ExplicitWidth = 957
+    ExplicitHeight = 509
+    ClientRectBottom = 505
+    ClientRectRight = 953
     inherited tbCadastro: TcxTabSheet
       CustomHint = BalloonHint1
+      ExplicitWidth = 949
+      ExplicitHeight = 464
       inherited GB1: TcxGroupBox
         Left = 13
         Top = 16
@@ -107,6 +127,7 @@ inherited FCadRaca: TFCadRaca
           CustomHint = BalloonHint1
           DataBinding.DataField = 'CD_ESPECIE'
           DataBinding.DataSource = dsPadrao
+          Properties.ReadOnly = False
           TabOrder = 2
           OnExit = EB_CDESPECIEExit
           Width = 53
@@ -117,6 +138,7 @@ inherited FCadRaca: TFCadRaca
           CustomHint = BalloonHint1
           DataBinding.DataField = 'NM_RACA'
           DataBinding.DataSource = dsPadrao
+          Properties.ReadOnly = False
           TabOrder = 1
           Width = 393
         end
@@ -151,7 +173,15 @@ inherited FCadRaca: TFCadRaca
       end
     end
     inherited tbConsulta: TcxTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 41
+      ExplicitWidth = 949
+      ExplicitHeight = 464
       inherited cxGrid: TcxGrid
+        Width = 949
+        Height = 464
+        ExplicitWidth = 949
+        ExplicitHeight = 464
         inherited cxGridTableView: TcxGridDBTableView
           object cxGridTableViewCD_RACA: TcxGridDBColumn
             Caption = 'C'#243'd. Ra'#231'a'
@@ -178,7 +208,7 @@ inherited FCadRaca: TFCadRaca
   end
   inherited imgNormal: TImageList
     Bitmap = {
-      494C010111005000000220002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101110050000C0220002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000A000000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2856,7 +2886,7 @@ inherited FCadRaca: TFCadRaca
   end
   inherited imgFlat: TImageList
     Bitmap = {
-      494C010119000002940120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010119000002A00120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       01000000000000000000000000000000000083848100838481003F3E39003F3E
       3900D3D2CE00D3D2CE00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
@@ -6572,7 +6602,7 @@ inherited FCadRaca: TFCadRaca
     Left = 508
     Top = 481
     Bitmap = {
-      494C010101000800340010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000800400010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       000000000000000000000000000000000000838481003F3E3900D3D2CE00FFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF

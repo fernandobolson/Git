@@ -12,7 +12,7 @@ uses
   Vcl.ActnList, System.ImageList, Vcl.ImgList, cxGridLevel,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, Vcl.StdCtrls, cxButtons, cxGroupBox,
-  Vcl.Buttons, Vcl.ExtCtrls, cxDBEdit, cxTextEdit, Vcl.DBCtrls;
+  Vcl.Buttons, Vcl.ExtCtrls, cxDBEdit, cxTextEdit, Vcl.DBCtrls, Vcl.Mask;
 
 type
   TFCadRaca = class(TFPadraoManut)
@@ -73,6 +73,8 @@ begin
   inherited;
   cdsPadrao.Edit;
   cdsPadrao.FieldByName(ObjCrud.CampoChave).AsInteger := -1; //Sera incrementado a partir de uma trigger no BD
+  cdsPadrao.FieldByName('PORTE').AsString := 'P'; //Valor Default
+
 end;
 
 procedure TFCadRaca.ac_PesquisarExecute(Sender: TObject);
@@ -92,8 +94,11 @@ begin
 
   FSelEspecies.RetornaCampos(nCod, cDescricao);
 
-  CdsPadrao.FieldByName('CD_ESPECIE').AsInteger  := nCod;
-  CdsPadrao.FieldByName('NM_ESPECIE').AsString  := cDescricao;
+  if nCod <> 0 then
+    begin
+    CdsPadrao.FieldByName('CD_ESPECIE').AsInteger  := nCod;
+    CdsPadrao.FieldByName('NM_ESPECIE').AsString  := cDescricao;
+  end;
 end;
 
 procedure TFCadRaca.SpeedButton2Click(Sender: TObject);
@@ -165,7 +170,6 @@ begin
 
     if qry.RecordCount <= 0 then
       Result := False;
-
 
   finally
     FreeAndNil(qry);

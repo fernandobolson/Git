@@ -4450,8 +4450,11 @@ object FMenuBase: TFMenuBase
       Caption = 'Cadastro de Pessoas'
     end
     object ac_CadUser: TAction
-      Caption = 'Cadastro de Us'#250'arios'
+      Caption = 'Cadastro de Usu'#225'rios'
       OnExecute = ac_CadUserExecute
+    end
+    object ac_Vendas: TAction
+      Caption = 'Vendas'
     end
   end
   object aclMenu: TActionList
@@ -4476,6 +4479,23 @@ object FMenuBase: TFMenuBase
       Caption = 'Cadastro de Animais'
       OnExecute = ac_CadAnimalExecute
     end
+    object ac_CadProfissionais: TAction
+      Caption = 'Cadastro de Profissionais'
+      OnExecute = ac_CadProfissionaisExecute
+    end
+    object ac_CadFornecedores: TAction
+      Caption = 'Cadastro de Fornecedores'
+    end
+    object ac_CadProd: TAction
+      Caption = 'Cadastro de Produtos'
+    end
+    object ac_Estoque: TAction
+      Caption = 'Estoque de Produtos'
+    end
+    object ac_CadPessoa: TAction
+      Caption = 'Cadastro de Pessoas'
+      OnExecute = ac_CadPessoaExecute
+    end
   end
   object MainMenu1: TMainMenu
     Left = 32
@@ -4488,38 +4508,50 @@ object FMenuBase: TFMenuBase
       object ConfiguraesdeUsuarios1: TMenuItem
         Action = ac_CadUser
       end
-      object CadastrodeUsarios1: TMenuItem
-        Caption = 'Cadastro de Us'#250'arios'
-      end
     end
     object CadastrosGerais1: TMenuItem
       Caption = 'Cadastros Gerais'
-      object CadastrodeEspcies1: TMenuItem
-        Action = acRacas
-      end
-      object CadastrodeRaas1: TMenuItem
-        Action = ac_CadEspecie
+      object CadastrodeCidades1: TMenuItem
+        Action = ac_CadCidade
       end
       object CadastrodePelagens1: TMenuItem
         Caption = 'Cadastro de Pelagens'
       end
-      object N1: TMenuItem
-        Caption = '-'
-      end
-      object CadastrodeCidades1: TMenuItem
-        Action = ac_CadCidade
-      end
-      object CadastrodePessoas1: TMenuItem
-        Caption = 'Cadastro de Pessoas'
-      end
-      object CadastrodeAnimais1: TMenuItem
+    end
+    object Animais1: TMenuItem
+      Caption = 'Animais'
+      object CadastrodeAnimais2: TMenuItem
         Action = ac_CadAnimal
+      end
+      object CadastrodeEspcies2: TMenuItem
+        Action = ac_CadEspecie
+      end
+      object CadastrodeRaas2: TMenuItem
+        Action = acRacas
       end
     end
     object Pessoas1: TMenuItem
       Caption = 'Pessoas'
       object Action21: TMenuItem
-        Action = ac_CadPessoas
+        Action = ac_CadPessoa
+      end
+      object CadastrodeProfissionais1: TMenuItem
+        Action = ac_CadProfissionais
+      end
+    end
+    object Financeiro1: TMenuItem
+      Caption = 'Financeiro'
+      object Vendas1: TMenuItem
+        Action = ac_Vendas
+      end
+    end
+    object Estoque1: TMenuItem
+      Caption = 'Estoque'
+      object CadastrodeProdutos1: TMenuItem
+        Action = ac_CadProd
+      end
+      object Estoque2: TMenuItem
+        Action = ac_Estoque
       end
     end
   end
@@ -4540,7 +4572,7 @@ object FMenuBase: TFMenuBase
     Left = 32
     Top = 96
     Bitmap = {
-      494C010101000800500010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101010008005C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000A3000000FF000000FF000000FF000000FF000000A30000

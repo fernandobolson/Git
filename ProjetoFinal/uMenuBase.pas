@@ -20,12 +20,8 @@ type
     ConfiguraesGerais1: TMenuItem;
     ConfiguraesdeUsuarios1: TMenuItem;
     CadastrosGerais1: TMenuItem;
-    CadastrodeEspcies1: TMenuItem;
-    CadastrodeRaas1: TMenuItem;
     CadastrodePelagens1: TMenuItem;
-    N1: TMenuItem;
     CadastrodeCidades1: TMenuItem;
-    CadastrodePessoas1: TMenuItem;
     acRacas: TAction;
     Timer: TTimer;
     StatusBar1: TStatusBar;
@@ -41,9 +37,23 @@ type
     ac_CfgGeral: TAction;
     ac_CadCidade: TAction;
     ac_CadAnimal: TAction;
-    CadastrodeAnimais1: TMenuItem;
-    CadastrodeUsarios1: TMenuItem;
     ac_CadUser: TAction;
+    ac_CadProfissionais: TAction;
+    CadastrodeProfissionais1: TMenuItem;
+    ac_CadFornecedores: TAction;
+    Financeiro1: TMenuItem;
+    Estoque1: TMenuItem;
+    ac_Vendas: TAction;
+    Vendas1: TMenuItem;
+    ac_CadProd: TAction;
+    CadastrodeProdutos1: TMenuItem;
+    ac_Estoque: TAction;
+    Estoque2: TMenuItem;
+    ac_CadPessoa: TAction;
+    Animais1: TMenuItem;
+    CadastrodeAnimais2: TMenuItem;
+    CadastrodeEspcies2: TMenuItem;
+    CadastrodeRaas2: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ac_FecharExecute(Sender: TObject);
@@ -54,6 +64,8 @@ type
     procedure ac_CadAnimalExecute(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure ac_CadUserExecute(Sender: TObject);
+    procedure ac_CadPessoaExecute(Sender: TObject);
+    procedure ac_CadProfissionaisExecute(Sender: TObject);
   private
     { Private declarations }
     procedure ConectaBanco;
@@ -89,19 +101,22 @@ uses
   , uCadRacas
   , uCadAnimal
   , uCadUsuario
- ;
+  , uCadPessoa
+  , uCadProfissionais;
 
 procedure TFMenuBase.acRacasExecute(Sender: TObject);
 begin
   if Application.FindComponent('FCadRaca') = nil then
     Application.CreateForm(TFCadRaca, FCadRaca);
+
   FCadRaca.Show;
 end;
 
 procedure TFMenuBase.ac_CadAnimalExecute(Sender: TObject);
 begin
-    if Application.FindComponent('FCadAnimal') = nil then
+  if Application.FindComponent('FCadAnimal') = nil then
     Application.CreateForm(TFCadAnimal, FCadAnimal);
+
   FCadAnimal.Show;
 end;
 
@@ -109,6 +124,7 @@ procedure TFMenuBase.ac_CadCidadeExecute(Sender: TObject);
 begin
   if Application.FindComponent('FCadCidade') = nil then
     Application.CreateForm(TFCadCidade, FCadCidade);
+
   FCadCidade.Show;
 end;
 
@@ -116,13 +132,29 @@ procedure TFMenuBase.ac_CadEspecieExecute(Sender: TObject);
 begin
    if Application.FindComponent('FCadEspecie') = nil then
     Application.CreateForm(TFCadEspecie, FCadEspecie);
+
   FCadEspecie.Show;
+end;
+
+procedure TFMenuBase.ac_CadPessoaExecute(Sender: TObject);
+begin
+  if Application.FindComponent('FCadProfissionais') = nil then
+    Application.CreateForm(TFCadProfissionais, FCadProfissionais);
+  FCadProfissionais.Show;
+end;
+
+procedure TFMenuBase.ac_CadProfissionaisExecute(Sender: TObject);
+begin
+  if Application.FindComponent('FCadUsuario') = nil then
+    Application.CreateForm(TFCadUsuario, FCadUsuario);
+  FCadUsuario.Show;
 end;
 
 procedure TFMenuBase.ac_CadUserExecute(Sender: TObject);
 begin
    if Application.FindComponent('FCadUsuario') = nil then
     Application.CreateForm(TFCadUsuario, FCadUsuario);
+
   FCadUsuario.Show;
 end;
 

@@ -56,11 +56,12 @@ object FLogin: TFLogin
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
+    OnClick = lbEsqueciSenhaClick
   end
   object Label4: TLabel
-    Left = 80
-    Top = 26
-    Width = 148
+    Left = 77
+    Top = 40
+    Width = 147
     Height = 42
     Caption = 'VetShop'
     Font.Charset = ANSI_CHARSET
@@ -105,19 +106,6 @@ object FLogin: TFLogin
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 0
-    object Label3: TLabel
-      Left = 107
-      Top = 6
-      Width = 95
-      Height = 16
-      Caption = 'Nome empresa'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clHighlightText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
   end
   object btFechar: TcxButton
     Left = 157

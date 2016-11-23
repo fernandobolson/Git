@@ -11,12 +11,6 @@ uses
 
 type
   TFEsqueciSenha = class(TForm)
-    Label1: TLabel;
-    Senha: TLabel;
-    ebSenha: TMaskEdit;
-    ebUser: TMaskEdit;
-    cxDBComboBox1: TcxDBComboBox;
-    SQLQuery1: TSQLQuery;
   private
     { Private declarations }
   public
