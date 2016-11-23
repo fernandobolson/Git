@@ -3,8 +3,8 @@ object FPadraoManut: TFPadraoManut
   Top = 0
   BorderStyle = bsSingle
   Caption = 'FPadraoManut'
-  ClientHeight = 546
-  ClientWidth = 1043
+  ClientHeight = 644
+  ClientWidth = 1020
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,7 +14,7 @@ object FPadraoManut: TFPadraoManut
   FormStyle = fsMDIChild
   KeyPreview = True
   OldCreateOrder = False
-  Position = poDesigned
+  Position = poDefault
   Visible = True
   WindowState = wsMaximized
   OnClose = FormClose
@@ -28,7 +28,7 @@ object FPadraoManut: TFPadraoManut
   object PnCaption: TPanel
     Left = 0
     Top = 0
-    Width = 1043
+    Width = 1020
     Height = 41
     Align = alTop
     Color = 9328397
@@ -53,15 +53,12 @@ object FPadraoManut: TFPadraoManut
   object PnTools: TPanel
     Left = 0
     Top = 41
-    Width = 1043
+    Width = 1020
     Height = 63
     Align = alTop
     Color = clWhite
     ParentBackground = False
     TabOrder = 1
-    DesignSize = (
-      1043
-      63)
     object SpeedButton5: TSpeedButton
       Left = 17
       Top = 5
@@ -121,7 +118,7 @@ object FPadraoManut: TFPadraoManut
       end
     end
     object gbSaveCancel: TcxGroupBox
-      Left = 331
+      Left = 324
       Top = 1
       PanelStyle.Active = True
       PanelStyle.BorderWidth = 10
@@ -163,7 +160,7 @@ object FPadraoManut: TFPadraoManut
       end
     end
     object gbNavegacao: TcxGroupBox
-      Left = 511
+      Left = 480
       Top = 1
       PanelStyle.Active = True
       PanelStyle.BorderWidth = 10
@@ -221,9 +218,8 @@ object FPadraoManut: TFPadraoManut
       end
     end
     object cxGroupBox4: TcxGroupBox
-      Left = 782
+      Left = 749
       Top = 1
-      Anchors = [akTop, akRight]
       PanelStyle.Active = True
       PanelStyle.BorderWidth = 10
       TabOrder = 3
@@ -248,21 +244,21 @@ object FPadraoManut: TFPadraoManut
   object PC: TcxPageControl
     Left = 0
     Top = 104
-    Width = 1043
-    Height = 442
+    Width = 1020
+    Height = 540
     Align = alClient
     Color = clBtnFace
     ParentBackground = False
     ParentColor = False
     TabOrder = 2
-    Properties.ActivePage = tbCadastro
+    Properties.ActivePage = tbConsulta
     Properties.CustomButtons.Buttons = <>
     Properties.CustomButtons.TabImages = imgFlat
     Properties.Images = imgFlat
     Properties.Style = 1
-    ClientRectBottom = 438
+    ClientRectBottom = 536
     ClientRectLeft = 4
-    ClientRectRight = 1039
+    ClientRectRight = 1016
     ClientRectTop = 41
     object tbCadastro: TcxTabSheet
       Caption = 'Cadastro'
@@ -301,8 +297,8 @@ object FPadraoManut: TFPadraoManut
       object cxGrid: TcxGrid
         Left = 0
         Top = 0
-        Width = 1035
-        Height = 397
+        Width = 1012
+        Height = 495
         Align = alClient
         PopupMenu = PopupMenu1
         TabOrder = 0
@@ -341,7 +337,7 @@ object FPadraoManut: TFPadraoManut
     Left = 100
     Top = 468
     Bitmap = {
-      494C010111005000EC0120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010111005000F80120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000A000000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3080,7 +3076,6 @@ object FPadraoManut: TFPadraoManut
     object ac_Refresh: TAction
       Caption = 'Recarregar'
       ImageIndex = 20
-      OnExecute = ac_RefreshExecute
     end
     object ac_AjustarGrid: TAction
       Caption = 'Ajustar tamanho das Colunas'
@@ -3112,7 +3107,7 @@ object FPadraoManut: TFPadraoManut
     Left = 32
     Top = 468
     Bitmap = {
-      494C010119000002880120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010119000002940120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       010000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
@@ -6858,7 +6853,7 @@ object FPadraoManut: TFPadraoManut
     Left = 492
     Top = 425
     Bitmap = {
-      494C010101000800300010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101010008003C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       000000000000000000000000000000000000838481003F3E3900D3D2CE00FFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF

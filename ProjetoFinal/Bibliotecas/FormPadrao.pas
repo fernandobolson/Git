@@ -102,7 +102,6 @@ type
     procedure Ac_SalvarExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure cxGridTableViewDblClick(Sender: TObject);
-    procedure ac_RefreshExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ac_ConsultasExecute(Sender: TObject);
     procedure Ac_EditarExecute(Sender: TObject);
@@ -204,6 +203,11 @@ end;
 
 procedure TFPadraoManut.Ac_EditarExecute(Sender: TObject);
 begin
+  if CdsPadrao.RecordCount <=0 then
+    begin
+    raise Exception.Create('Não há registros para ser Editados, por favor, inclua algum registro.');
+  end;
+
   Estado := tAlterar;
   if PC.ActivePageIndex = _PageConsulta then
     MudaPaginaParaCadastro
@@ -350,6 +354,16 @@ begin
         begin
         if ComponenteEstaDentroPageControl(i) then
           TDBRadioGroup(Components[i]).Enabled := False;
+      end
+      else if Components[i] is TCXDBRadioGroup then
+        begin
+        if ComponenteEstaDentroPageControl(i) then
+          TCXDBRadioGroup(Components[i]).Enabled := False;
+      end
+      else if Components[i] is TcxDBMemo then
+        begin
+        if ComponenteEstaDentroPageControl(i) then
+          TcxDBMemo(Components[i]).Enabled := False;
       end;
     end;
 
@@ -411,6 +425,16 @@ begin
         begin
         if ComponenteEstaDentroPageControl(i) then
           TDBRadioGroup(Components[i]).Enabled := True;
+      end
+      else if Components[i] is TCXDBRadioGroup then
+        begin
+        if ComponenteEstaDentroPageControl(i) then
+          TCXDBRadioGroup(Components[i]).Enabled := True;
+      end
+      else if Components[i] is TcxDBMemo then
+        begin
+        if ComponenteEstaDentroPageControl(i) then
+          TcxDBMemo(Components[i]).Enabled := True;
       end;
     end;
 
@@ -420,17 +444,15 @@ begin
   end;
 end;
 
-procedure TFPadraoManut.ac_RefreshExecute(Sender: TObject);
-begin
-  //
-end;
 
 procedure TFPadraoManut.Ac_SalvarExecute(Sender: TObject);
 begin
   if CheckDadosFinal then
     begin
-    //Campo Chave sera incrementado a partir de uma trigger no banco de dados
-    cdsPadrao.Post;
+    //Campos Chaves sera incrementado a partir de uma trigger no banco de dados
+    if CdsPadrao.State in [dsEdit, dsInsert] then
+      cdsPadrao.Post;
+
     try
       cdsPadrao.ApplyUpdates(-1);
       Estado := TVisualizando;

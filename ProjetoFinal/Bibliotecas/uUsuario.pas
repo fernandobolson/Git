@@ -74,7 +74,7 @@ begin
         Senha         := qry.FieldByName('SENHA').AsString;
         SenhaDescript := Descriptografa(qry.FieldByName('SENHA').AsString);
         DtInclusao    := qry.FieldByName('DTINCLUSAO').AsDateTime;
-        IsSupervisor  := (Trim(UpperCase(qry.FieldByName('DTINCLUSAO').AsString)) = 'S');
+        IsSupervisor  := (Trim(UpperCase(qry.FieldByName('SUPERVISOR').AsString)) = 'S');
       end;
 
     except

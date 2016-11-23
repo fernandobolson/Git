@@ -15,7 +15,7 @@ type
       { public declarations }
       procedure AppendOrEdit;
       procedure EditAndPostField(AFieldName: String; AValue: Variant);
-      procedure SetFilter(AFilter: String);
+
       function AsBoolean(const FieldName: String): boolean;
       function AsDate(const FieldName: String): TDateTime;
       function AsFloat(const FieldName: String): Double;
@@ -44,12 +44,6 @@ begin
   Self.Post;
 end;
 
-procedure TClientDataSetHelper.SetFilter(AFilter: String);
-begin
-  Self.ClearFilter;
-  Self.Filter := AFilter;
-  Self.Filtered := (Self.Filter <> EmptyStr);
-end;
 
 function TClientDataSetHelper.AsBoolean(const FieldName: String): boolean;
 var
