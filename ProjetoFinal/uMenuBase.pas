@@ -66,6 +66,8 @@ type
     procedure ac_CadUserExecute(Sender: TObject);
     procedure ac_CadPessoaExecute(Sender: TObject);
     procedure ac_CadProfissionaisExecute(Sender: TObject);
+    procedure ac_CadProdExecute(Sender: TObject);
+    procedure ac_VendasExecute(Sender: TObject);
   private
     { Private declarations }
     procedure ConectaBanco;
@@ -102,7 +104,9 @@ uses
   , uCadAnimal
   , uCadUsuario
   , uCadPessoa
-  , uCadProfissionais;
+  , uCadProfissionais
+  , uCadProdServ
+  , uVendas;
 
 procedure TFMenuBase.acRacasExecute(Sender: TObject);
 begin
@@ -143,6 +147,13 @@ begin
   FCadProfissionais.Show;
 end;
 
+procedure TFMenuBase.ac_CadProdExecute(Sender: TObject);
+begin
+  if Application.FindComponent('FCadProdServ') = nil then
+    Application.CreateForm(TFCadProdServ, FCadProdServ);
+  FCadProdServ.Show;
+end;
+
 procedure TFMenuBase.ac_CadProfissionaisExecute(Sender: TObject);
 begin
   if Application.FindComponent('FCadUsuario') = nil then
@@ -161,6 +172,13 @@ end;
 procedure TFMenuBase.ac_FecharExecute(Sender: TObject);
 begin
 //
+end;
+
+procedure TFMenuBase.ac_VendasExecute(Sender: TObject);
+begin
+   if Application.FindComponent('FVenda') = nil then
+    Application.CreateForm(TFVenda, FVenda);
+  FVenda.Show;
 end;
 
 procedure TFMenuBase.ConectaBanco;

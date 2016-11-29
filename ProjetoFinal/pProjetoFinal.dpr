@@ -28,8 +28,10 @@ uses
   uSelRacas in 'uSelRacas.pas' {FSelRacas},
   uCadPessoa in 'uCadPessoa.pas' {FCadPessoa},
   uCadProfissionais in 'uCadProfissionais.pas' {FCadProfissionais},
-  uVenda in 'uVenda.pas' {Form1},
-  uSelCliente in 'uSelCliente.pas' {FSelClientes};
+  uSelCliente in 'uSelCliente.pas' {FSelClientes},
+  uCadProdServ in 'uCadProdServ.pas' {FCadProdServ},
+  uVendas in 'uVendas.pas' {FVenda},
+  uSelItens in 'uSelItens.pas' {FSelItens};
 
 {$R *.res}
 
@@ -39,5 +41,6 @@ begin
   Application.CreateForm(TDmPrinc, DmPrinc);
   Application.CreateForm(TFMenuBase, FMenuBase);
   Application.CreateForm(TFLogin, FLogin);
+  Application.CreateForm(TFSelItens, FSelItens);
   Application.Run;
 end.

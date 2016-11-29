@@ -1,93 +1,48 @@
-inherited FCadProdServ: TFCadProdServ
-  Caption = 'FCadProdServ'
-  ClientHeight = 533
-  ClientWidth = 973
-  ExplicitWidth = 979
-  ExplicitHeight = 562
+inherited FVenda: TFVenda
+  Caption = 'Venda'
+  ClientHeight = 605
+  ClientWidth = 1025
+  ExplicitWidth = 1031
+  ExplicitHeight = 634
   PixelsPerInch = 96
   TextHeight = 13
   inherited PnCaption: TPanel
-    Width = 973
-    inherited lbNameCrud: TLabel
-      Width = 205
-      Caption = 'Cadastro de Produtos'
-      ExplicitWidth = 205
-    end
+    Width = 1025
+    ExplicitWidth = 1202
   end
   inherited PnTools: TPanel
-    Width = 973
+    Width = 1025
+    ExplicitWidth = 1202
   end
   inherited PC: TcxPageControl
-    Width = 973
-    Height = 429
+    Width = 1025
+    Height = 501
     Properties.ActivePage = tbCadastro
-    ClientRectBottom = 425
-    ClientRectRight = 969
+    ExplicitWidth = 1202
+    ExplicitHeight = 591
+    ClientRectBottom = 497
+    ClientRectRight = 1021
     inherited tbCadastro: TcxTabSheet
-      ExplicitTop = 3
-      ExplicitWidth = 0
-      ExplicitHeight = 533
-      object Label7: TLabel [0]
-        Left = 120
-        Top = 346
-        Width = 141
-        Height = 18
-        Caption = 'Categoria................'
-        Enabled = False
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -15
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        Visible = False
-      end
+      ExplicitWidth = 1194
+      ExplicitHeight = 546
       inherited GB1: TcxGroupBox
-        Left = 13
-        Top = 19
-        ParentBackground = False
-        ParentColor = False
-        Style.Color = clWindow
+        Left = 0
+        Top = 0
+        Align = alTop
         TabOrder = 0
         Visible = True
-        ExplicitLeft = 13
-        ExplicitTop = 19
-        ExplicitWidth = 772
-        ExplicitHeight = 190
-        Height = 190
-        Width = 772
-        object Label4: TLabel
-          Left = 172
-          Top = 15
-          Width = 127
-          Height = 18
-          Caption = 'N'#186' Identificador.....'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -15
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object Label3: TLabel
-          Left = 172
-          Top = 43
-          Width = 147
-          Height = 18
-          Caption = 'Descri'#231#227'o.................'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -15
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 1194
+        ExplicitHeight = 115
+        Height = 115
+        Width = 1017
         object Label1: TLabel
-          Left = 387
-          Top = 15
-          Width = 196
+          Left = 27
+          Top = 21
+          Width = 229
           Height = 18
-          Caption = 'C'#243'digo de Barras.................'
+          Caption = 'C'#243'digo Venda............................'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -15
@@ -96,11 +51,11 @@ inherited FCadProdServ: TFCadProdServ
           ParentFont = False
         end
         object Label5: TLabel
-          Left = 172
-          Top = 71
-          Width = 208
+          Left = 27
+          Top = 49
+          Width = 127
           Height = 18
-          Caption = 'Refer'#234'ncia Produto.................'
+          Caption = 'Cliente.................'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -15
@@ -108,12 +63,25 @@ inherited FCadProdServ: TFCadProdServ
           Font.Style = []
           ParentFont = False
         end
-        object Label6: TLabel
-          Left = 172
-          Top = 99
+        object Label4: TLabel
+          Left = 27
+          Top = 77
+          Width = 171
+          Height = 18
+          Caption = 'Obs. Gerais...................'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label8: TLabel
+          Left = 315
+          Top = 21
           Width = 132
           Height = 18
-          Caption = 'Marcas.................'
+          Caption = 'Data Venda...........'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -15
@@ -121,258 +89,255 @@ inherited FCadProdServ: TFCadProdServ
           Font.Style = []
           ParentFont = False
         end
-        object Label12: TLabel
-          Left = 172
-          Top = 126
-          Width = 132
-          Height = 18
-          Caption = 'Unidade................'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -15
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
+        object SpeedButton2: TSpeedButton
+          Left = 199
+          Top = 46
+          Width = 26
+          Height = 20
+          Action = ac_Find
+          Flat = True
+          Layout = blGlyphTop
+          ParentShowHint = False
+          ShowHint = True
         end
-        object cxDBImage1: TcxDBImage
-          Left = 7
-          Top = 15
-          TabOrder = 2
-          Height = 154
-          Width = 156
-        end
-        object EB_ID: TcxDBTextEdit
-          Left = 313
-          Top = 12
-          DataBinding.DataField = 'CD_PRODSERV'
+        object EB_CLIENTE: TcxDBTextEdit
+          Left = 144
+          Top = 45
+          DataBinding.DataField = 'CD_CLIENTE'
           DataBinding.DataSource = dsPadrao
           Properties.ReadOnly = True
-          TabOrder = 0
-          Width = 68
+          TabOrder = 2
+          Width = 57
         end
-        object EB_NM_PRODSERV: TcxDBTextEdit
-          Left = 313
-          Top = 40
-          DataBinding.DataField = 'NM_PRODSERV'
+        object EB_CDVENDA: TcxDBTextEdit
+          Left = 144
+          Top = 18
+          DataBinding.DataField = 'CD_VENDA'
           DataBinding.DataSource = dsPadrao
-          Style.BorderStyle = ebsUltraFlat
-          TabOrder = 3
-          Width = 435
+          Properties.ReadOnly = True
+          Properties.OnChange = cxDBTextEdit4PropertiesChange
+          TabOrder = 0
+          Width = 112
         end
-        object cxDBTextEdit1: TcxDBTextEdit
-          Left = 569
-          Top = 12
-          DataBinding.DataField = 'CODIGOBARRAS'
+        object cxDBTextEdit7: TcxDBTextEdit
+          Left = 226
+          Top = 45
+          DataBinding.DataField = 'NM_CLIENTE'
+          DataBinding.DataSource = dsPadrao
+          Properties.ReadOnly = True
+          TabOrder = 3
+          Width = 323
+        end
+        object cxDBDateEdit2: TcxDBDateEdit
+          Left = 428
+          Top = 18
+          DataBinding.DataField = 'DTVENDA'
+          DataBinding.DataSource = dsPadrao
+          TabOrder = 1
+          Width = 121
+        end
+        object cxDBTextEdit5: TcxDBTextEdit
+          Left = 144
+          Top = 72
+          DataBinding.DataField = 'OBSERVACOES'
           DataBinding.DataSource = dsPadrao
           Properties.ReadOnly = False
-          TabOrder = 1
-          Width = 179
-        end
-        object cxDBTextEdit2: TcxDBTextEdit
-          Left = 313
-          Top = 68
-          DataBinding.DataField = 'REFERENCIA'
-          DataBinding.DataSource = dsPadrao
-          Style.BorderStyle = ebsUltraFlat
           TabOrder = 4
-          Width = 435
-        end
-        object DBRadioGroup1: TDBRadioGroup
-          Left = 581
-          Top = 95
-          Width = 167
-          Height = 49
-          Caption = 'Produto ou Servi'#231'o?'
-          Columns = 2
-          DataField = 'TIPO'
-          DataSource = dsPadrao
-          Items.Strings = (
-            'Produto'
-            'Servi'#231'o')
-          TabOrder = 5
-          Values.Strings = (
-            'P'
-            'S')
-        end
-        object cxDBTextEdit3: TcxDBTextEdit
-          Left = 313
-          Top = 96
-          DataBinding.DataField = 'MARCA'
-          DataBinding.DataSource = dsPadrao
-          Style.BorderStyle = ebsUltraFlat
-          TabOrder = 6
-          Width = 262
-        end
-        object cxDBComboBox1: TcxDBComboBox
-          Left = 313
-          Top = 123
-          DataBinding.DataField = 'UNIDADE'
-          DataBinding.DataSource = dsPadrao
-          Properties.Items.Strings = (
-            'Un.'
-            'Kg.'
-            'Ml.'
-            'M'
-            'Ton.')
-          TabOrder = 7
-          Width = 176
+          Width = 405
         end
       end
       inherited GB2: TcxGroupBox
-        Left = 13
-        Top = 215
-        ParentBackground = False
-        ParentColor = False
-        Style.Color = clWindow
+        Left = 0
+        Top = 310
+        Align = alBottom
+        TabOrder = 3
         Visible = True
-        ExplicitLeft = 13
-        ExplicitTop = 215
-        ExplicitWidth = 772
-        ExplicitHeight = 90
-        Height = 90
-        Width = 772
-        object Label8: TLabel
-          Left = 7
-          Top = 19
-          Width = 209
-          Height = 18
-          Caption = 'Quantidade M'#237'nima.................'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -15
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object Label9: TLabel
-          Left = 305
-          Top = 19
-          Width = 192
-          Height = 18
-          Caption = 'Quantidade Max.................'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -15
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object Label10: TLabel
-          Left = 7
-          Top = 46
-          Width = 194
-          Height = 18
-          Caption = 'Estoque Atual.....................'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -15
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object Label11: TLabel
-          Left = 305
-          Top = 46
-          Width = 185
-          Height = 18
-          Caption = 'Data de Validade...............'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -15
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object cxDBTextEdit5: TcxDBTextEdit
-          Left = 148
+        ExplicitLeft = 0
+        ExplicitTop = 400
+        ExplicitWidth = 1194
+        ExplicitHeight = 146
+        Height = 146
+        Width = 1017
+        object lbVlrTotal: TLabel
+          Left = 28
           Top = 16
-          DataBinding.DataField = 'QTDMIN'
+          Width = 75
+          Height = 18
+          Caption = 'Valor Total:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object cxDBMaskEdit1: TcxDBMaskEdit
+          Left = 28
+          Top = 40
+          DataBinding.DataField = 'TOTAL'
           DataBinding.DataSource = dsPadrao
-          Style.BorderStyle = ebsUltraFlat
           TabOrder = 0
-          Width = 137
-        end
-        object cxDBTextEdit6: TcxDBTextEdit
-          Left = 455
-          Top = 16
-          DataBinding.DataField = 'QTDMAX'
-          DataBinding.DataSource = dsPadrao
-          Style.BorderStyle = ebsUltraFlat
-          TabOrder = 1
-          Width = 148
-        end
-        object cxDBTextEdit7: TcxDBTextEdit
-          Left = 148
-          Top = 43
-          DataBinding.DataField = 'QTDATUAL'
-          DataBinding.DataSource = dsPadrao
-          Properties.ReadOnly = True
-          Style.BorderStyle = ebsUltraFlat
-          TabOrder = 2
-          Width = 137
-        end
-        object cxDBDateEdit1: TcxDBDateEdit
-          Left = 455
-          Top = 43
-          DataBinding.DataField = 'DTVALIDADE'
-          DataBinding.DataSource = dsPadrao
-          TabOrder = 3
-          Width = 148
+          Width = 128
         end
       end
       inherited GB3: TcxGroupBox
-        Left = 508
-        Top = 425
-        TabOrder = 3
-        ExplicitLeft = 508
-        ExplicitTop = 425
+        Left = 655
+        Top = 33
+        TabOrder = 1
+        ExplicitLeft = 655
+        ExplicitTop = 33
       end
-      object cxDBTextEdit4: TcxDBTextEdit
-        Left = 261
-        Top = 343
-        DataBinding.DataField = 'CATEGORIA'
-        DataBinding.DataSource = dsPadrao
-        Enabled = False
-        Style.BorderStyle = ebsUltraFlat
+      object Panel1: TPanel
+        Left = 0
+        Top = 115
+        Width = 1017
+        Height = 195
+        Align = alClient
+        Caption = 'Panel1'
         TabOrder = 2
-        Visible = False
-        Width = 51
+        ExplicitWidth = 1137
+        object Bevel1: TBevel
+          Left = 1
+          Top = 1
+          Width = 39
+          Height = 193
+          Align = alLeft
+          Shape = bsFrame
+          Style = bsRaised
+        end
+        object cxGrid1: TcxGrid
+          Left = 40
+          Top = 1
+          Width = 976
+          Height = 193
+          Align = alClient
+          TabOrder = 0
+          LookAndFeel.Kind = lfUltraFlat
+          LookAndFeel.NativeStyle = True
+          ExplicitLeft = 51
+          ExplicitWidth = 1142
+          ExplicitHeight = 283
+          object cxGridDBTableView1: TcxGridDBTableView
+            Navigator.Buttons.CustomButtons = <>
+            DataController.DataSource = dsItens
+            DataController.Options = [dcoAssignGroupingValues, dcoAssignMasterDetailKeys, dcoSaveExpanding, dcoImmediatePost]
+            DataController.Summary.DefaultGroupSummaryItems = <>
+            DataController.Summary.FooterSummaryItems = <>
+            DataController.Summary.SummaryGroups = <>
+            FilterRow.InfoText = 'Clique aqui para definir um filtro'
+            OptionsData.CancelOnExit = False
+            OptionsData.Deleting = False
+            OptionsData.DeletingConfirmation = False
+            OptionsData.Inserting = False
+            OptionsSelection.CellSelect = False
+            OptionsSelection.InvertSelect = False
+            OptionsView.NoDataToDisplayInfoText = '<N'#227'o h'#225' informa'#231#245'es para exibi'#231#227'o>'
+            OptionsView.GroupByBox = False
+            object cxGridDBTableView1CD_VENDA: TcxGridDBColumn
+              Caption = 'C'#243'd. Venda'
+              DataBinding.FieldName = 'CD_VENDA'
+              Visible = False
+            end
+            object cxGridDBTableView1CD_PRODSERV: TcxGridDBColumn
+              Caption = 'C'#243'digo'
+              DataBinding.FieldName = 'CD_PRODSERV'
+              Width = 105
+            end
+            object cxGridDBTableView1VLRPRODSERV: TcxGridDBColumn
+              Caption = 'Valor'
+              DataBinding.FieldName = 'VLRPRODSERV'
+              Width = 122
+            end
+            object cxGridDBTableView1VLRCOBRADO: TcxGridDBColumn
+              Caption = 'Vlr. Venda'
+              DataBinding.FieldName = 'VLRCOBRADO'
+              Visible = False
+              Width = 166
+            end
+            object cxGridDBTableView1VLRDESCONTO: TcxGridDBColumn
+              Caption = 'Desconto'
+              DataBinding.FieldName = 'VLRDESCONTO'
+              Width = 122
+            end
+            object cxGridDBTableView1SEQLANCA: TcxGridDBColumn
+              Caption = 'SeqLanca'
+              DataBinding.FieldName = 'SEQLANCA'
+              Visible = False
+            end
+          end
+          object cxGridLevel1: TcxGridLevel
+            GridView = cxGridDBTableView1
+          end
+        end
+        object cxButton2: TcxButton
+          Left = 5
+          Top = 10
+          Width = 33
+          Height = 33
+          Action = AdicionarItem
+          OptionsImage.Glyph.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000000000000000000000000000000000000000000000000
+            0000000000020000000A170D0738542D1894814626D193502AEA924F2AE87F45
+            25D0522C17931209053000000009000000010000000000000000000000000000
+            00030201011159311B97A96239FAC58957FFD6A36DFFDDAF75FFDDAF74FFD6A4
+            6BFFC58956FFA46137F53C2112730000000F0000000300000000000000020201
+            0110744226B9BC7C4DFFDDAE77FFDEB076FFE2B782FFE3BB87FFE3BC86FFE1B7
+            82FFDEAF74FFDBAB72FFBD7E4EFF6F3E24B50000001000000002000000085C36
+            2095BE8053FFE0B37CFFDFB076FFDEB177FFB78254FFAA7144FFAB7245FFBC88
+            59FFDFB279FFDFB277FFDEB077FFC08253FF55321D920000000A190F0932B070
+            47FADFB27DFFDFB27AFFE0B37BFFE0B57DFFA56B3FFFF5EFEAFFF8F3EEFFAB72
+            45FFE2B67EFFE0B47CFFE0B47BFFDEB079FFB3734AFB130B072F613C2795CD9B
+            6FFFE2B780FFE5BD89FFE7C291FFE8C393FFA56B3FFFF1E6DEFFF9F5F1FFAA71
+            44FFE8C494FFE8C393FFE5BF8CFFE1B77FFFD09C6EFF5434218B935E3DD2DCB3
+            83FFE3B781FFBA8659FFA97043FFAB7245FFAC7346FFF5EDE6FFFAF6F3FFAD75
+            47FFB0784AFFB17A4BFFC29162FFE4B983FFDEB17EFF8E5B3BD0B0744CF2E3BF
+            8FFFE4BB84FFA56B3FFFF3EBE6FFFAF6F3FFF6EFE8FFF7F0EAFFFBF7F5FFFAF7
+            F4FFFAF7F3FFFAF6F2FFAB7245FFE5BD87FFE5BE8BFFAB714CEEAE764FECE9C9
+            A0FFE5BE89FFA56B3FFFE0D2CAFFE1D3CCFFE3D5CFFFF2EAE4FFF8F3EFFFEADF
+            D9FFE6DAD4FFE9DED9FFAA7144FFE7C08CFFEACA9DFFAE764FEE9A6A49D0E9CD
+            ACFFEAC796FFB78456FFA56B3FFFA56B3FFFA56B3FFFF1EAE5FFFAF6F3FFA56B
+            3FFFA56B3FFFA56B3FFFB78457FFEACA99FFEBD1ADFF996A49D46E4E3697DDBB
+            9DFFEED3A9FFEECFA2FFEED2A5FFF0D6A9FFA56B3FFFF0EAE7FFFDFCFBFFA56B
+            3FFFF1D6AAFFF0D5A8FFEED2A5FFEFD4A7FFE0C2A2FF6246318F1C140E2BC794
+            6CFCF5E8CCFFEFD6ABFFF1D8AEFFF2DAB0FFA56B3FFFDECFC9FFDFD1CBFFA56B
+            3FFFF3DCB2FFF1DBB0FFF1D8ADFFF7EACDFFC69470FA1A120D2E000000036F52
+            3C92D7B08CFFF8EFD3FFF3E0B9FFF3DFB7FFB98A5FFFA56B3FFFA56B3FFFBA8A
+            5FFFF4E1B9FFF4E2BDFFFAF1D5FFD9B390FF664B368C00000006000000010202
+            0107906C4EB8D9B38FFFF7EDD3FFF8EED0FFF7EBC9FFF6E8C4FFF6E8C5FFF7EC
+            CAFFF8EED0FFF4E8CDFFD7AF8BFF88664AB30202010B00000001000000000000
+            00010202010770543F8FCFA078FCE2C4A2FFEBD7B8FFF4E9CDFFF4EACEFFECD8
+            B9FFE3C5A3FFC59973F24C392A67000000060000000100000000000000000000
+            000000000001000000022019122C6C543E89A47E5FCCC59770F1C19570EEA47E
+            60CD6C543F8B16110D2200000003000000010000000000000000}
+          TabOrder = 1
+        end
       end
     end
     inherited tbConsulta: TcxTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 41
-      ExplicitWidth = 1012
-      ExplicitHeight = 495
+      ExplicitWidth = 1194
+      ExplicitHeight = 546
       inherited cxGrid: TcxGrid
-        Width = 965
-        Height = 384
+        Width = 1017
+        Height = 456
+        ExplicitWidth = 1194
+        ExplicitHeight = 546
         inherited cxGridTableView: TcxGridDBTableView
-          object cxGridTableViewCD_PRODSERV: TcxGridDBColumn
-            Caption = 'C'#243'd. Prod. Servico'
-            DataBinding.FieldName = 'CD_PRODSERV'
-            Width = 125
+          object cxGridTableViewCD_VENDA: TcxGridDBColumn
+            Caption = 'C'#243'd. Venda'
+            DataBinding.FieldName = 'CD_VENDA'
           end
-          object cxGridTableViewColumn1: TcxGridDBColumn
-            Caption = 'Nome Produto'
-            DataBinding.FieldName = 'NM_PRODSERV'
-            Width = 370
+          object cxGridTableViewDTVENDA: TcxGridDBColumn
+            Caption = 'Dt. Venda'
+            DataBinding.FieldName = 'DTVENDA'
           end
-          object cxGridTableViewTIPO: TcxGridDBColumn
-            Caption = 'Produto ou Servi'#231'o?'
-            DataBinding.FieldName = 'TIPO'
-            OnGetDisplayText = cxGridTableViewTIPOGetDisplayText
-            Width = 125
+          object cxGridTableViewNM_CLIENTE: TcxGridDBColumn
+            Caption = 'Nome Cliente'
+            DataBinding.FieldName = 'NM_CLIENTE'
           end
-          object cxGridTableViewQTDATUAL: TcxGridDBColumn
-            Caption = 'Quantidade Atual'
-            DataBinding.FieldName = 'QTDATUAL'
-            Width = 181
-          end
-          object cxGridTableViewPRECOVENDA: TcxGridDBColumn
-            Caption = 'Pre'#231'o de Venda'
-            DataBinding.FieldName = 'PRECOVENDA'
-            Width = 327
+          object cxGridTableViewTOTAL: TcxGridDBColumn
+            Caption = 'Total'
+            DataBinding.FieldName = 'TOTAL'
           end
         end
       end
@@ -380,7 +345,7 @@ inherited FCadProdServ: TFCadProdServ
   end
   inherited imgNormal: TImageList
     Bitmap = {
-      494C010111005000080220002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010111005000100220002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000A000000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3027,67 +2992,49 @@ inherited FCadProdServ: TFCadProdServ
       FFFFFFFFFFFFFF83FFFFFFFFFFFFFFFF00000000000000000000000000000000
       000000000000}
   end
+  inherited Acoes: TActionList
+    object AdicionarItem: TAction
+      OnExecute = AdicionarItemExecute
+    end
+  end
   inherited cdsPadrao: TClientDataSet
     Active = True
-    object cdsPadraoCD_PRODSERV: TIntegerField
-      FieldName = 'CD_PRODSERV'
+    object cdsPadraoCD_VENDA: TIntegerField
+      FieldName = 'CD_VENDA'
       Required = True
     end
-    object cdsPadraoREFERENCIA: TStringField
-      FieldName = 'REFERENCIA'
-      Size = 50
+    object cdsPadraoDTVENDA: TDateField
+      FieldName = 'DTVENDA'
     end
-    object cdsPadraoCODIGOBARRAS: TStringField
-      FieldName = 'CODIGOBARRAS'
-      Size = 50
+    object cdsPadraoHORAVENDA: TSQLTimeStampField
+      FieldName = 'HORAVENDA'
     end
-    object cdsPadraoTIPO: TStringField
-      FieldName = 'TIPO'
-      FixedChar = True
-      Size = 1
+    object cdsPadraoCD_CLIENTE: TIntegerField
+      FieldName = 'CD_CLIENTE'
+      Required = True
     end
-    object cdsPadraoUNIDADE: TStringField
-      FieldName = 'UNIDADE'
-      Size = 5
-    end
-    object cdsPadraoCATEGORIA: TIntegerField
-      FieldName = 'CATEGORIA'
-    end
-    object cdsPadraoQTDMIN: TFloatField
-      FieldName = 'QTDMIN'
-    end
-    object cdsPadraoQTDATUAL: TFloatField
-      FieldName = 'QTDATUAL'
-    end
-    object cdsPadraoQTDMAX: TFloatField
-      FieldName = 'QTDMAX'
-    end
-    object cdsPadraoPRECOVENDA: TFloatField
-      FieldName = 'PRECOVENDA'
-    end
-    object cdsPadraoOBS_GERAIS: TStringField
-      FieldName = 'OBS_GERAIS'
-      Size = 200
-    end
-    object cdsPadraoMARCA: TStringField
-      FieldName = 'MARCA'
-      Size = 50
-    end
-    object cdsPadraoFOTO: TBlobField
-      FieldName = 'FOTO'
-      Size = 1
-    end
-    object cdsPadraoNM_PRODSERV: TStringField
-      FieldName = 'NM_PRODSERV'
+    object cdsPadraoNM_CLIENTE: TStringField
+      FieldName = 'NM_CLIENTE'
       Size = 100
     end
-    object cdsPadraoDTVALIDADE: TDateField
-      FieldName = 'DTVALIDADE'
+    object cdsPadraoOBSERVACOES: TStringField
+      FieldName = 'OBSERVACOES'
+      Size = 300
+    end
+    object cdsPadraoCD_PROFISSIONAL: TIntegerField
+      FieldName = 'CD_PROFISSIONAL'
+    end
+    object cdsPadraoNM_PROFISSIONAL: TStringField
+      FieldName = 'NM_PROFISSIONAL'
+      Size = 100
+    end
+    object cdsPadraoTOTAL: TFloatField
+      FieldName = 'TOTAL'
     end
   end
   inherited imgFlat: TImageList
     Bitmap = {
-      494C010119000002A40120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010119000002AC0120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       010000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
@@ -6795,13 +6742,12 @@ inherited FCadProdServ: TFCadProdServ
   end
   inherited QryPadrao: TSQLQuery
     Active = True
-    MaxBlobSize = 1
     SQL.Strings = (
-      'SELECT * FROM PRODSERV')
+      'SELECT * FROM VENDACAB')
   end
   inherited img1616: TImageList
     Bitmap = {
-      494C0101010008004C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000800540010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       000000000000000000000000000000000000838481003F3E3900D3D2CE00FFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
@@ -6939,5 +6885,64 @@ inherited FCadProdServ: TFCadProdServ
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000}
+  end
+  object sqlDsItens: TSQLDataSet
+    CommandText = 'select * from VENDAITEM'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = DmPrinc.sqlCon
+    Left = 584
+    Top = 168
+  end
+  object dspItens: TDataSetProvider
+    DataSet = sqlDsItens
+    Left = 640
+    Top = 168
+  end
+  object cdsItens: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspItens'
+    Left = 696
+    Top = 168
+    object cdsItensCD_VENDA: TIntegerField
+      FieldName = 'CD_VENDA'
+      Required = True
+    end
+    object cdsItensCD_PRODSERV: TIntegerField
+      FieldName = 'CD_PRODSERV'
+      Required = True
+    end
+    object cdsItensVLRPRODSERV: TFloatField
+      FieldName = 'VLRPRODSERV'
+    end
+    object cdsItensVLRDESCONTO: TFloatField
+      FieldName = 'VLRDESCONTO'
+    end
+    object cdsItensVLRCOBRADO: TFloatField
+      FieldName = 'VLRCOBRADO'
+    end
+    object cdsItensSEQLANCA: TIntegerField
+      FieldName = 'SEQLANCA'
+    end
+  end
+  object dsItens: TDataSource
+    DataSet = cdsItens
+    Left = 740
+    Top = 169
+  end
+  object ac_Pesq: TActionList
+    Images = img1616
+    Left = 416
+    Top = 472
+    object ac_Find: TAction
+      ImageIndex = 0
+      OnExecute = ac_FindExecute
+    end
+  end
+  object DataSource1: TDataSource
+    DataSet = QryPadrao
+    Left = 668
+    Top = 284
   end
 end

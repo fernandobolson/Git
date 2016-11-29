@@ -4455,6 +4455,7 @@ object FMenuBase: TFMenuBase
     end
     object ac_Vendas: TAction
       Caption = 'Vendas'
+      OnExecute = ac_VendasExecute
     end
   end
   object aclMenu: TActionList
@@ -4488,6 +4489,7 @@ object FMenuBase: TFMenuBase
     end
     object ac_CadProd: TAction
       Caption = 'Cadastro de Produtos'
+      OnExecute = ac_CadProdExecute
     end
     object ac_Estoque: TAction
       Caption = 'Estoque de Produtos'
@@ -4572,7 +4574,7 @@ object FMenuBase: TFMenuBase
     Left = 32
     Top = 96
     Bitmap = {
-      494C0101010008005C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000800640010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000A3000000FF000000FF000000FF000000FF000000A30000
