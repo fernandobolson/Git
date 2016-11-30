@@ -9,7 +9,8 @@ uses
   cxData, cxDataStorage, cxEdit, cxNavigator, Data.DB, cxDBData,
   Data.FMTBcd, Datasnap.Provider, Data.SqlExpr, cxGridLevel, cxClasses,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView,
-  cxGridDBTableView, cxGrid, Datasnap.DBClient, Vcl.StdCtrls, Vcl.ExtCtrls, uDmPrinc;
+  cxGridDBTableView, cxGrid, Datasnap.DBClient, Vcl.StdCtrls, Vcl.ExtCtrls, uDmPrinc,
+  Vcl.Menus, cxButtons;
 
 type
   TFSelPadrao = class(TForm)
@@ -18,8 +19,6 @@ type
     qrySel: TSQLQuery;
     dspSel: TDataSetProvider;
     Panel1: TPanel;
-    btSelReg: TButton;
-    btCancelar: TButton;
     cxGrid: TcxGrid;
     cxGridTableView: TcxGridDBTableView;
     cxGridLevel: TcxGridLevel;
@@ -27,6 +26,8 @@ type
     StyleAzul: TcxStyle;
     StyleVerde: TcxStyle;
     cxStyleOver: TcxStyle;
+    btSelReg: TcxButton;
+    btCancelar: TcxButton;
     procedure btSelRegClick(Sender: TObject);
     procedure btCancelarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);

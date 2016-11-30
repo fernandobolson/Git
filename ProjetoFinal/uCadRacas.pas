@@ -114,6 +114,12 @@ var
 begin
   try
     Result := True;
+    if (cdsPadrao.RecordCount <= 0)  then
+      begin
+      Result := False;
+      raise Exception.Create('Não existe nenhum registro a ser excluido!');
+    end;
+
     qry := TSQLQuery.Create(Self);
     qry.SQLConnection := DmPrinc.sqlCon;
     qry.SQL.Add('SELECT COUNT(*) FROM ANIMAL WHERE CD_RACA =' + QuotedStr(cdsPadrao.FieldByName('CD_RACA').AsString));

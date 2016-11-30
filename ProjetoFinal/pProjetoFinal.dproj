@@ -126,30 +126,85 @@
         <DCCReference Include="Bibliotecas\uClientDataSetHelper.pas"/>
         <DCCReference Include="Bibliotecas\BibStr.pas"/>
         <DCCReference Include="Bibliotecas\BibGeral.pas"/>
-        <DCCReference Include="uEsqueciSenha.pas">
-            <Form>FEsqueciSenha</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="Bibliotecas\FormPadrao.pas">
             <Form>FPadraoManut</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Bibliotecas\BibConsultas.pas"/>
         <DCCReference Include="Bibliotecas\uUsuario.pas"/>
-        <DCCReference Include="uAlterarSenha.pas">
-            <Form>FAlterarSenha</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="uCadastroEspecies.pas">
             <Form>FCadEspecie</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="uCadastroRacas.pas">
-            <Form>FCadRacas</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="uCadCidade.pas">
             <Form>FCadCidade</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Bibliotecas\uSelPadrao.pas">
+            <Form>FSelPadrao</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uSelEspecies.pas">
+            <Form>FSelEspecies</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uCadRacas.pas">
+            <Form>FCadRaca</Form>
+        </DCCReference>
+        <DCCReference Include="uCadUsuario.pas">
+            <Form>FCadUsuario</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uCadAnimal.pas">
+            <Form>FCadAnimal</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Bibliotecas\uReconcileError.pas">
+            <Form>ReconcileErrorForm</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uSelRacas.pas">
+            <Form>FSelRacas</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uCadPessoa.pas">
+            <Form>FCadPessoa</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uCadProfissionais.pas">
+            <Form>FCadProfissionais</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uSelCliente.pas">
+            <Form>FSelClientes</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uCadProdServ.pas">
+            <Form>FCadProdServ</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uVendas.pas">
+            <Form>FVenda</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uSelItens.pas">
+            <Form>FSelItens</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uCadForn.pas">
+            <Form>FCadForn</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uSelCidades.pas">
+            <Form>FSelCidade</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uContasRec.pas">
+            <Form>FContasRec</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uCadProcedimentos.pas">
+            <Form>FCadProcedimentos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
@@ -184,27 +239,12 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployClass Name="DependencyModule">
-                    <Platform Name="Win32">
-                        <Operation>0</Operation>
-                        <Extensions>.dll;.bpl</Extensions>
-                    </Platform>
+                <DeployClass Name="ProjectiOSDeviceResourceRules">
                     <Platform Name="iOSDevice64">
                         <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                    <Platform Name="OSX32">
-                        <RemoteDir>Contents\MacOS</RemoteDir>
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
                     </Platform>
                     <Platform Name="iOSDevice32">
                         <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                    <Platform Name="iOSSimulator">
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
                     </Platform>
                 </DeployClass>
                 <DeployClass Name="ProjectOSXResource">
@@ -558,12 +598,27 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <DeployClass Name="ProjectiOSDeviceResourceRules">
+                <DeployClass Name="DependencyModule">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.dll;.bpl</Extensions>
+                    </Platform>
                     <Platform Name="iOSDevice64">
                         <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
                     </Platform>
                     <Platform Name="iOSDevice32">
                         <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
                     </Platform>
                 </DeployClass>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>

@@ -8,23 +8,23 @@ inherited FVenda: TFVenda
   TextHeight = 13
   inherited PnCaption: TPanel
     Width = 1025
-    ExplicitWidth = 1202
+    ExplicitWidth = 1025
   end
   inherited PnTools: TPanel
     Width = 1025
-    ExplicitWidth = 1202
+    ExplicitWidth = 1025
   end
   inherited PC: TcxPageControl
     Width = 1025
     Height = 501
     Properties.ActivePage = tbCadastro
-    ExplicitWidth = 1202
-    ExplicitHeight = 591
+    ExplicitWidth = 1025
+    ExplicitHeight = 501
     ClientRectBottom = 497
     ClientRectRight = 1021
     inherited tbCadastro: TcxTabSheet
-      ExplicitWidth = 1194
-      ExplicitHeight = 546
+      ExplicitWidth = 1017
+      ExplicitHeight = 456
       inherited GB1: TcxGroupBox
         Left = 0
         Top = 0
@@ -33,7 +33,7 @@ inherited FVenda: TFVenda
         Visible = True
         ExplicitLeft = 0
         ExplicitTop = 0
-        ExplicitWidth = 1194
+        ExplicitWidth = 1017
         ExplicitHeight = 115
         Height = 115
         Width = 1017
@@ -147,19 +147,19 @@ inherited FVenda: TFVenda
         end
       end
       inherited GB2: TcxGroupBox
-        Left = 0
-        Top = 310
-        Align = alBottom
+        Left = 832
+        Top = 115
+        Align = alRight
         TabOrder = 3
         Visible = True
-        ExplicitLeft = 0
-        ExplicitTop = 400
-        ExplicitWidth = 1194
-        ExplicitHeight = 146
-        Height = 146
-        Width = 1017
+        ExplicitLeft = 832
+        ExplicitTop = 115
+        ExplicitWidth = 185
+        ExplicitHeight = 341
+        Height = 341
+        Width = 185
         object lbVlrTotal: TLabel
-          Left = 28
+          Left = 12
           Top = 16
           Width = 75
           Height = 18
@@ -171,12 +171,34 @@ inherited FVenda: TFVenda
           Font.Style = []
           ParentFont = False
         end
-        object cxDBMaskEdit1: TcxDBMaskEdit
-          Left = 28
-          Top = 40
+        object Label3: TLabel
+          Left = 12
+          Top = 64
+          Width = 73
+          Height = 18
+          Caption = 'Descontos:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object EB_TOTAL: TcxDBMaskEdit
+          Left = 12
+          Top = 37
           DataBinding.DataField = 'TOTAL'
           DataBinding.DataSource = dsPadrao
           TabOrder = 0
+          Width = 125
+        end
+        object EB_DESCONTOS: TcxDBMaskEdit
+          Left = 12
+          Top = 85
+          DataBinding.DataField = 'VLRDESCONTO'
+          DataBinding.DataSource = dsItens
+          Properties.ReadOnly = True
+          TabOrder = 1
           Width = 128
         end
       end
@@ -190,48 +212,54 @@ inherited FVenda: TFVenda
       object Panel1: TPanel
         Left = 0
         Top = 115
-        Width = 1017
-        Height = 195
+        Width = 832
+        Height = 341
         Align = alClient
         Caption = 'Panel1'
         TabOrder = 2
-        ExplicitWidth = 1137
         object Bevel1: TBevel
           Left = 1
           Top = 1
           Width = 39
-          Height = 193
+          Height = 339
           Align = alLeft
           Shape = bsFrame
           Style = bsRaised
+          ExplicitHeight = 193
         end
         object cxGrid1: TcxGrid
           Left = 40
           Top = 1
-          Width = 976
-          Height = 193
+          Width = 791
+          Height = 339
           Align = alClient
           TabOrder = 0
           LookAndFeel.Kind = lfUltraFlat
           LookAndFeel.NativeStyle = True
-          ExplicitLeft = 51
-          ExplicitWidth = 1142
-          ExplicitHeight = 283
           object cxGridDBTableView1: TcxGridDBTableView
             Navigator.Buttons.CustomButtons = <>
             DataController.DataSource = dsItens
             DataController.Options = [dcoAssignGroupingValues, dcoAssignMasterDetailKeys, dcoSaveExpanding, dcoImmediatePost]
             DataController.Summary.DefaultGroupSummaryItems = <>
-            DataController.Summary.FooterSummaryItems = <>
+            DataController.Summary.FooterSummaryItems = <
+              item
+                Kind = skSum
+                FieldName = 'VLRPRODSERV'
+                Column = cxGridDBTableView1VLRPRODSERV
+                DisplayText = 'Valor Total'
+                VisibleForCustomization = False
+              end
+              item
+                Kind = skSum
+                FieldName = 'VLRDESCONTO'
+                Column = cxGridDBTableView1VLRDESCONTO
+                DisplayText = 'Vlr Tot. Desc.'
+              end>
             DataController.Summary.SummaryGroups = <>
             FilterRow.InfoText = 'Clique aqui para definir um filtro'
-            OptionsData.CancelOnExit = False
-            OptionsData.Deleting = False
-            OptionsData.DeletingConfirmation = False
-            OptionsData.Inserting = False
-            OptionsSelection.CellSelect = False
             OptionsSelection.InvertSelect = False
             OptionsView.NoDataToDisplayInfoText = '<N'#227'o h'#225' informa'#231#245'es para exibi'#231#227'o>'
+            OptionsView.Footer = True
             OptionsView.GroupByBox = False
             object cxGridDBTableView1CD_VENDA: TcxGridDBColumn
               Caption = 'C'#243'd. Venda'
@@ -241,11 +269,14 @@ inherited FVenda: TFVenda
             object cxGridDBTableView1CD_PRODSERV: TcxGridDBColumn
               Caption = 'C'#243'digo'
               DataBinding.FieldName = 'CD_PRODSERV'
+              Options.Editing = False
+              Options.Focusing = False
               Width = 105
             end
             object cxGridDBTableView1VLRPRODSERV: TcxGridDBColumn
               Caption = 'Valor'
               DataBinding.FieldName = 'VLRPRODSERV'
+              Options.Editing = False
               Width = 122
             end
             object cxGridDBTableView1VLRCOBRADO: TcxGridDBColumn
@@ -310,18 +341,67 @@ inherited FVenda: TFVenda
             B9FFE3C5A3FFC59973F24C392A67000000060000000100000000000000000000
             000000000001000000022019122C6C543E89A47E5FCCC59770F1C19570EEA47E
             60CD6C543F8B16110D2200000003000000010000000000000000}
+          SpeedButtonOptions.CanBeFocused = False
+          SpeedButtonOptions.Flat = True
           TabOrder = 1
+        end
+        object cxButton3: TcxButton
+          Left = 5
+          Top = 47
+          Width = 33
+          Height = 33
+          OptionsImage.Glyph.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000020000000A00000010000000090000000200000000000000000000
+            00020000000A000000120000000C000000030000000000000000000000000000
+            00020000000F0F0742921D0F7EEF0603347A0000000E00000002000000020000
+            000F0804347C1D0F7EF00F084194000000120000000200000000000000000000
+            0008120B47923233AFFF3648CCFF1D1EA5FF0603357A0000000F0000000F0703
+            357C1F20A5FF3747CCFF2D2FAEFF120B46950000000B00000000000000000000
+            000C281C8DF1596CD8FF3B51D3FF3A4FD2FF1E22A6FF0602347D0502357E2022
+            A6FF3A50D3FF3A50D3FF4C5FD4FF291D8CF10000001000000000000000000000
+            0006130F3C734D4FBAFF667EE0FF415AD6FF415AD7FF1F24A7FF2529A8FF415A
+            D7FF415AD7FF5B72DEFF484AB8FF130F3C790000000900000000000000000000
+            00010000000A16123F73585CC1FF758DE6FF4A64DBFF4A65DBFF4A65DBFF4A64
+            DBFF6983E3FF5356C0FF16123F780000000C0000000200000000000000000000
+            0000000000010000000A191643755D63C7FF6783E5FF5774E2FF5774E2FF5774
+            E2FF565CC6FF1916437A0000000D000000020000000000000000000000000000
+            00000000000100000009100E3D734A50BEFF7492EBFF6383E7FF6483E7FF6383
+            E7FF3840B6FF0B0839780000000C000000020000000000000000000000000000
+            0001000000071413416E555CC5FF85A1EFFF7897EDFF9CB6F4FF9DB7F5FF7997
+            EEFF7796EDFF414ABCFF0E0C3C730000000A0000000100000000000000000000
+            00041818456B636CCFFF93AFF3FF83A1F1FFA6BFF7FF676DCAFF7E87DDFFAFC7
+            F8FF83A3F2FF83A1F1FF5058C4FF121040710000000600000000000000000000
+            00065759C3EFAFC6F6FF8EADF4FFABC4F8FF6F76D0FF1817456F24244F70868E
+            E1FFB5CCF9FF8DACF4FFA1B8F4FF5758C3EF0000000900000000000000000000
+            000331326B8695A0EAFFC0D3F9FF7880D7FF1C1C496B00000006000000072527
+            526C8B93E6FFC1D3F9FF949EE9FF303168870000000500000000000000000000
+            00010000000431336B825E62CBEC1F204D680000000500000001000000010000
+            00052728536B5E62CBEC31326883000000070000000100000000000000000000
+            0000000000000000000200000004000000020000000100000000000000000000
+            0001000000030000000500000004000000010000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000}
+          SpeedButtonOptions.CanBeFocused = False
+          SpeedButtonOptions.Flat = True
+          TabOrder = 2
+          OnClick = cxButton3Click
         end
       end
     end
     inherited tbConsulta: TcxTabSheet
-      ExplicitWidth = 1194
-      ExplicitHeight = 546
+      ExplicitLeft = 4
+      ExplicitTop = 41
+      ExplicitWidth = 1017
+      ExplicitHeight = 456
       inherited cxGrid: TcxGrid
         Width = 1017
         Height = 456
-        ExplicitWidth = 1194
-        ExplicitHeight = 546
+        ExplicitWidth = 1017
+        ExplicitHeight = 456
         inherited cxGridTableView: TcxGridDBTableView
           object cxGridTableViewCD_VENDA: TcxGridDBColumn
             Caption = 'C'#243'd. Venda'
@@ -345,7 +425,7 @@ inherited FVenda: TFVenda
   end
   inherited imgNormal: TImageList
     Bitmap = {
-      494C010111005000100220002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010111005000240220002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000A000000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2996,6 +3076,9 @@ inherited FVenda: TFVenda
     object AdicionarItem: TAction
       OnExecute = AdicionarItemExecute
     end
+    object Action1: TAction
+      Caption = 'Action1'
+    end
   end
   inherited cdsPadrao: TClientDataSet
     Active = True
@@ -3034,7 +3117,7 @@ inherited FVenda: TFVenda
   end
   inherited imgFlat: TImageList
     Bitmap = {
-      494C010119000002AC0120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010119000002C00120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       010000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
@@ -6747,7 +6830,7 @@ inherited FVenda: TFVenda
   end
   inherited img1616: TImageList
     Bitmap = {
-      494C010101000800540010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000800680010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       000000000000000000000000000000000000838481003F3E3900D3D2CE00FFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
@@ -6918,6 +7001,7 @@ inherited FVenda: TFVenda
     end
     object cdsItensVLRDESCONTO: TFloatField
       FieldName = 'VLRDESCONTO'
+      OnChange = cdsItensVLRDESCONTOChange
     end
     object cdsItensVLRCOBRADO: TFloatField
       FieldName = 'VLRCOBRADO'

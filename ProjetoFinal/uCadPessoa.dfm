@@ -2,32 +2,34 @@ inherited FCadPessoa: TFCadPessoa
   Left = 617
   Top = 231
   Caption = 'Cadastro de Pessoas'
-  ClientHeight = 538
-  ClientWidth = 973
+  ClientHeight = 566
+  ClientWidth = 986
   Position = poDesigned
-  ExplicitWidth = 979
-  ExplicitHeight = 567
+  ExplicitWidth = 992
+  ExplicitHeight = 595
   PixelsPerInch = 96
   TextHeight = 13
   inherited PnCaption: TPanel
-    Width = 973
-    ExplicitWidth = 1142
+    Width = 986
+    ExplicitWidth = 973
   end
   inherited PnTools: TPanel
-    Width = 973
-    ExplicitWidth = 1142
+    Width = 986
+    ExplicitWidth = 973
   end
   inherited PC: TcxPageControl
-    Width = 973
-    Height = 434
+    Width = 986
+    Height = 462
     Properties.ActivePage = tbCadastro
-    ExplicitWidth = 1142
-    ExplicitHeight = 393
-    ClientRectBottom = 430
-    ClientRectRight = 969
+    ExplicitWidth = 973
+    ExplicitHeight = 530
+    ClientRectBottom = 458
+    ClientRectRight = 982
     inherited tbCadastro: TcxTabSheet
-      ExplicitWidth = 1134
-      ExplicitHeight = 348
+      ExplicitLeft = 5
+      ExplicitTop = 42
+      ExplicitWidth = 965
+      ExplicitHeight = 485
       inherited GB1: TcxGroupBox
         Left = 13
         Top = 16
@@ -36,8 +38,8 @@ inherited FCadPessoa: TFCadPessoa
         ExplicitLeft = 13
         ExplicitTop = 16
         ExplicitWidth = 628
-        ExplicitHeight = 311
-        Height = 311
+        ExplicitHeight = 217
+        Height = 217
         Width = 628
         object Label1: TLabel
           Left = 16
@@ -118,8 +120,8 @@ inherited FCadPessoa: TFCadPessoa
           ParentFont = False
         end
         object Label7: TLabel
-          Left = 275
-          Top = 19
+          Left = 307
+          Top = 16
           Width = 190
           Height = 18
           Caption = 'Data de Cadastro...............'
@@ -131,9 +133,9 @@ inherited FCadPessoa: TFCadPessoa
           Font.Style = []
           ParentFont = False
         end
-        object cxDBTextEdit1: TcxDBTextEdit
+        object EB_CDPESSOA: TcxDBTextEdit
           Left = 145
-          Top = 16
+          Top = 13
           DataBinding.DataField = 'CD_CLIENTE'
           DataBinding.DataSource = dsPadrao
           Properties.ReadOnly = True
@@ -141,7 +143,7 @@ inherited FCadPessoa: TFCadPessoa
           TabOrder = 0
           Width = 101
         end
-        object cxDBTextEdit2: TcxDBTextEdit
+        object EB_NMPESSOA: TcxDBTextEdit
           Left = 145
           Top = 47
           DataBinding.DataField = 'NM_CLIENTE'
@@ -149,15 +151,6 @@ inherited FCadPessoa: TFCadPessoa
           Properties.ReadOnly = False
           TabOrder = 2
           Width = 438
-        end
-        object cxDBMaskEdit1: TcxDBMaskEdit
-          Left = 145
-          Top = 76
-          DataBinding.DataField = 'CPF'
-          DataBinding.DataSource = dsPadrao
-          Properties.EditMask = '000\.000\.000\-00'
-          TabOrder = 4
-          Width = 121
         end
         object EB_CLIENTE: TcxDBTextEdit
           Left = 145
@@ -168,7 +161,7 @@ inherited FCadPessoa: TFCadPessoa
           TabOrder = 5
           Width = 121
         end
-        object cxDBTextEdit3: TcxDBTextEdit
+        object EB_CELULAR: TcxDBTextEdit
           Left = 145
           Top = 140
           DataBinding.DataField = 'TELEFONE1'
@@ -177,7 +170,7 @@ inherited FCadPessoa: TFCadPessoa
           TabOrder = 6
           Width = 121
         end
-        object cxDBTextEdit4: TcxDBTextEdit
+        object EB_EMAIL: TcxDBTextEdit
           Left = 145
           Top = 171
           DataBinding.DataField = 'EMAIL'
@@ -188,7 +181,7 @@ inherited FCadPessoa: TFCadPessoa
         end
         object DBRadioGroup1: TDBRadioGroup
           Left = 422
-          Top = 70
+          Top = 76
           Width = 161
           Height = 57
           Caption = 'Sexo'
@@ -198,35 +191,180 @@ inherited FCadPessoa: TFCadPessoa
           Items.Strings = (
             'Masculino'
             'Feminino')
-          TabOrder = 3
+          TabOrder = 4
           Values.Strings = (
             'M'
             'F')
         end
-        object cxDBDateEdit1: TcxDBDateEdit
+        object EB_DTCADASTRO: TcxDBDateEdit
           Left = 462
-          Top = 16
+          Top = 13
           DataBinding.DataField = 'DT_CADASTRO'
           DataBinding.DataSource = dsPadrao
           Enabled = False
           TabOrder = 1
           Width = 121
         end
+        object EB_CPF: TcxDBMaskEdit
+          Left = 145
+          Top = 76
+          DataBinding.DataField = 'CPF'
+          DataBinding.DataSource = dsPadrao
+          Properties.HideSelection = False
+          Properties.EditMask = '000\.000\.000\-00;0;_'
+          TabOrder = 3
+          Width = 121
+        end
       end
       inherited GB2: TcxGroupBox
-        Left = 525
-        Top = 333
+        Left = 15
+        Top = 239
         TabOrder = 2
-        ExplicitLeft = 525
-        ExplicitTop = 333
-        ExplicitWidth = 39
-        Width = 39
+        Visible = True
+        ExplicitLeft = 15
+        ExplicitTop = 239
+        ExplicitWidth = 628
+        ExplicitHeight = 154
+        Height = 154
+        Width = 628
+        object Label9: TLabel
+          Left = 16
+          Top = 18
+          Width = 165
+          Height = 18
+          Caption = 'CEP............................'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label10: TLabel
+          Left = 16
+          Top = 45
+          Width = 200
+          Height = 18
+          Caption = 'Endere'#231'o............................'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label11: TLabel
+          Left = 16
+          Top = 72
+          Width = 177
+          Height = 18
+          Caption = 'Bairro............................'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label12: TLabel
+          Left = 16
+          Top = 99
+          Width = 113
+          Height = 18
+          Caption = 'Cidade..............'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label13: TLabel
+          Left = 16
+          Top = 126
+          Width = 122
+          Height = 18
+          Caption = 'N'#250'mero..............'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object btSelRaca: TSpeedButton
+          Left = 216
+          Top = 97
+          Width = 26
+          Height = 20
+          CustomHint = BalloonHint1
+          Action = ac_Pesquisar
+          Flat = True
+          Layout = blGlyphTop
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object cxDBTextEdit5: TcxDBTextEdit
+          Left = 104
+          Top = 15
+          DataBinding.DataField = 'CEP'
+          DataBinding.DataSource = dsPadrao
+          Properties.ReadOnly = False
+          TabOrder = 0
+          Width = 112
+        end
+        object cxDBTextEdit6: TcxDBTextEdit
+          Left = 104
+          Top = 42
+          DataBinding.DataField = 'ENDERECO'
+          DataBinding.DataSource = dsPadrao
+          Properties.ReadOnly = False
+          TabOrder = 1
+          Width = 479
+        end
+        object cxDBTextEdit7: TcxDBTextEdit
+          Left = 104
+          Top = 69
+          DataBinding.DataField = 'BAIRRO'
+          DataBinding.DataSource = dsPadrao
+          Properties.ReadOnly = False
+          TabOrder = 2
+          Width = 479
+        end
+        object cxDBTextEdit8: TcxDBTextEdit
+          Left = 104
+          Top = 96
+          DataBinding.DataField = 'CD_CIDADE'
+          DataBinding.DataSource = dsPadrao
+          Properties.ReadOnly = False
+          TabOrder = 3
+          Width = 112
+        end
+        object cxDBTextEdit10: TcxDBTextEdit
+          Left = 104
+          Top = 123
+          DataBinding.DataField = 'NUMERO'
+          DataBinding.DataSource = dsPadrao
+          Properties.ReadOnly = False
+          TabOrder = 5
+          Width = 112
+        end
+        object cxDBTextEdit9: TcxDBTextEdit
+          Left = 240
+          Top = 96
+          CustomHint = BalloonHint1
+          DataBinding.DataField = 'NM_CIDADE'
+          DataBinding.DataSource = dsPadrao
+          Properties.ReadOnly = True
+          TabOrder = 4
+          Width = 343
+        end
       end
       inherited GB3: TcxGroupBox
-        Left = 602
+        Left = 714
         Top = 333
         TabOrder = 3
-        ExplicitLeft = 602
+        ExplicitLeft = 714
         ExplicitTop = 333
       end
       object cxGroupBox1: TcxGroupBox
@@ -234,21 +372,18 @@ inherited FCadPessoa: TFCadPessoa
         Top = 16
         Caption = 'Animais Vinculados'
         TabOrder = 1
-        Height = 313
+        Height = 377
         Width = 306
         object cxAnimais: TcxGrid
           Left = 2
           Top = 18
           Width = 302
-          Height = 293
+          Height = 357
           Align = alClient
           TabOrder = 0
           LookAndFeel.Kind = lfUltraFlat
           LookAndFeel.NativeStyle = True
-          ExplicitLeft = 43
-          ExplicitTop = -16
-          ExplicitWidth = 298
-          ExplicitHeight = 287
+          ExplicitHeight = 293
           object TableViewAnimais: TcxGridDBTableView
             Navigator.Buttons.CustomButtons = <>
             DataController.DataSource = dsAnimais
@@ -273,8 +408,8 @@ inherited FCadPessoa: TFCadPessoa
               Width = 190
             end
             object TableViewAnimaisNM_RACA: TcxGridDBColumn
-              Caption = 'Nome Ra'#231'a'
-              DataBinding.FieldName = 'NM_ANIMAL'
+              Caption = 'Ra'#231'a'
+              DataBinding.FieldName = 'NM_RACA'
               Width = 103
             end
             object TableViewAnimaisNM_ESPECIE: TcxGridDBColumn
@@ -293,13 +428,13 @@ inherited FCadPessoa: TFCadPessoa
     inherited tbConsulta: TcxTabSheet
       ExplicitLeft = 4
       ExplicitTop = 41
-      ExplicitWidth = 1134
-      ExplicitHeight = 348
+      ExplicitWidth = 965
+      ExplicitHeight = 485
       inherited cxGrid: TcxGrid
-        Width = 965
-        Height = 389
-        ExplicitWidth = 1134
-        ExplicitHeight = 348
+        Width = 978
+        Height = 417
+        ExplicitWidth = 965
+        ExplicitHeight = 485
         inherited cxGridTableView: TcxGridDBTableView
           object cxGridTableViewCD_CLIENTE: TcxGridDBColumn
             Caption = 'C'#243'd. Cliente'
@@ -326,7 +461,7 @@ inherited FCadPessoa: TFCadPessoa
   end
   inherited imgNormal: TImageList
     Bitmap = {
-      494C010111005000040220002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010111005000140220002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000A000000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2974,8 +3109,10 @@ inherited FCadPessoa: TFCadPessoa
       000000000000}
   end
   inherited cdsPadrao: TClientDataSet
+    Active = True
     object cdsPadraoCD_CLIENTE: TIntegerField
       FieldName = 'CD_CLIENTE'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
     object cdsPadraoNM_CLIENTE: TStringField
@@ -3042,10 +3179,14 @@ inherited FCadPessoa: TFCadPessoa
     object cdsPadraoCD_GRUPO: TIntegerField
       FieldName = 'CD_GRUPO'
     end
+    object cdsPadraoNM_CIDADE: TStringField
+      FieldName = 'NM_CIDADE'
+      Size = 100
+    end
   end
   inherited imgFlat: TImageList
     Bitmap = {
-      494C010119000002A00120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010119000002B00120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       010000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
@@ -6758,7 +6899,7 @@ inherited FCadPessoa: TFCadPessoa
   end
   inherited img1616: TImageList
     Bitmap = {
-      494C010101000800480010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000800580010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       000000000000000000000000000000000000838481003F3E3900D3D2CE00FFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
@@ -6897,6 +7038,11 @@ inherited FCadPessoa: TFCadPessoa
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000}
   end
+  inherited acPesquisa: TActionList
+    inherited ac_Pesquisar: TAction
+      OnExecute = ac_PesquisarExecute
+    end
+  end
   object qryAnimais: TSQLQuery
     Active = True
     MaxBlobSize = 1
@@ -6906,12 +7052,12 @@ inherited FCadPessoa: TFCadPessoa
     SQLConnection = DmPrinc.sqlCon
     Left = 778
     Top = 299
-    object qryAnimaisCD_ANIMAL: TIntegerField
-      FieldName = 'CD_ANIMAL'
-      Required = True
-    end
     object qryAnimaisNM_ANIMAL: TStringField
       FieldName = 'NM_ANIMAL'
+      Size = 100
+    end
+    object qryAnimaisNM_RACA: TStringField
+      FieldName = 'NM_RACA'
       Size = 100
     end
   end

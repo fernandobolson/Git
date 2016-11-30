@@ -13,7 +13,7 @@ uses
   cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, Vcl.StdCtrls, cxButtons, cxGroupBox,
   Vcl.Buttons, Vcl.ExtCtrls, uUsuario, Vcl.DBCtrls, cxMaskEdit, cxDBEdit,
-  cxTextEdit, cxRadioGroup, Vcl.Mask;
+  cxTextEdit, cxRadioGroup, Vcl.Mask, MidasLib;
 
 
 type
@@ -45,10 +45,11 @@ type
       Sender: TcxCustomGridTableItem; ARecord: TcxCustomGridRecord;
       var AText: string);
     procedure Ac_IncluirExecute(Sender: TObject);
-    procedure Ac_ExcluirExecute(Sender: TObject);
+    procedure Ac_EditarExecute(Sender: TObject);
   private
     { Private declarations }
     User : TUsuario;
+    bSuper : Boolean;
     procedure CriaObjetoCrud; override;
     function CheckDadosFinal: Boolean; override;
     function CheckDadosExclusao: Boolean; override;
@@ -68,23 +69,22 @@ implementation
 
 uses
    uMenuBase
- , BibStr;
+ , BibStr
+ , uClientDataSetHelper
+ , BibGeral;
 
 {$R *.dfm}
 
 { TFPadraoManut1 }
 
-procedure TFCadUsuario.Ac_ExcluirExecute(Sender: TObject);
+procedure TFCadUsuario.Ac_EditarExecute(Sender: TObject);
 begin
-  if not User.IsSupervisor then
-    raise Exception.Create('Somente usúarios Supervisores podem Excluir outros usuários');
-
   inherited;
+  cdsPadrao.FieldByName('SENHA').AsString := EmptyStr;
 end;
 
 procedure TFCadUsuario.Ac_IncluirExecute(Sender: TObject);
 begin
-
   if not User.IsSupervisor then
     raise Exception.Create('Somente usúarios Supervisores podem Incluir novos usuários');
 
@@ -95,12 +95,20 @@ end;
 
 function TFCadUsuario.CheckDadosExclusao: Boolean;
 begin
-  //
+  Result := True;
+
+  if not User.IsSupervisor then
+    begin
+    raise Exception.Create('Somente usúarios Supervisores podem Excluir outros usuários');
+    Result := False;
+  end;
+
 end;
 
 function TFCadUsuario.CheckDadosFinal: Boolean;
 begin
   Result := True;
+  EB_ID.SetFocus; //Forçar a sair dos campos
 
   if Trim(cdsPadrao.FieldByName('LOGIN').AsString) = EmptyStr then
     begin
@@ -108,7 +116,14 @@ begin
     raise Exception.Create('Informe um Login para acesso ao sistema');
   end;
 
-  EB_ID.SetFocus; //Forçar a sair dos campos
+  if Trim(cdsPadrao.FieldByName('SENHA').AsString) = EmptyStr then
+    begin
+    Result := False;
+    raise Exception.Create('Informe uma Senha para acesso ao sistema');
+  end;
+
+  if bSuper and (not cdsPadrao.AsBoolean('SUPERVISOR')) then
+    RespOkCancel('Atenção', 'Para as alterações surtirem efeito, saia e entre novamente no sistema.');
 
   if Result then
     GravaSenhaEncriptografada;
@@ -161,7 +176,7 @@ begin
       RGSupervisor.Enabled := False;
     end;
   end;
-
+  bSuper := User.IsSupervisor;
 end;
 
 procedure TFCadUsuario.CriaObjetoUsuario;

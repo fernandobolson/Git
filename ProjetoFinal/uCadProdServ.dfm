@@ -8,6 +8,7 @@ inherited FCadProdServ: TFCadProdServ
   TextHeight = 13
   inherited PnCaption: TPanel
     Width = 973
+    ExplicitWidth = 973
     inherited lbNameCrud: TLabel
       Width = 205
       Caption = 'Cadastro de Produtos'
@@ -16,17 +17,19 @@ inherited FCadProdServ: TFCadProdServ
   end
   inherited PnTools: TPanel
     Width = 973
+    ExplicitWidth = 973
   end
   inherited PC: TcxPageControl
     Width = 973
     Height = 429
     Properties.ActivePage = tbCadastro
+    ExplicitWidth = 973
+    ExplicitHeight = 429
     ClientRectBottom = 425
     ClientRectRight = 969
     inherited tbCadastro: TcxTabSheet
-      ExplicitTop = 3
-      ExplicitWidth = 0
-      ExplicitHeight = 533
+      ExplicitWidth = 965
+      ExplicitHeight = 384
       object Label7: TLabel [0]
         Left = 120
         Top = 346
@@ -134,6 +137,19 @@ inherited FCadProdServ: TFCadProdServ
           Font.Style = []
           ParentFont = False
         end
+        object Label13: TLabel
+          Left = 172
+          Top = 153
+          Width = 153
+          Height = 18
+          Caption = 'Pre'#231'o de Venda..........'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
         object cxDBImage1: TcxDBImage
           Left = 7
           Top = 15
@@ -217,6 +233,14 @@ inherited FCadProdServ: TFCadProdServ
           TabOrder = 7
           Width = 176
         end
+        object cxDBMaskEdit1: TcxDBMaskEdit
+          Left = 313
+          Top = 150
+          DataBinding.DataField = 'PRECOVENDA'
+          DataBinding.DataSource = dsPadrao
+          TabOrder = 8
+          Width = 80
+        end
       end
       inherited GB2: TcxGroupBox
         Left = 13
@@ -263,6 +287,7 @@ inherited FCadProdServ: TFCadProdServ
           Width = 194
           Height = 18
           Caption = 'Estoque Atual.....................'
+          Enabled = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -15
@@ -306,6 +331,7 @@ inherited FCadProdServ: TFCadProdServ
           Top = 43
           DataBinding.DataField = 'QTDATUAL'
           DataBinding.DataSource = dsPadrao
+          Enabled = False
           Properties.ReadOnly = True
           Style.BorderStyle = ebsUltraFlat
           TabOrder = 2
@@ -340,13 +366,13 @@ inherited FCadProdServ: TFCadProdServ
       end
     end
     inherited tbConsulta: TcxTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 41
-      ExplicitWidth = 1012
-      ExplicitHeight = 495
+      ExplicitWidth = 965
+      ExplicitHeight = 384
       inherited cxGrid: TcxGrid
         Width = 965
         Height = 384
+        ExplicitWidth = 965
+        ExplicitHeight = 384
         inherited cxGridTableView: TcxGridDBTableView
           object cxGridTableViewCD_PRODSERV: TcxGridDBColumn
             Caption = 'C'#243'd. Prod. Servico'
@@ -380,7 +406,7 @@ inherited FCadProdServ: TFCadProdServ
   end
   inherited imgNormal: TImageList
     Bitmap = {
-      494C010111005000080220002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010111005000140220002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000A000000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3087,7 +3113,7 @@ inherited FCadProdServ: TFCadProdServ
   end
   inherited imgFlat: TImageList
     Bitmap = {
-      494C010119000002A40120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010119000002B00120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       010000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
@@ -6801,7 +6827,7 @@ inherited FCadProdServ: TFCadProdServ
   end
   inherited img1616: TImageList
     Bitmap = {
-      494C0101010008004C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000800580010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       000000000000000000000000000000000000838481003F3E3900D3D2CE00FFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF

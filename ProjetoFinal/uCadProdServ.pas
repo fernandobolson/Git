@@ -13,7 +13,7 @@ uses
   cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, Vcl.StdCtrls, cxButtons, cxGroupBox,
   Vcl.Buttons, Vcl.ExtCtrls, Vcl.DBCtrls, cxTextEdit, cxDBEdit, cxImage,
-  cxMaskEdit, cxDropDownEdit, cxCalendar;
+  cxMaskEdit, cxDropDownEdit, cxCalendar, MidasLib;
 
 type
   TFCadProdServ = class(TFPadraoManut)
@@ -61,13 +61,15 @@ type
     cxGridTableViewColumn1: TcxGridDBColumn;
     Label7: TLabel;
     cxDBTextEdit4: TcxDBTextEdit;
+    Label13: TLabel;
+    cxDBMaskEdit1: TcxDBMaskEdit;
     procedure Ac_IncluirExecute(Sender: TObject);
     procedure cxGridTableViewTIPOGetDisplayText(
       Sender: TcxCustomGridTableItem; ARecord: TcxCustomGridRecord;
       var AText: string);
   private
     { Private declarations }
-        procedure CriaObjetoCrud; override;
+    procedure CriaObjetoCrud; override;
     function CheckDadosFinal: Boolean; override;
   public
     { Public declarations }

@@ -19,6 +19,46 @@ type
   TFCadPessoa = class(TFPadraoManut)
     qryAnimais: TSQLQuery;
     dsAnimais: TDataSource;
+    Label1: TLabel;
+    EB_CDPESSOA: TcxDBTextEdit;
+    Label3: TLabel;
+    EB_NMPESSOA: TcxDBTextEdit;
+    Label4: TLabel;
+    Label6: TLabel;
+    EB_CLIENTE: TcxDBTextEdit;
+    EB_CELULAR: TcxDBTextEdit;
+    Label5: TLabel;
+    Label8: TLabel;
+    EB_EMAIL: TcxDBTextEdit;
+    DBRadioGroup1: TDBRadioGroup;
+    EB_DTCADASTRO: TcxDBDateEdit;
+    Label7: TLabel;
+    cxGridTableViewCD_CLIENTE: TcxGridDBColumn;
+    cxGridTableViewNM_CLIENTE: TcxGridDBColumn;
+    cxGridTableViewDT_CADASTRO: TcxGridDBColumn;
+    cxGridTableViewCELULAR: TcxGridDBColumn;
+    qryAnimaisNM_ANIMAL: TStringField;
+    cxGroupBox1: TcxGroupBox;
+    cxAnimais: TcxGrid;
+    TableViewAnimais: TcxGridDBTableView;
+    TableViewAnimaisNM_ANIMAL: TcxGridDBColumn;
+    TableViewAnimaisNM_RACA: TcxGridDBColumn;
+    TableViewAnimaisNM_ESPECIE: TcxGridDBColumn;
+    cxGridLevel1: TcxGridLevel;
+    EB_CPF: TcxDBMaskEdit;
+    qryAnimaisNM_RACA: TStringField;
+    Label9: TLabel;
+    cxDBTextEdit5: TcxDBTextEdit;
+    cxDBTextEdit6: TcxDBTextEdit;
+    Label10: TLabel;
+    Label11: TLabel;
+    cxDBTextEdit7: TcxDBTextEdit;
+    Label12: TLabel;
+    cxDBTextEdit8: TcxDBTextEdit;
+    Label13: TLabel;
+    cxDBTextEdit10: TcxDBTextEdit;
+    cxDBTextEdit9: TcxDBTextEdit;
+    btSelRaca: TSpeedButton;
     cdsPadraoCD_CLIENTE: TIntegerField;
     cdsPadraoNM_CLIENTE: TStringField;
     cdsPadraoCPF: TStringField;
@@ -37,42 +77,17 @@ type
     cdsPadraoCD_CIDADE: TIntegerField;
     cdsPadraoOBS_GERAIS: TStringField;
     cdsPadraoCD_GRUPO: TIntegerField;
-    Label1: TLabel;
-    cxDBTextEdit1: TcxDBTextEdit;
-    Label3: TLabel;
-    cxDBTextEdit2: TcxDBTextEdit;
-    cxDBMaskEdit1: TcxDBMaskEdit;
-    Label4: TLabel;
-    Label6: TLabel;
-    EB_CLIENTE: TcxDBTextEdit;
-    cxDBTextEdit3: TcxDBTextEdit;
-    Label5: TLabel;
-    Label8: TLabel;
-    cxDBTextEdit4: TcxDBTextEdit;
-    DBRadioGroup1: TDBRadioGroup;
-    cxDBDateEdit1: TcxDBDateEdit;
-    Label7: TLabel;
-    cxGridTableViewCD_CLIENTE: TcxGridDBColumn;
-    cxGridTableViewNM_CLIENTE: TcxGridDBColumn;
-    cxGridTableViewDT_CADASTRO: TcxGridDBColumn;
-    cxGridTableViewCELULAR: TcxGridDBColumn;
-    qryAnimaisCD_ANIMAL: TIntegerField;
-    qryAnimaisNM_ANIMAL: TStringField;
-    cxGroupBox1: TcxGroupBox;
-    cxAnimais: TcxGrid;
-    TableViewAnimais: TcxGridDBTableView;
-    TableViewAnimaisNM_ANIMAL: TcxGridDBColumn;
-    TableViewAnimaisNM_RACA: TcxGridDBColumn;
-    TableViewAnimaisNM_ESPECIE: TcxGridDBColumn;
-    cxGridLevel1: TcxGridLevel;
+    cdsPadraoNM_CIDADE: TStringField;
     procedure Ac_IncluirExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure cxDBTextEdit1PropertiesChange(Sender: TObject);
+    procedure ac_PesquisarExecute(Sender: TObject);
   private
     { Private declarations }
     procedure CriaObjetoCrud; override;
     function CheckDadosFinal: Boolean; override;
     procedure BuscaAnimaisVinculados;
+    procedure RealizaBuscaCidades;
   public
     { Public declarations }
   end;
@@ -84,7 +99,7 @@ implementation
 
 uses
    uDmPrinc
- , uClientDataSetHelper ;
+ , uClientDataSetHelper , uSelCidades;
 
 {$R *.dfm}
 
@@ -128,6 +143,13 @@ begin
   qryAnimais.Close;
 end;
 
+procedure TFCadPessoa.ac_PesquisarExecute(Sender: TObject);
+begin
+  inherited;
+  if PodeRealizarBuscaF3 then
+    RealizaBuscaCidades
+end;
+
 procedure TFCadPessoa.BuscaAnimaisVinculados;
 begin
   with qryAnimais do
@@ -137,6 +159,23 @@ begin
     Sql.Add('SELECT * FROM ANIMAL WHERE CD_CLIENTE = :CDCLIENTE');
     ParamByName('CDCLIENTE').AsInteger := cdsPadrao.AsInt('CD_CLIENTE');
     Open;
+  end;
+end;
+
+procedure TFCadPessoa.RealizaBuscaCidades;
+var
+  cDescricao :String;
+  nCod : Integer;
+begin
+  if Application.FindComponent('FSelCidade') = nil then
+    Application.CreateForm(TFSelCidade, FSelCidade);
+
+  FSelCidade.RetornaCampos(nCod, cDescricao);
+
+  if nCod <> 0 then
+    begin
+    CdsPadrao.FieldByName('CD_CIDADE').AsInteger  := nCod;
+    CdsPadrao.FieldByName('NM_CIDADE').AsString  := cDescricao;
   end;
 end;
 

@@ -55,6 +55,12 @@ var
 begin
   try
     Result := True;
+    if (CdsPadrao.RecordCount <= 0) then
+      begin
+      Result := False;
+      raise Exception.Create('Não existe nenhum registro para ser Excluido.');
+    end;
+
     qry := TSQLQuery.Create(Self);
     qry.SQLConnection := DmPrinc.sqlCon;
 
@@ -92,8 +98,6 @@ begin
     raise Exception.Create('Informe uma Descrição Válida');
     Result := False;
   end;
-
-
 end;
 
 procedure TFCadEspecie.CriaObjetoCrud;

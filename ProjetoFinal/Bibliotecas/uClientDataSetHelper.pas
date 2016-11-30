@@ -15,7 +15,6 @@ type
       { public declarations }
       procedure AppendOrEdit;
       procedure EditAndPostField(AFieldName: String; AValue: Variant);
-
       function AsBoolean(const FieldName: String): boolean;
       function AsDate(const FieldName: String): TDateTime;
       function AsFloat(const FieldName: String): Double;

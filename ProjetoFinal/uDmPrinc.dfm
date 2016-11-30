@@ -8,6 +8,7 @@ object DmPrinc: TDmPrinc
     DriverName = 'Interbase'
     LoginPrompt = False
     Params.Strings = (
+      'Database=database.gdb'
       'GetDriverFunc=getSQLDriverINTERBASE'
       'DriverName=Interbase'
       'DriverUnit=Data.DBXInterBase'
@@ -30,7 +31,6 @@ object DmPrinc: TDmPrinc
       'VendorLib=GDS32.DLL'
       'VendorLibWin64=ibclient64.dll'
       'VendorLibOsx=libgds.dylib'
-      'Database=C:\Users\ferna\Dropbox\VETSHOP.fdb'
       'User_Name=SYSDBA'
       'Password=masterkey'
       'Role=RoleName'
@@ -48,7 +48,6 @@ object DmPrinc: TDmPrinc
       'ServerCharSet='
       'Trim Char=False'
       'SEP=')
-    Connected = True
     Left = 25
     Top = 16
   end

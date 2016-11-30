@@ -364,6 +364,16 @@ begin
         begin
         if ComponenteEstaDentroPageControl(i) then
           TcxDBMemo(Components[i]).Enabled := False;
+      end
+      else if Components[i] is TcxDBDateEdit then
+        begin
+        if ComponenteEstaDentroPageControl(i) then
+          TcxDBDateEdit(Components[i]).Enabled := False;
+      end
+      else if Components[i] is TCxDBComboBox then
+        begin
+        if ComponenteEstaDentroPageControl(i) then
+          TCxDBComboBox(Components[i]).Enabled := False;
       end;
     end;
 
@@ -435,7 +445,19 @@ begin
         begin
         if ComponenteEstaDentroPageControl(i) then
           TcxDBMemo(Components[i]).Enabled := True;
+      end
+      else if Components[i] is TcxDBDateEdit then
+        begin
+        if ComponenteEstaDentroPageControl(i) then
+          TcxDBDateEdit(Components[i]).Enabled := True;
+      end
+      else if Components[i] is TCxDBComboBox then
+        begin
+        if ComponenteEstaDentroPageControl(i) then
+          TCxDBComboBox(Components[i]).Enabled := True;
       end;
+
+
     end;
 
   except

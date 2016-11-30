@@ -1,4 +1,4 @@
-unit uSelCliente;
+unit uSelCidades;
 
 interface
 
@@ -7,41 +7,47 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uSelPadrao, cxGraphics, cxControls,
   cxLookAndFeels, cxLookAndFeelPainters, cxStyles, cxCustomData, cxFilter,
   cxData, cxDataStorage, cxEdit, cxNavigator, Data.DB, cxDBData,
-  Data.FMTBcd, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
-  cxClasses, Datasnap.Provider, Data.SqlExpr, Datasnap.DBClient,
-  cxGridLevel, cxGridCustomView, cxGrid, Vcl.StdCtrls, Vcl.ExtCtrls,
-  Vcl.Menus, cxButtons;
+  Data.FMTBcd, Vcl.Menus, Vcl.StdCtrls, cxButtons, cxGridCustomTableView,
+  cxGridTableView, cxGridDBTableView, cxClasses, Datasnap.Provider,
+  Data.SqlExpr, Datasnap.DBClient, cxGridLevel, cxGridCustomView, cxGrid,
+  Vcl.ExtCtrls;
 
 type
-  TFSelClientes = class(TFSelPadrao)
-    cxGridTableViewCD_CLIENTE: TcxGridDBColumn;
-    cxGridTableViewNM_CLIENTE: TcxGridDBColumn;
+  TFSelCidade = class(TFSelPadrao)
+    cxGridTableViewCD_CIDADE: TcxGridDBColumn;
+    cxGridTableViewNM_CIDADE: TcxGridDBColumn;
+    cxGridTableViewCD_ESTADO: TcxGridDBColumn;
   private
     { Private declarations }
+
   public
     { Public declarations }
     procedure RetornaCampos(var nCod : integer;var cDesc : String);
   end;
 
 var
-  FSelClientes: TFSelClientes;
+  FSelCidade: TFSelCidade;
 
 implementation
 
+{$R *.dfm}
 
-procedure TFSelClientes.RetornaCampos(var nCod: integer;
+{ TFSelPadrao1 }
+
+
+procedure TFSelCidade.RetornaCampos(var nCod: integer;
   var cDesc: String);
 begin
   try
     nCod := 0;
-
+    cDesc := EmptyStr;
     cdsSel.Open;
     Self.ShowModal;
 
     if lRetornaDados then
       begin
-      nCod  := CdsSel.FieldByName('CD_CLIENTE').AsInteger;
-      cDesc := CdsSel.FieldByName('NM_CLIENTE').AsString;
+      nCod  := CdsSel.FieldByName('CD_CIDADE').AsInteger;
+      cDesc := CdsSel.FieldByName('NM_CIDADE').AsString;
     end;
 
   except
@@ -54,6 +60,5 @@ begin
 
 end;
 
-{$R *.dfm}
 
 end.

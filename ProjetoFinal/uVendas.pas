@@ -38,7 +38,7 @@ type
     dspItens: TDataSetProvider;
     cdsItens: TClientDataSet;
     dsItens: TDataSource;
-    cxDBMaskEdit1: TcxDBMaskEdit;
+    EB_TOTAL: TcxDBMaskEdit;
     cdsItensCD_VENDA: TIntegerField;
     cdsItensCD_PRODSERV: TIntegerField;
     cdsItensVLRPRODSERV: TFloatField;
@@ -68,6 +68,10 @@ type
     cdsPadraoNM_PROFISSIONAL: TStringField;
     cdsPadraoTOTAL: TFloatField;
     DataSource1: TDataSource;
+    Label3: TLabel;
+    EB_DESCONTOS: TcxDBMaskEdit;
+    cxButton3: TcxButton;
+    Action1: TAction;
     procedure Ac_SalvarExecute(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
     procedure AdicionarItemExecute(Sender: TObject);
@@ -77,6 +81,8 @@ type
     procedure cxDBTextEdit4PropertiesChange(Sender: TObject);
     procedure Ac_ExcluirExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure cdsItensVLRDESCONTOChange(Sender: TField);
+    procedure cxButton3Click(Sender: TObject);
   private
     FSeqVenda: integer;
     { Private declarations }
@@ -94,6 +100,8 @@ type
     procedure BuscaItensVinculadosCab;
     procedure ExcluiCabecalho;
     procedure ExcluiItens;
+    procedure DeletaItemClient;
+    procedure ValidaDadosCabecalho;
   public
     { Public declarations }
     property SeqVenda : integer read GetSeqVenda write SetSeqVenda;
@@ -217,7 +225,6 @@ begin
     SalvaCabecalho;
     SalvaItensTabelaVendaItens;
   end;
-
 end;
 
 procedure TFVenda.SalvaItensTabelaVendaItens;
@@ -266,10 +273,11 @@ var
 begin
   try
     try
-      cds := TClientDataSet.Create(nil);
-      cds.CloneCursor(cdsItens, False, False);
-      cds.First;
 
+      cds := TClientDataSet.Create(nil);
+      cds.CloneCursor(cdsItens, False, True);
+      cds.First;
+      //Dessa maneira o Cds não pega o Delta do CdsItens e acaba nao funcionando corretamente o calculo.
       nVlrAcumulado := 0;
       nDesc := 0;
       while not cds.Eof do
@@ -299,8 +307,18 @@ end;
 procedure TFVenda.AdicionarItemExecute(Sender: TObject);
 begin
   inherited;
+  if not PodeRealizarBuscaF3 then
+    Exit;
+
+  ValidaDadosCabecalho;
   RealizaBuscaItens;
   AtualizaValorTotal;
+end;
+
+procedure TFVenda.ValidaDadosCabecalho;
+begin
+  if Trim(cdsPadrao.FieldByName('NM_CLIENTE').AsString) = EmptyStr  then
+    raise Exception.Create('Informe um Cliente.');
 end;
 
 
@@ -368,6 +386,21 @@ begin
   end;
 end;
 
+procedure TFVenda.cxButton3Click(Sender: TObject);
+begin
+  inherited;
+  if cdsItens.RecordCount > 0 then
+    DeletaItemClient;
+end;
+
+procedure TFVenda.DeletaItemClient;
+begin
+  if dsItens.State in [dsInsert, dsEdit] then
+    cdsItens.Edit;
+
+  cdsItens.Delete;
+end;
+
 procedure TFVenda.cxDBTextEdit4PropertiesChange(Sender: TObject);
 begin
   inherited;
@@ -386,6 +419,12 @@ begin
 
   cdsItens.Close;
   cdsItens.Open;
+end;
+
+procedure TFVenda.cdsItensVLRDESCONTOChange(Sender: TField);
+begin
+  inherited;
+  AtualizaValorTotal;
 end;
 
 function TFVenda.GetSeqVenda: integer;

@@ -8,14 +8,16 @@ uses
   Vcl.PlatformDefaultStyleActnCtrls, System.Actions, Vcl.ActnMan, Vcl.Menus,
   Vcl.ToolWin, Vcl.ActnCtrls, Vcl.ActnMenus, Vcl.ExtCtrls, dxGDIPlusClasses,
   Vcl.ComCtrls, Vcl.Buttons, Data.FMTBcd, Data.DB, Data.SqlExpr,
-  Vcl.StdCtrls, Vcl.ActnColorMaps, System.ImageList, Vcl.ImgList, System.DateUtils , uUsuario;
+  Vcl.StdCtrls, Vcl.ActnColorMaps, System.ImageList, Vcl.ImgList,
+  System.DateUtils , uUsuario, MidasLib, cxGraphics, cxControls,
+  cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit, cxGroupBox;
 
 type
   TFMenuBase = class(TForm)
     acmMenu: TActionManager;
     aclMenu: TActionList;
     acEspecies: TAction;
-    MainMenu1: TMainMenu;
+    MainMenuBase: TMainMenu;
     Action11: TMenuItem;
     ConfiguraesGerais1: TMenuItem;
     ConfiguraesdeUsuarios1: TMenuItem;
@@ -30,8 +32,7 @@ type
     Action21: TMenuItem;
     Image1: TImage;
     PnCaption: TPanel;
-    XPColorMap1: TXPColorMap;
-    ImageList1: TImageList;
+    ImgMenu: TImageList;
     ac_CadEspecie: TAction;
     ac_Fechar: TAction;
     ac_CfgGeral: TAction;
@@ -54,8 +55,25 @@ type
     CadastrodeAnimais2: TMenuItem;
     CadastrodeEspcies2: TMenuItem;
     CadastrodeRaas2: TMenuItem;
+    ac_CfgGerais: TAction;
+    acMenuIcones: TActionList;
+    GbComandosPadrao: TcxGroupBox;
+    ac_MenuAnimal: TAction;
+    ac_MenuClientes: TAction;
+    ac_VendasMenu: TAction;
+    gbSaveCancel: TcxGroupBox;
+    SpeedButton3: TSpeedButton;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    ac_Atendimentos: TAction;
+    Atendimentos1: TMenuItem;
+    N1: TMenuItem;
+    ac_CadForn: TAction;
+    CadastrodeFornecedores1: TMenuItem;
+    ac_CadPelagem: TAction;
+    ac_CadProcedimento: TAction;
+    CadastrodeProcedimentos1: TMenuItem;
     procedure FormCreate(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     procedure ac_FecharExecute(Sender: TObject);
     procedure TimerTimer(Sender: TObject);
     procedure ac_CadEspecieExecute(Sender: TObject);
@@ -68,11 +86,14 @@ type
     procedure ac_CadProfissionaisExecute(Sender: TObject);
     procedure ac_CadProdExecute(Sender: TObject);
     procedure ac_VendasExecute(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure ac_CadFornExecute(Sender: TObject);
+    procedure ac_CadProcedimentoExecute(Sender: TObject);
   private
     { Private declarations }
     procedure ConectaBanco;
     procedure MostraTelaLogin;
-    procedure VerificaPrimeiroAcessoPedindoAlterarSenha;
+
     procedure CriaObjetoUsuario;
     procedure ConfiguraCaptionForm;
     function MontaMsgBoasVindasStatusBar : String;
@@ -94,7 +115,6 @@ implementation
 uses
     uDmPrinc
   , uLogin
-  , uAlterarSenha
   , BibStr
   , BibGeral
   , BibConsultas
@@ -106,7 +126,9 @@ uses
   , uCadPessoa
   , uCadProfissionais
   , uCadProdServ
-  , uVendas;
+  , uVendas
+  , uCadForn
+  , uCadProcedimentos;
 
 procedure TFMenuBase.acRacasExecute(Sender: TObject);
 begin
@@ -140,11 +162,25 @@ begin
   FCadEspecie.Show;
 end;
 
+procedure TFMenuBase.ac_CadFornExecute(Sender: TObject);
+begin
+  if Application.FindComponent('FCadForn') = nil then
+    Application.CreateForm(TFCadForn, FCadForn);
+  FCadForn.Show;
+end;
+
 procedure TFMenuBase.ac_CadPessoaExecute(Sender: TObject);
 begin
-  if Application.FindComponent('FCadProfissionais') = nil then
-    Application.CreateForm(TFCadProfissionais, FCadProfissionais);
-  FCadProfissionais.Show;
+  if Application.FindComponent('FCadPessoa') = nil then
+    Application.CreateForm(TFCadPessoa, FCadPessoa);
+  FCadPessoa.Show;
+end;
+
+procedure TFMenuBase.ac_CadProcedimentoExecute(Sender: TObject);
+begin
+  if Application.FindComponent('FCadProcedimentos') = nil then
+    Application.CreateForm(TFCadProcedimentos, FCadProcedimentos);
+  FCadProcedimentos.Show;
 end;
 
 procedure TFMenuBase.ac_CadProdExecute(Sender: TObject);
@@ -156,9 +192,9 @@ end;
 
 procedure TFMenuBase.ac_CadProfissionaisExecute(Sender: TObject);
 begin
-  if Application.FindComponent('FCadUsuario') = nil then
-    Application.CreateForm(TFCadUsuario, FCadUsuario);
-  FCadUsuario.Show;
+  if Application.FindComponent('FCadProfissionais') = nil then
+    Application.CreateForm(TFCadProfissionais, FCadProfissionais);
+  FCadProfissionais.Show;
 end;
 
 procedure TFMenuBase.ac_CadUserExecute(Sender: TObject);
@@ -221,25 +257,14 @@ begin
 //
 end;
 
+procedure TFMenuBase.FormShow(Sender: TObject);
+begin
+  ac_CadUser.Enabled := oUsuario.IsSupervisor;
+end;
+
 procedure TFMenuBase.CriaObjetoUsuario;
 begin
   oUsuario := TUsuario.Create(nCodUsuario);
-end;
-
-procedure TFMenuBase.FormShow(Sender: TObject);
-begin
-  VerificaPrimeiroAcessoPedindoAlterarSenha;
-end;
-
-procedure TFMenuBase.VerificaPrimeiroAcessoPedindoAlterarSenha;
-begin
-  if (oUsuario.Login = 'ADM') and (oUsuario.SenhaDescript = '456') then
-    begin
-    if (not Assigned(FAlterarSenha)) then
-      Application.CreateForm(TFAlterarSenha, FAlterarSenha);
-    FAlterarSenha.ShowModal;
-  end;
-
 end;
 
 procedure TFMenuBase.MostraTelaLogin;

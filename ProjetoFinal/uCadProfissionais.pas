@@ -13,25 +13,10 @@ uses
   cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxPC, Vcl.StdCtrls, cxButtons, cxGroupBox,
   Vcl.Buttons, Vcl.ExtCtrls, cxDropDownEdit, cxCalendar, cxDBEdit,
-  Vcl.DBCtrls, cxMaskEdit, cxTextEdit;
+  Vcl.DBCtrls, cxMaskEdit, cxTextEdit, MidasLib;
 
 type
   TFCadProfissionais = class(TFPadraoManut)
-    cdsPadraoCD_PROFISSIONAL: TIntegerField;
-    cdsPadraoNM_PROFISSIONAL: TStringField;
-    cdsPadraoSEXO: TStringField;
-    cdsPadraoAPELIDO: TStringField;
-    cdsPadraoTELEFONE1: TStringField;
-    cdsPadraoTELEFONE2: TStringField;
-    cdsPadraoCD_TP_PROFISSIONAL: TIntegerField;
-    cdsPadraoCRMV: TStringField;
-    cdsPadraoEMAIL: TStringField;
-    cdsPadraoCEP: TStringField;
-    cdsPadraoENDERECO: TStringField;
-    cdsPadraoNUMERO: TStringField;
-    cdsPadraoCOMPLEMENTO: TStringField;
-    cdsPadraoBAIRRO: TStringField;
-    cdsPadraoCD_CIDADE: TIntegerField;
     Label1: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -57,6 +42,27 @@ type
     cxDBTextEdit9: TcxDBTextEdit;
     Label13: TLabel;
     cxDBTextEdit10: TcxDBTextEdit;
+    cxGridTableViewCD_PROFISSIONAL: TcxGridDBColumn;
+    cxGridTableViewNM_PROFISSIONAL: TcxGridDBColumn;
+    cxDBTextEdit11: TcxDBTextEdit;
+    Label7: TLabel;
+    cdsPadraoCD_PROFISSIONAL: TIntegerField;
+    cdsPadraoNM_PROFISSIONAL: TStringField;
+    cdsPadraoSEXO: TStringField;
+    cdsPadraoAPELIDO: TStringField;
+    cdsPadraoTELEFONE1: TStringField;
+    cdsPadraoTELEFONE2: TStringField;
+    cdsPadraoCD_TP_PROFISSIONAL: TIntegerField;
+    cdsPadraoCRMV: TStringField;
+    cdsPadraoEMAIL: TStringField;
+    cdsPadraoCEP: TStringField;
+    cdsPadraoENDERECO: TStringField;
+    cdsPadraoNUMERO: TStringField;
+    cdsPadraoCOMPLEMENTO: TStringField;
+    cdsPadraoBAIRRO: TStringField;
+    cdsPadraoCD_CIDADE: TIntegerField;
+    cdsPadraoCPF: TStringField;
+    cdsPadraoRG: TStringField;
     procedure Ac_IncluirExecute(Sender: TObject);
   private
     { Private declarations }

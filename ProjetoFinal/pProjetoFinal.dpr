@@ -12,11 +12,9 @@ uses
   uClientDataSetHelper in 'Bibliotecas\uClientDataSetHelper.pas',
   BibStr in 'Bibliotecas\BibStr.pas',
   BibGeral in 'Bibliotecas\BibGeral.pas',
-  uEsqueciSenha in 'uEsqueciSenha.pas' {FEsqueciSenha},
   FormPadrao in 'Bibliotecas\FormPadrao.pas' {FPadraoManut},
   BibConsultas in 'Bibliotecas\BibConsultas.pas',
   uUsuario in 'Bibliotecas\uUsuario.pas',
-  uAlterarSenha in 'uAlterarSenha.pas' {FAlterarSenha},
   uCadastroEspecies in 'uCadastroEspecies.pas' {FCadEspecie},
   uCadCidade in 'uCadCidade.pas' {FCadCidade},
   uSelPadrao in 'Bibliotecas\uSelPadrao.pas' {FSelPadrao},
@@ -31,7 +29,11 @@ uses
   uSelCliente in 'uSelCliente.pas' {FSelClientes},
   uCadProdServ in 'uCadProdServ.pas' {FCadProdServ},
   uVendas in 'uVendas.pas' {FVenda},
-  uSelItens in 'uSelItens.pas' {FSelItens};
+  uSelItens in 'uSelItens.pas' {FSelItens},
+  uCadForn in 'uCadForn.pas' {FCadForn},
+  uSelCidades in 'uSelCidades.pas' {FSelCidade},
+  uContasRec in 'uContasRec.pas' {FContasRec},
+  uCadProcedimentos in 'uCadProcedimentos.pas' {FCadProcedimentos};
 
 {$R *.res}
 
@@ -41,6 +43,5 @@ begin
   Application.CreateForm(TDmPrinc, DmPrinc);
   Application.CreateForm(TFMenuBase, FMenuBase);
   Application.CreateForm(TFLogin, FLogin);
-  Application.CreateForm(TFSelItens, FSelItens);
   Application.Run;
 end.

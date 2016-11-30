@@ -9,8 +9,7 @@ uses
   //  function Crypt(Action, Src: String): String;
   function Space(n: integer): string;
   function RemoveAcentos(Str:String): String;
-  function MaskCpf(cCPF : String) : String;
-  function MaskCnpj(cCnpj : String) : String;
+
 
   function Criptografa(sTexto : String) : String;
   function Descriptografa(sTexto : String) : String;
@@ -20,16 +19,9 @@ implementation
 const
   ChavePadrao = 91;
   Chave2 = 21;
-
   //Mascaras
 
-  cMaskNum  = ',0.00';    {Mascara p/Valores}
-  cMaskNum4  = ',0.00##;;#'; {Mascara p/Valores}
-  cMaskNumZ4 = ',0.00##';    {Mascara p/Valores}
-  cMaskQtd   = ',0.#####;;#'; {Mascara p/quantidades}
-  cMaskQtdZ  = ',0.#####';    {Mascara p/quantidades}
-  cMaskInt   = ',0;;#'; {Mascara p/ numeros inteiros}
-  cMaskIntZ  = ',0';    {Mascara p/ numeros inteiros}
+  _MaskNum  = ',0.00';
 
 function Space(n: integer): string;
 var
@@ -241,20 +233,6 @@ Begin
   Result := Str;
 end;
 
-function MaskCpf(cCPF : String) : String;
-{Função : Retornar o Cpf formatado }
-begin
-  Result := '';//FormatMaskText('999.999.999-99;0;*', cCPF);
-end;
 (*--------------------------------------------------------------------*)
-
-function MaskCnpj(cCnpj : String) : String;
-{Função: Retornar o Cnpj formatado}
-begin
-  Result := ''; //FormatMaskText('99.999.999/9999-99;0;*', cCnpj);
-
-
-end;
-
 
 end.
