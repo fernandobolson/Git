@@ -225,9 +225,12 @@ begin
     DmPrinc.sqlCon.Params.LoadFromFile('..\..\Conexao.ini');
     DmPrinc.sqlCon.Open;
   except
-    On e: Exception do
-    raise Exception.Create('Não foi possivel carregar o arquivo Conexao.ini, por favor, verifique se os dados estão corretos'+
-                          sLineBreak + E.Message);
+    On E: Exception do
+      begin
+      RespOkCancel('Não foi possivel carregar o arquivo Conexao.ini, por favor, verifique se os dados estão corretos'+
+                   sLineBreak + E.Message);
+      Application.Terminate;
+    end;
   end; 
 end;
 
@@ -239,6 +242,7 @@ end;
 procedure TFMenuBase.FormCreate(Sender: TObject);
 begin
   try
+    Application.ShowMainForm := False;
     ConectaBanco;
     MostraTelaLogin;
     CriaObjetoUsuario;
@@ -270,7 +274,7 @@ end;
 procedure TFMenuBase.MostraTelaLogin;
 begin
   try
-    Application.ShowMainForm := False;
+
 
     if Application.FindComponent('FLogin') = nil then
       Application.CreateForm(TFLogin, FLogin);
